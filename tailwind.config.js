@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 module.exports = {
   content: [
     './src/**/*.{js,jsx,ts,tsx}',
@@ -6,7 +8,11 @@ module.exports = {
     './node_modules/tw-elements/dist/js/**/*.js'
   ],
   theme: {
-    extend: {}
+    extend: {
+      fontFamily: {
+        sans: ['"Prompt"', ...defaultTheme.fontFamily.sans]
+      }
+    }
   },
   plugins: [require('tw-elements/dist/plugin')]
 };

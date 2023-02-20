@@ -1,12 +1,10 @@
-// import ProductDetail from './pages/ProductDetail';
-
-import Seller from './pages/Seller';
+import React from 'react';
+import Router from './routes/Router';
 
 function App() {
   return (
-    <div className="App">
-      {/* <ProductDetail /> */}
-      <Seller />
+    <div>
+      <Router />
     </div>
   );
 }
