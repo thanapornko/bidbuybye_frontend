@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import 'react-toastify/dist/ReactToastify.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'tw-elements';
 import './index.css';
 import store from './redux/store';
 import { Provider } from 'react-redux';
