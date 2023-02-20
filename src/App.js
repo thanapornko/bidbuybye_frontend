@@ -1,22 +1,11 @@
-import './App.css';
-import Register from './components/Register';
-import Login from './components/Login';
-import Profile from './pages/Profile';
-import EditProfile from './components/EditProfile';
-import History from './pages/History';
-import Admin from './pages/Admin';
+import React from 'react';
+import Router from './routes/Router';
 
 function App() {
   return (
-    <>
-      <Admin />
-      {/* <History /> */}
-      {/* <EditProfile /> */}
-      {/* <Profile /> */}
-      {/* <Register />
-      <div className="m-40"></div>
-      <Login /> */}
-    </>
+    <div>
+      <Router />
+    </div>
   );
 }
 
