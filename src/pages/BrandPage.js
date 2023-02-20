@@ -3,42 +3,46 @@ import { BiX } from 'react-icons/bi';
 
 export default function ShopNikePage() {
   return (
-    <div className=" flex w-[100%]">
-      {/* Box left */}
-      <div className="border-2 w-[15%]">
+    <div className="flex w-[100%] h-[100px]">
+      {/* Box left menuDropwdown */}
+      <div className=" w-[15%] ml-2">
         <Dropwdiwn />
       </div>
+      {/* ----------------------------------------- */}
       {/* Box right */}
-      <div className="border-2 w-[85%]">
-        {/* Box-top right */}
-        <div>
-          {/* box-top */}
-          <div>
-            <a className="cursor-pointer underline text-[#969494] text-[12px]">
-              Clear all
+      <div className=" w-[100%] ">
+        {/* box right top  content*/}
+        <div className="border-2 flex justify-between">
+          <div className="flex flex-col gap-1">
+            <a className="underline">
+              <p className="text-[12px] text-[#969494]">Clear all</p>
             </a>
-          </div>
-          {/* box-bottom */}
-          <div className="flex border-2 p-1 ">
-            {/* Shoes x */}
-            <div className="w-20 flex items-center gap-2 bg-[#00000014] px-2 rounded-lg ">
-              <p className="text-[14px] text-[#1b1b1b]">Shoes</p>
-              <i className="bg-gray-200 rounded-full">
-                <BiX className="text-black/30" />
-              </i>
+
+            <div className="flex gap-2">
+              <div className="flex items-center gap-2 bg-[#00000014] px-3 rounded-full cursor-pointer">
+                <p className="text-[#1b1b1b] ml-3 text-[13px]">Shoes</p>
+                <i className="bg-gray-200 hover:bg-gray-300 rounded-full">
+                  <BiX className="text-[#1b1b1b42]" />
+                </i>
+              </div>
+
+              <div className="flex w-[70px] items-center gap-2 bg-[#00000014]  rounded-full cursor-pointer">
+                <p className="text-[#1b1b1b] ml-3 text-[13px]">Nike</p>
+                <i className="bg-gray-200 hover:bg-gray-300 rounded-full">
+                  <BiX className="text-[#1b1b1b42]" />
+                </i>
+              </div>
             </div>
-            {/* Nike x */}
-            <div className="w-20 flex items-center gap-2 bg-[#00000014] px-2 rounded-lg ">
-              <p className="text-[14px] text-[#1b1b1b]">Nike</p>
-              <i className="bg-gray-200 rounded-full">
-                <BiX className="text-black/30" />
-              </i>
-            </div>
           </div>
+          <div>right</div>
         </div>
-        {/* Box-bottom right */}
-        <div></div>
+
+        {/* ----------------------------------------- */}
+
+        {/* box right bottom crad */}
+        <div>ads</div>
       </div>
+      {/* ----------------------------------------- */}
     </div>
   );
 }
