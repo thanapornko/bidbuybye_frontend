@@ -2,6 +2,7 @@ import { useState } from 'react';
 import NavigateList from '../components/componentProduct/NavigateList';
 import Product from '../components/componentProduct/Product';
 import ProductImage from '../components/componentProduct/ProductImage';
+import DetailPlaceAsk from '../components/componentSeller/DetailPlaceAsk';
 import ProductSeller from '../components/componentSeller/ProductSeller';
 import { DEFAULT, STEP_SELLER, STEP_BUYER } from '../constants/productDetail';
 
@@ -17,7 +18,13 @@ export default function ProductDetailPage() {
             <Product onClickSeller={() => setStep(STEP_SELLER.productList)} />
           ) : null}
           {step === STEP_SELLER.productList ? (
-            <ProductSeller onClickBack={() => setStep(DEFAULT)} />
+            <ProductSeller
+              onClickBack={() => setStep(DEFAULT)}
+              onClickAsk={() => setStep(STEP_SELLER.addPrice)}
+            />
+          ) : null}
+          {step === STEP_SELLER.addPrice ? (
+            <DetailPlaceAsk onClickBack={() => setStep(DEFAULT)} />
           ) : null}
         </div>
       </div>

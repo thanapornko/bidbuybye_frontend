@@ -1,6 +1,7 @@
 import product from '../../Images/1-remove.png';
 import { BsShieldCheck } from 'react-icons/bs';
 import { BsShieldLock } from 'react-icons/bs';
+import ButtonProduct from '../componentSeller/ButtonProduct';
 
 export default function Product({ onClickSeller, onClickBuyer }) {
   return (
@@ -25,20 +26,15 @@ export default function Product({ onClickSeller, onClickBuyer }) {
             <hr className="h-px bg-gray-200" />
           </div>
           <div className="flex justify-evenly p-4">
-            <button
+            <ButtonProduct
+              className={'bg-gray-900 hover:bg-gray-600'}
               onClick={onClickSeller}
-              className="flex justify-center rounded-md border border-transparent bg-slate-900 py-2 px-4 text-sm w-[300px] font-medium text-white hover:bg-slate-600"
-              type="button"
             >
               Sell
-            </button>
-            <button
-              onClick={onClickBuyer}
-              className="flex justify-center rounded-md border border-transparent bg-green-500 py-2 px-4 text-sm  w-[300px] font-medium text-white hover:bg-green-600"
-              type="button"
-            >
-              Buy
-            </button>
+            </ButtonProduct>
+            <ButtonProduct className={'bg-green-500 hover hover:bg-green-600'}>
+              Save
+            </ButtonProduct>
           </div>
           <div className="flex justify-evenly">
             <div className="flex">
