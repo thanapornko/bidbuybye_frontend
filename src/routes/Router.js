@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Header from '../layouts/header';
 import HomePage from '../pages/HomePage';
 import BrandPage from '../pages/BrandPage';
-import ProductDetail from '../pages/ProductDetail';
+import ProductDetailPage from '../pages/ProductDetailPage';
 
 const router = createBrowserRouter([
   {
@@ -17,7 +17,7 @@ const router = createBrowserRouter([
         path: '/brand',
         element: <BrandPage />
       },
-      { path: '/product', element: <ProductDetail /> }
+      { path: '/product', element: <ProductDetailPage /> }
     ]
   }
 ]);

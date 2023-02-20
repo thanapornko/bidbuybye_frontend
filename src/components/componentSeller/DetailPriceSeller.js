@@ -1,7 +1,7 @@
 import { HiPencilSquare } from 'react-icons/hi2';
 import { HiOutlineChevronRight } from 'react-icons/hi2';
 
-export default function DetailPriceSeller() {
+export default function DetailPriceSeller({ onClickBack }) {
   return (
     <div>
       <div>
@@ -30,6 +30,7 @@ export default function DetailPriceSeller() {
         </div>
         <div className="flex justify-evenly p-4">
           <button
+            onClick={onClickBack}
             className="flex justify-center rounded-md border border-transparent bg-slate-900 py-2 px-4 text-sm w-[300px] font-medium text-white hover:bg-gray-600"
             type="button"
           >
