@@ -2,6 +2,7 @@ import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Header from '../component/Header/header';
 import HomePage from '../homePage/HomePage';
+import ShopNikePage from '../products/brands/productClothes/CloteNike/shopNikePage/ShopNikePage';
 
 const router = createBrowserRouter([
   {
@@ -10,6 +11,10 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <HomePage />
+      },
+      {
+        path: '/shopNikePage',
+        element: <ShopNikePage />
       }
     ]
   }

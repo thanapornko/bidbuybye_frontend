@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FaArrowRight } from 'react-icons/fa';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './ProductCloteNike.css';
 import { dateProductCloteNike } from './DataProductCloteNike';
+import Card from '../../../../component/card/Card';
 
 export default function ProductCloteNike() {
   const settings = {
@@ -46,7 +47,9 @@ export default function ProductCloteNike() {
     <div className="mt-10">
       {/* Content Link Clotes */}
       <div className="flex justify-center items-center gap-1 cursor-pointer">
-        <p className="text-[20px] font-semibold">Nike</p>
+        <a href="/shopNikePage">
+          <p className="text-[20px] font-semibold">Nike</p>
+        </a>
         <i>
           <FaArrowRight />
         </i>
@@ -54,22 +57,12 @@ export default function ProductCloteNike() {
 
       <Slider {...settings}>
         {dateProductCloteNike.map((item) => (
-          // container card All
-          <div className="mt-3 p-2">
-            {/* // Card kuy */}
-            <div className="flex cursor-pointer">
-              <div className="flex flex-col border-2 w-[300px] h-[300px]">
-                <img src={item.linkImg} alt="#" className="" />
-                <div className="flex flex-col mt-3">
-                  <p className="text-[14px]">{item.prorductNmae}</p>
-                  <div className="mt-3">
-                    <p className="text-[10px]">{item.tital}</p>
-                    <p className="text-[16px]">{item.price}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <Card
+            image={item.linkImg}
+            productname={item.prorductNmae}
+            tital={item.tital}
+            prict={item.price}
+          />
         ))}
       </Slider>
     </div>

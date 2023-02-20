@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FaArrowRight } from 'react-icons/fa';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import './ProductCloteNike.css';
-import { dateProductCloteNike } from './DataProductCloteNike';
+import './ProductCloteJordan.css';
 
-export default function ProductCloteNike() {
+import { dateProductCloteJordan } from './DataProductCloteJordan';
+import Card from '../../../../component/card/Card';
+
+export default function ProductCloteJordan() {
   const settings = {
     dots: true,
     infinite: false,
@@ -46,30 +48,20 @@ export default function ProductCloteNike() {
     <div className="mt-10">
       {/* Content Link Clotes */}
       <div className="flex justify-center items-center gap-1 cursor-pointer">
-        <p className="text-[20px] font-semibold">Nike</p>
+        <p className="text-[20px] font-semibold">Jordan</p>
         <i>
           <FaArrowRight />
         </i>
       </div>
 
       <Slider {...settings}>
-        {dateProductCloteNike.map((item) => (
-          // container card All
-          <div className="mt-3 p-2">
-            {/* // Card kuy */}
-            <div className="flex cursor-pointer">
-              <div className="flex flex-col border-2 w-[300px] h-[300px]">
-                <img src={item.linkImg} alt="#" className="" />
-                <div className="flex flex-col mt-3">
-                  <p className="text-[14px]">{item.prorductNmae}</p>
-                  <div className="mt-3">
-                    <p className="text-[10px]">{item.tital}</p>
-                    <p className="text-[16px]">{item.price}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        {dateProductCloteJordan.map((item) => (
+          <Card
+            image={item.linkImg}
+            productname={item.prorductNmae}
+            tital={item.tital}
+            prict={item.price}
+          />
         ))}
       </Slider>
     </div>

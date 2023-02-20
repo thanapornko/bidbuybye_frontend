@@ -1,6 +1,6 @@
 import ProductNike1 from './ImageProductBrandNike/1-remove.png';
 
-export const dateProductCloteNike = [
+export const dateProductCloteJordan = [
   {
     id: 1,
     prorductNmae: 'Nike Craft General Purpose Shoe Tom Sach Brown (W)',

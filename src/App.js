@@ -1,14 +1,10 @@
 import React from 'react';
-import { Router } from 'react-router-dom';
-import Header from './component/Header/header';
-import HomePage from './homePage/HomePage';
+import Router from './routes/Router';
 
 function App() {
   return (
     <div>
-      {/* <Router /> */}
-      <Header />
-      <HomePage />
+      <Router />
     </div>
   );
 }

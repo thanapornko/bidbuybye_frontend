@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
+import ProductCloteJordan from '../products/brands/productClothes/CloteJordan/ProductCloteJordan';
 import ProductCloteNike from '../products/brands/productClothes/CloteNike/ProductCloteNike';
 import NewBalance from './images/5a1ed88b4ac6b00ff574e2fa.png';
 
@@ -39,7 +40,7 @@ export default function HomePage() {
       <div className="max-w-[100%] h-[780px] w-full h-full  relative group">
         <div
           style={{ backgroundImage: `url(${slides[currentIndex].url}) ` }}
-          className="w-[100%] h-[500px] w-full h-full  bg-center bg-cover duration-500"
+          className="w-[100%] h-[500px] bg-center bg-cover duration-500"
         ></div>
         {/* Left Arrow */}
         <div className="hidden group-hover:block absolute top-[50%] -translate-x-0 translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
@@ -50,14 +51,15 @@ export default function HomePage() {
           <BsChevronCompactRight onClick={nextSlide} size={30} />
         </div>
       </div>
-      {/* --------------------------------------------------------- */}
 
+      {/* --------------------------------------------------------- */}
       {/* Container All  */}
       <div className="flex flex-col m-auto  w-[80%]">
         {/* Container icon */}
         <div className="flex justify-center items-center gap-20">
           <div className="flex flex-col justify-center items-center cursor-pointer gap-2">
             <img
+              alt="img"
               src="https://img.icons8.com/ios-filled/256/nike.png"
               className="w-[56px] bg-gray-200 p-2 rounded-full  text-black"
             ></img>
@@ -66,6 +68,7 @@ export default function HomePage() {
 
           <div className="flex flex-col justify-center items-center cursor-pointer gap-2">
             <img
+              alt="img"
               src="https://img.icons8.com/ios/256/adidas-trefoil.png"
               className="w-[56px] bg-gray-200 p-2 rounded-full  text-black"
             ></img>
@@ -74,6 +77,7 @@ export default function HomePage() {
 
           <div className="flex flex-col justify-center items-center cursor-pointer gap-2">
             <img
+              alt="img"
               src="https://img.icons8.com/ios/256/air-jordan.png"
               className="w-[56px] bg-gray-200 p-2 rounded-full  text-black"
             ></img>
@@ -82,6 +86,7 @@ export default function HomePage() {
 
           <div className="flex flex-col justify-center items-center cursor-pointer gap-2">
             <img
+              alt="img"
               src={NewBalance}
               className="w-[56px] bg-gray-200 p-2 rounded-full  text-black"
             ></img>
@@ -92,12 +97,11 @@ export default function HomePage() {
 
         {/* Container shoe Brand*/}
         <ProductCloteNike />
+        <ProductCloteJordan />
         {/* --------------------------------------------------------- */}
 
         {/* Container clothes */}
-        <div>
-          <h1>clothes</h1>
-        </div>
+        <div></div>
         {/* --------------------------------------------------------- */}
       </div>
     </div>
