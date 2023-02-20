@@ -1,8 +1,8 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Header from '../component/Header/header';
-import HomePage from '../homePage/HomePage';
-import ShopNikePage from '../products/brands/productClothes/CloteNike/shopNikePage/ShopNikePage';
+import Header from '../layouts/header';
+import HomePage from '../pages/HomePage';
+import BrandPage from '../pages/BrandPage';
 
 const router = createBrowserRouter([
   {
@@ -13,8 +13,8 @@ const router = createBrowserRouter([
         element: <HomePage />
       },
       {
-        path: '/shopNikePage',
-        element: <ShopNikePage />
+        path: '/brand',
+        element: <BrandPage />
       }
     ]
   }

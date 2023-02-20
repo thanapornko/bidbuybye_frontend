@@ -4,8 +4,8 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './ProductCloteNike.css';
-import { dateProductCloteNike } from './DataProductCloteNike';
-import Card from '../../../../component/card/Card';
+import { dateProductCloteNike } from '../../../mocks/DataProductCloteNike';
+import Card from '../../../components/Card';
 
 export default function ProductCloteNike() {
   const settings = {
@@ -47,7 +47,7 @@ export default function ProductCloteNike() {
     <div className="mt-10">
       {/* Content Link Clotes */}
       <div className="flex justify-center items-center gap-1 cursor-pointer">
-        <a href="/shopNikePage">
+        <a href="/brand">
           <p className="text-[20px] font-semibold">Nike</p>
         </a>
         <i>

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
-import ProductCloteJordan from '../products/brands/productClothes/CloteJordan/ProductCloteJordan';
-import ProductCloteNike from '../products/brands/productClothes/CloteNike/ProductCloteNike';
-import NewBalance from './images/5a1ed88b4ac6b00ff574e2fa.png';
+import ProductCloteNike from '../features/products/CloteNike/ProductCloteNike';
+import NewBalance from '../assets/5a1ed88b4ac6b00ff574e2fa.png';
+import ProductCloteJordan from '../features/products/CloteJordan/ProductCloteJordan';
 
 export default function HomePage() {
   const slides = [
@@ -101,7 +101,7 @@ export default function HomePage() {
         {/* --------------------------------------------------------- */}
 
         {/* Container clothes */}
-        <div></div>
+
         {/* --------------------------------------------------------- */}
       </div>
     </div>

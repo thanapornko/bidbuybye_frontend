@@ -1,4 +1,4 @@
-import ProductNike1 from './ImageProductBrandNike/1-remove.png';
+import ProductNike1 from '../assets/1-remove.png';
 
 export const dateProductCloteNike = [
   {

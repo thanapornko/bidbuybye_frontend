@@ -5,8 +5,8 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './ProductCloteJordan.css';
 
-import { dateProductCloteJordan } from './DataProductCloteJordan';
-import Card from '../../../../component/card/Card';
+import { dateProductCloteJordan } from '../../../mocks/DataProductCloteJordan';
+import Card from '../../../components/Card';
 
 export default function ProductCloteJordan() {
   const settings = {
