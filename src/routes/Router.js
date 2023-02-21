@@ -1,13 +1,10 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import HomePage from '../pages/HomePage';
-import BrandPage from '../pages/BrandPage';
-import ProductDetailPage from '../pages/ProductDetailPage';
 
 import Layout from '../layouts/layouts';
 import ProductPage from '../pages/ProductPage';
 
-import ProductDetail from '../pages/ProductDetail';
 import LoginPage from '../pages/Login';
 import RegisterPage from '../pages/Register';
 import ProfilePage from '../pages/Profile';
@@ -45,10 +42,6 @@ const router = createBrowserRouter([
       {
         path: '/admin',
         element: <AdminPage />
-      },
-      {
-        path: '/brand',
-        element: <BrandPage />
       },
       {
         path: '/product',

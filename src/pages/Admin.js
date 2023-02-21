@@ -1,5 +1,5 @@
-import profile from '../images/profile.jpg';
-import shoes from '../images/shoes.png';
+import profile from '../Images/profile.jpg';
+import shoes from '../Images/shoes.png';
 
 export default function Admin() {
   return (
