@@ -3,10 +3,11 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Header from '../layouts/header';
 import HomePage from '../pages/HomePage';
 import BrandPage from '../pages/BrandPage';
+import Layout from '../layouts/layouts';
 
 const router = createBrowserRouter([
   {
-    element: <Header />,
+    element: <Layout />,
     children: [
       {
         path: '/',
