@@ -16,7 +16,10 @@ export default function ProductDetailPage() {
         <ProductImage />
         <div className="flex flex-col">
           {step === DEFAULT ? (
-            <Product onClickSeller={() => setStep(STEP_SELLER.productList)} />
+            <Product
+              onClickSeller={() => setStep(STEP_SELLER.productList)}
+              onClickBuyer={() => setStep(STEP_BUYER.selectProduct)}
+            />
           ) : null}
           {step === STEP_SELLER.productList ? (
             <ProductSeller
@@ -27,7 +30,9 @@ export default function ProductDetailPage() {
           {step === STEP_SELLER.addPrice ? (
             <DetailPlaceAsk onClickBack={() => setStep(DEFAULT)} />
           ) : null}
-          {step === STEP_BUYER.selectProduct ? <ProductBuyer /> : null}
+          {step === STEP_BUYER.selectProduct ? (
+            <ProductBuyer onClickBack={() => setStep(DEFAULT)} />
+          ) : null}
         </div>
       </div>
     </div>

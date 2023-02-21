@@ -3,12 +3,15 @@ import BidBuyer from './BidBuyer';
 import DetailSizeBuyer from './DetailSizeBuyer';
 import ProductBox from './ProductBox';
 
-export default function ProductBuyer() {
+export default function ProductBuyer({ onClickBack }) {
   return (
     <div>
       <div>
         <div className="flex items-center justify-center px-10">
-          <HiChevronLeft className="flex text-[20px] cursor-pointer" />
+          <HiChevronLeft
+            onClick={onClickBack}
+            className="flex text-[20px] cursor-pointer"
+          />
           <div className="flex justify-center mx-auto">
             <div className="text-[24px] mx-3">Brand New | </div>
             <DetailSizeBuyer />

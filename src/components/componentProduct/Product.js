@@ -31,7 +31,10 @@ export default function Product({ onClickSeller, onClickBuyer }) {
             >
               Sell
             </ButtonProduct>
-            <ButtonProduct className={'bg-green-500 hover hover:bg-green-600'}>
+            <ButtonProduct
+              className={'bg-green-500 hover hover:bg-green-600'}
+              onClick={onClickBuyer}
+            >
               Buy
             </ButtonProduct>
           </div>
