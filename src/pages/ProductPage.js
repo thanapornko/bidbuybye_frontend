@@ -7,7 +7,7 @@ import NavbarShop from '../components/NanbarShop';
 export default function ProductPage() {
   const { pathname } = useLocation();
   return (
-    <div className="flex w-[100%] h-[100px]">
+    <div className="flex w-[100%] ">
       {/* Box left menuDropwdown */}
       <div className=" w-[25%] ml-2">
         <Dropdown pathname={pathname} />

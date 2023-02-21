@@ -1,4 +1,4 @@
-import ButtonProduct from '../componentProduct/ButtonProduct';
+import ButtonProduct from '../product/ButtonProduct';
 
 export default function BidBuyer({ onClickBid }) {
   return (
