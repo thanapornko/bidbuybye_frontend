@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import DetailBid from '../components/componentBuyer/DetailBid';
 import ProductBuyer from '../components/componentBuyer/ProductBuyer';
 import NavigateList from '../components/componentProduct/NavigateList';
 import Product from '../components/componentProduct/Product';
@@ -31,7 +32,16 @@ export default function ProductDetailPage() {
             <DetailPlaceAsk onClickBack={() => setStep(DEFAULT)} />
           ) : null}
           {step === STEP_BUYER.selectProduct ? (
-            <ProductBuyer onClickBack={() => setStep(DEFAULT)} />
+            <ProductBuyer
+              onClickBack={() => setStep(DEFAULT)}
+              onClickBid={() => setStep(STEP_BUYER.BidPrice)}
+            />
+          ) : null}
+          {step === STEP_BUYER.BidPrice ? (
+            <DetailBid
+              onClickBack={() => setStep(DEFAULT)}
+              onClickBackBuyer={() => setStep(STEP_BUYER.selectProduct)}
+            />
           ) : null}
         </div>
       </div>

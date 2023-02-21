@@ -1,4 +1,4 @@
-export default function inputPrice() {
+export default function inputPrice({ placeholder }) {
   return (
     <div>
       <input
@@ -6,7 +6,7 @@ export default function inputPrice() {
         name="askPrice"
         type="text"
         required
-        placeholder="Enter your price"
+        placeholder={placeholder}
         value=""
       />
     </div>

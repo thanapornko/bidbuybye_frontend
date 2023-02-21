@@ -41,7 +41,7 @@ export default function DetailPlaceAsk({ onClickBack }) {
       <div className="flex text-gray-400 p-10">
         <div className="flex  justify-center items-center mx-auto">
           <div className="mr-4">฿</div>
-          <InputPrice />
+          <InputPrice placeholder={'Enter your price'} />
         </div>
       </div>
       <div className="flex justify-evenly p-4">
