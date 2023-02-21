@@ -1,4 +1,4 @@
-import product from '../../Images/1-remove.png';
+import product from '../../assets/1-remove.png';
 
 export default function ProductImage() {
   return (
