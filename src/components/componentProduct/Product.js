@@ -1,12 +1,13 @@
-import product from '../../images/1-remove.png';
 import { BsShieldCheck } from 'react-icons/bs';
 import { BsShieldLock } from 'react-icons/bs';
+import { BsFillLightningChargeFill } from 'react-icons/bs';
+import { BsBoxSeam } from 'react-icons/bs';
+import ButtonProduct from '../componentProduct/ButtonProduct';
 
-export default function Product() {
+export default function Product({ onClickSeller, onClickBuyer }) {
   return (
     <div>
       <div className="flex justify-center">
-        <img className="w-[600px] border bg-gray-100" src={product} />
         <div className="flex flex-col w-[800px] justify-items-center p-10">
           <div className="text-[24px] p-5">
             Nike Dunk Low White Black (2021) (W)
@@ -25,21 +26,27 @@ export default function Product() {
           <div className="mt-4">
             <hr className="h-px bg-gray-200" />
           </div>
-          <div className="flex justify-evenly p-4">
-            <button
-              className="flex justify-center rounded-md border border-transparent bg-slate-900 py-2 px-4 text-sm w-[300px] font-medium text-white hover:bg-slate-600"
-              type="button"
-            >
-              Sell
-            </button>
-            <button
-              className="flex justify-center rounded-md border border-transparent bg-green-500 py-2 px-4 text-sm  w-[300px] font-medium text-white hover:bg-green-600"
-              type="button"
-            >
-              Buy
-            </button>
+          <div className="flex justify-evenly items-center">
+            <div>
+              <div className="text-center rounded text-white px-5 py-1 bg-green-500 m-4">
+                New
+              </div>
+              <div className="text-gray-400 text-center">Brand New</div>
+            </div>
+            <div className="flex flex-col items-center">
+              <BsFillLightningChargeFill className="text-[30px] text-green-500 m-4" />
+              <div className="text-gray-400 ">Ready to ship</div>
+            </div>
+            <div className="flex flex-col items-center">
+              <BsBoxSeam className=" text-[30px] text-green-500 m-4" />
+
+              <div className="text-gray-400">Express delivery</div>
+            </div>
           </div>
-          <div className="flex justify-evenly">
+          <div className="mt-4">
+            <hr className="h-px bg-gray-200" />
+          </div>
+          <div className="flex justify-evenly p-6">
             <div className="flex">
               <BsShieldCheck className="text-[30px] mr-2" />
               <div className="text-gray-400">100% Authentic Guarantee</div>
@@ -48,6 +55,20 @@ export default function Product() {
               <BsShieldLock className="text-[30px] mr-2" />
               <div className="text-gray-400">Anti Fraudulent transaction</div>
             </div>
+          </div>
+          <div className="flex justify-evenly p-4">
+            <ButtonProduct
+              className={'bg-gray-900 hover:bg-gray-600'}
+              onClick={onClickSeller}
+            >
+              Sell
+            </ButtonProduct>
+            <ButtonProduct
+              className={'bg-green-500 hover hover:bg-green-600'}
+              onClick={onClickBuyer}
+            >
+              Buy
+            </ButtonProduct>
           </div>
         </div>
       </div>
