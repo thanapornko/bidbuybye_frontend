@@ -1,17 +1,18 @@
-import { HiXMark } from 'react-icons/hi2';
 import { HiChevronLeft } from 'react-icons/hi2';
 import DetailEquipment from './DetailEquipment';
 import DetailSize from './DetailSize';
 
-export default function DetailProductSeller() {
+export default function DetailProductSeller({ onClickBack }) {
   return (
     <div>
-      <div className="flex justify-between items-center">
-        <HiChevronLeft className="text-[20px]" />
-        <div className="flex justify-center text-[24px] p-5">
-          Listing Information
+      <div className="flex items-center justify-center">
+        <HiChevronLeft
+          className="flex text-[20px] cursor-pointer"
+          onClick={onClickBack}
+        />
+        <div className="flex justify-center mx-auto">
+          <div className="text-[24px] p-5">Listing Information</div>
         </div>
-        <HiXMark className="text-[20px]" />
       </div>
       <hr className="h-px bg-gray-200" />
 
