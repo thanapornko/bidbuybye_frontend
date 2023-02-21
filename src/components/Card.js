@@ -12,7 +12,7 @@ export default function Card({ image, productname, tital, prict }) {
           {/* Box-bottom */}
           <div className="flex flex-col mt-3">
             <p className="text-[14px] break-normal max-w-[100px] line-clamp-3">
-              {productname}
+              {productname.substring(12)}
             </p>
             <div className="mt-3">
               <p className="text-[10px]">{tital}</p>
