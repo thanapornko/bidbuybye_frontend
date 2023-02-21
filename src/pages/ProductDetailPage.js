@@ -29,7 +29,10 @@ export default function ProductDetailPage() {
             />
           ) : null}
           {step === STEP_SELLER.addPrice ? (
-            <DetailPlaceAsk onClickBack={() => setStep(DEFAULT)} />
+            <DetailPlaceAsk
+              onClickBack={() => setStep(DEFAULT)}
+              onClickBackProduct={() => setStep(STEP_SELLER.productList)}
+            />
           ) : null}
           {step === STEP_BUYER.selectProduct ? (
             <ProductBuyer

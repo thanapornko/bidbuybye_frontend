@@ -3,13 +3,13 @@ import { HiChevronLeft } from 'react-icons/hi2';
 import InputPrice from '../componentSeller/InputPrice';
 import ButtonProduct from '../componentProduct/ButtonProduct';
 
-export default function DetailPlaceAsk({ onClickBack }) {
+export default function DetailPlaceAsk({ onClickBack, onClickBackProduct }) {
   return (
     <div className="p-10">
       <div className="flex items-center justify-center">
         <HiChevronLeft
           className="flex text-[20px] cursor-pointer"
-          onClick={onClickBack}
+          onClick={onClickBackProduct}
         />
 
         <div className="flex justify-center mx-auto">
@@ -47,7 +47,7 @@ export default function DetailPlaceAsk({ onClickBack }) {
       <div className="flex justify-evenly p-4">
         <ButtonProduct
           className={'bg-gray-900 hover:bg-gray-600'}
-          onClick={onClickBack}
+          onClick={onClickBackProduct}
         >
           Back
         </ButtonProduct>

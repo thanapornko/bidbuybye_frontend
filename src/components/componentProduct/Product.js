@@ -1,5 +1,7 @@
 import { BsShieldCheck } from 'react-icons/bs';
 import { BsShieldLock } from 'react-icons/bs';
+import { BsFillLightningChargeFill } from 'react-icons/bs';
+import { BsBoxSeam } from 'react-icons/bs';
 import ButtonProduct from '../componentProduct/ButtonProduct';
 
 export default function Product({ onClickSeller, onClickBuyer }) {
@@ -24,6 +26,36 @@ export default function Product({ onClickSeller, onClickBuyer }) {
           <div className="mt-4">
             <hr className="h-px bg-gray-200" />
           </div>
+          <div className="flex justify-evenly items-center">
+            <div>
+              <div className="text-center rounded text-white px-5 py-1 bg-green-500 m-4">
+                New
+              </div>
+              <div className="text-gray-400 text-center">Brand New</div>
+            </div>
+            <div className="flex flex-col items-center">
+              <BsFillLightningChargeFill className="text-[30px] text-green-500 m-4" />
+              <div className="text-gray-400 ">Ready to ship</div>
+            </div>
+            <div className="flex flex-col items-center">
+              <BsBoxSeam className=" text-[30px] text-green-500 m-4" />
+
+              <div className="text-gray-400">Express delivery</div>
+            </div>
+          </div>
+          <div className="mt-4">
+            <hr className="h-px bg-gray-200" />
+          </div>
+          <div className="flex justify-evenly p-6">
+            <div className="flex">
+              <BsShieldCheck className="text-[30px] mr-2" />
+              <div className="text-gray-400">100% Authentic Guarantee</div>
+            </div>
+            <div className="flex">
+              <BsShieldLock className="text-[30px] mr-2" />
+              <div className="text-gray-400">Anti Fraudulent transaction</div>
+            </div>
+          </div>
           <div className="flex justify-evenly p-4">
             <ButtonProduct
               className={'bg-gray-900 hover:bg-gray-600'}
@@ -37,16 +69,6 @@ export default function Product({ onClickSeller, onClickBuyer }) {
             >
               Buy
             </ButtonProduct>
-          </div>
-          <div className="flex justify-evenly">
-            <div className="flex">
-              <BsShieldCheck className="text-[30px] mr-2" />
-              <div className="text-gray-400">100% Authentic Guarantee</div>
-            </div>
-            <div className="flex">
-              <BsShieldLock className="text-[30px] mr-2" />
-              <div className="text-gray-400">Anti Fraudulent transaction</div>
-            </div>
           </div>
         </div>
       </div>
