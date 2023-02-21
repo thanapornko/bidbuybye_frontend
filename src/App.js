@@ -1,9 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
-import Router from './routers/Router';
+import React from 'react';
+import Router from './routes/Router';
 
 function App() {
-  return <Router />;
+  return (
+    <div>
+      <Router />
+    </div>
+  );
 }
 
 export default App;
