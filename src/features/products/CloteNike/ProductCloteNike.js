@@ -47,7 +47,7 @@ export default function ProductCloteNike() {
     <div className="mt-10">
       {/* Content Link Clotes */}
       <div className="flex justify-center items-center gap-1 cursor-pointer">
-        <a href="/brand">
+        <a href="/product">
           <p className="text-[20px] font-semibold">Nike</p>
         </a>
         <i>
