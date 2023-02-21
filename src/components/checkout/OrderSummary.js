@@ -1,5 +1,5 @@
 import React from 'react';
-import nikeDunkLow from '../../images/4.png';
+import nikeDunkLow from '../../Images/4.png';
 
 function OrderSummary() {
   return (

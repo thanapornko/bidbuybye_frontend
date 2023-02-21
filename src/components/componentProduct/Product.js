@@ -1,4 +1,4 @@
-import product from '../../images/1-remove.png';
+import product from '../../Images/1-remove.png';
 import { BsShieldCheck } from 'react-icons/bs';
 import { BsShieldLock } from 'react-icons/bs';
 
