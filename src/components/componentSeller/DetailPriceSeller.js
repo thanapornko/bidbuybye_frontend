@@ -1,6 +1,6 @@
 import { HiPencilSquare } from 'react-icons/hi2';
 import { HiOutlineChevronRight } from 'react-icons/hi2';
-import ButtonProduct from './ButtonProduct';
+import ButtonProduct from '../componentProduct/ButtonProduct';
 
 export default function DetailPriceSeller({ onClickBack, onClickAsk }) {
   return (
@@ -10,7 +10,7 @@ export default function DetailPriceSeller({ onClickBack, onClickAsk }) {
         <div className="flex p-4 justify-between">
           <div className="text-[18px] text-gray-500">Ask Price</div>
           <div onClick={onClickAsk} className="flex items-center">
-            <div class="flex justify-center text-gray-400 cursor-pointer">
+            <div className="flex justify-center text-gray-400 cursor-pointer">
               Add Price
             </div>
 

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import ProductBuyer from '../components/componentBuyer/ProductBuyer';
 import NavigateList from '../components/componentProduct/NavigateList';
 import Product from '../components/componentProduct/Product';
 import ProductImage from '../components/componentProduct/ProductImage';
@@ -26,6 +27,7 @@ export default function ProductDetailPage() {
           {step === STEP_SELLER.addPrice ? (
             <DetailPlaceAsk onClickBack={() => setStep(DEFAULT)} />
           ) : null}
+          {step === STEP_BUYER.selectProduct ? <ProductBuyer /> : null}
         </div>
       </div>
     </div>

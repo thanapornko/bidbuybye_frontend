@@ -1,7 +1,6 @@
-import product from '../../Images/1-remove.png';
 import { BsShieldCheck } from 'react-icons/bs';
 import { BsShieldLock } from 'react-icons/bs';
-import ButtonProduct from '../componentSeller/ButtonProduct';
+import ButtonProduct from '../componentProduct/ButtonProduct';
 
 export default function Product({ onClickSeller, onClickBuyer }) {
   return (
@@ -33,7 +32,7 @@ export default function Product({ onClickSeller, onClickBuyer }) {
               Sell
             </ButtonProduct>
             <ButtonProduct className={'bg-green-500 hover hover:bg-green-600'}>
-              Save
+              Buy
             </ButtonProduct>
           </div>
           <div className="flex justify-evenly">
