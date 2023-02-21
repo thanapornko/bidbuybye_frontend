@@ -4,9 +4,11 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 module.exports = {
   content: [
     './src/**/*.{js,jsx,ts,tsx}',
+    './node_modules/flowbite/**/*.js',
     './src/**/*.{html,js}',
     './node_modules/tw-elements/dist/js/**/*.js'
   ],
+
   theme: {
     extend: {
       fontFamily: {
@@ -17,6 +19,7 @@ module.exports = {
 
   plugins: [
     require('@tailwindcss/line-clamp'),
-    require('tw-elements/dist/plugin')
+    require('tw-elements/dist/plugin'),
+    require('flowbite/plugin')
   ]
 };

@@ -1,13 +1,15 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import HomePage from '../pages/HomePage';
-import BrandPage from '../pages/BrandPage';
-import ProductDetailPage from '../pages/ProductDetailPage';
 
 import Layout from '../layouts/layouts';
 import ProductPage from '../pages/ProductPage';
 
-import ProductDetail from '../pages/ProductDetail';
+import LoginPage from '../pages/Login';
+import RegisterPage from '../pages/Register';
+import ProfilePage from '../pages/Profile';
+import AdminPage from '../pages/Admin';
+import HistoryPage from '../pages/History';
 
 import Checkout from '../pages/Checkout';
 import Payment from '../pages/Payment';
@@ -20,6 +22,26 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <HomePage />
+      },
+      {
+        path: '/login',
+        element: <LoginPage />
+      },
+      {
+        path: '/register',
+        element: <RegisterPage />
+      },
+      {
+        path: '/profile',
+        element: <ProfilePage />
+      },
+      {
+        path: '/history',
+        element: <HistoryPage />
+      },
+      {
+        path: '/admin',
+        element: <AdminPage />
       },
       {
         path: '/product',
