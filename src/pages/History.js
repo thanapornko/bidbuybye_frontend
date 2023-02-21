@@ -45,18 +45,18 @@ export default function History() {
             <div className="flex border-2 mt-5 justify-between">
               <div className="flex justify-between w-1/2">
                 <div className="my-5 mx-5 space-y-2 text-sm font-bold w-2/5 text-gray-600 ">
-                  <p className="">Product :</p>
-                  <p className="">Size :</p>
-                  <p className="">Equipment :</p>
-                  <p className="">Price :</p>
-                  <p className="">Status :</p>
+                  <p>Product :</p>
+                  <p>Size :</p>
+                  <p>Equipment :</p>
+                  <p>Price :</p>
+                  <p>Status :</p>
                 </div>
                 <div className="my-5 mx-5 space-y-2 text-sm w-2/5 text-gray-600 ">
-                  <p className="">Nike M777</p>
-                  <p className="">38</p>
-                  <p className="">Yes</p>
-                  <p className="">9,600 THB</p>
-                  <p className="">Buyer</p>
+                  <p>Nike M777</p>
+                  <p>38</p>
+                  <p>Yes</p>
+                  <p>9,600 THB</p>
+                  <p>Buyer</p>
                 </div>
               </div>
               <div className="flex items-center px-2">
@@ -66,18 +66,18 @@ export default function History() {
             <div className="flex border-2 mt-5 justify-between">
               <div className="flex justify-between w-1/2">
                 <div className="my-5 mx-5 space-y-2 text-sm font-bold w-2/5 text-gray-600 ">
-                  <p className="">Product :</p>
-                  <p className="">Size :</p>
-                  <p className="">Equipment :</p>
-                  <p className="">Price :</p>
-                  <p className="">Status :</p>
+                  <p>Product :</p>
+                  <p>Size :</p>
+                  <p>Equipment :</p>
+                  <p>Price :</p>
+                  <p>Status :</p>
                 </div>
                 <div className="my-5 mx-5 space-y-2 text-sm w-2/5 text-gray-600 ">
-                  <p className="">Nike M777</p>
-                  <p className="">38</p>
-                  <p className="">Yes</p>
-                  <p className="">9,600 THB</p>
-                  <p className="">Buyer</p>
+                  <p>Nike M777</p>
+                  <p>38</p>
+                  <p>Yes</p>
+                  <p>9,600 THB</p>
+                  <p>Buyer</p>
                 </div>
               </div>
               <div className="flex items-center px-2">
@@ -87,18 +87,18 @@ export default function History() {
             <div className="flex border-2 mt-5 justify-between">
               <div className="flex justify-between w-1/2">
                 <div className="my-5 mx-5 space-y-2 text-sm font-bold w-2/5 text-gray-600 ">
-                  <p className="">Product :</p>
-                  <p className="">Size :</p>
-                  <p className="">Equipment :</p>
-                  <p className="">Price :</p>
-                  <p className="">Status :</p>
+                  <p>Product :</p>
+                  <p>Size :</p>
+                  <p>Equipment :</p>
+                  <p>Price :</p>
+                  <p>Status :</p>
                 </div>
                 <div className="my-5 mx-5 space-y-2 text-sm w-2/5 text-gray-600 ">
-                  <p className="">Nike M777</p>
-                  <p className="">38</p>
-                  <p className="">Yes</p>
-                  <p className="">9,600 THB</p>
-                  <p className="">Buyer</p>
+                  <p>Nike M777</p>
+                  <p>38</p>
+                  <p>Yes</p>
+                  <p>9,600 THB</p>
+                  <p>Buyer</p>
                 </div>
               </div>
               <div className="flex items-center px-2">
@@ -108,18 +108,18 @@ export default function History() {
             <div className="flex border-2 mt-5 justify-between">
               <div className="flex justify-between w-1/2">
                 <div className="my-5 mx-5 space-y-2 text-sm font-bold w-2/5 text-gray-600 ">
-                  <p className="">Product :</p>
-                  <p className="">Size :</p>
-                  <p className="">Equipment :</p>
-                  <p className="">Price :</p>
-                  <p className="">Status :</p>
+                  <p>Product :</p>
+                  <p>Size :</p>
+                  <p>Equipment :</p>
+                  <p>Price :</p>
+                  <p>Status :</p>
                 </div>
                 <div className="my-5 mx-5 space-y-2 text-sm w-2/5 text-gray-600 ">
-                  <p className="">Nike M777</p>
-                  <p className="">38</p>
-                  <p className="">Yes</p>
-                  <p className="">9,600 THB</p>
-                  <p className="">Buyer</p>
+                  <p>Nike M777</p>
+                  <p>38</p>
+                  <p>Yes</p>
+                  <p>9,600 THB</p>
+                  <p>Buyer</p>
                 </div>
               </div>
               <div className="flex items-center px-2">
@@ -129,18 +129,18 @@ export default function History() {
             <div className="flex border-2 mt-5 justify-between">
               <div className="flex justify-between w-1/2">
                 <div className="my-5 mx-5 space-y-2 text-sm font-bold w-2/5 text-gray-600 ">
-                  <p className="">Product :</p>
-                  <p className="">Size :</p>
-                  <p className="">Equipment :</p>
-                  <p className="">Price :</p>
-                  <p className="">Status :</p>
+                  <p>Product :</p>
+                  <p>Size :</p>
+                  <p>Equipment :</p>
+                  <p>Price :</p>
+                  <p>Status :</p>
                 </div>
                 <div className="my-5 mx-5 space-y-2 text-sm w-2/5 text-gray-600 ">
-                  <p className="">Nike M777</p>
-                  <p className="">38</p>
-                  <p className="">Yes</p>
-                  <p className="">9,600 THB</p>
-                  <p className="">Buyer</p>
+                  <p>Nike M777</p>
+                  <p>38</p>
+                  <p>Yes</p>
+                  <p>9,600 THB</p>
+                  <p>Buyer</p>
                 </div>
               </div>
               <div className="flex items-center px-2">
@@ -150,18 +150,18 @@ export default function History() {
             <div className="flex border-2 mt-5 justify-between">
               <div className="flex justify-between w-1/2">
                 <div className="my-5 mx-5 space-y-2 text-sm font-bold w-2/5 text-gray-600 ">
-                  <p className="">Product :</p>
-                  <p className="">Size :</p>
-                  <p className="">Equipment :</p>
-                  <p className="">Price :</p>
-                  <p className="">Status :</p>
+                  <p>Product :</p>
+                  <p>Size :</p>
+                  <p>Equipment :</p>
+                  <p>Price :</p>
+                  <p>Status :</p>
                 </div>
                 <div className="my-5 mx-5 space-y-2 text-sm w-2/5 text-gray-600 ">
-                  <p className="">Nike M777</p>
-                  <p className="">38</p>
-                  <p className="">Yes</p>
-                  <p className="">9,600 THB</p>
-                  <p className="">Buyer</p>
+                  <p>Nike M777</p>
+                  <p>38</p>
+                  <p>Yes</p>
+                  <p>9,600 THB</p>
+                  <p>Buyer</p>
                 </div>
               </div>
               <div className="flex items-center px-2">
