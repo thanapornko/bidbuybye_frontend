@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
 import ProductCloteNike from '../features/products/CloteNike/ProductCloteNike';
 import NewBalance from '../assets/5a1ed88b4ac6b00ff574e2fa.png';
-import ProductCloteJordan from '../features/products/CloteJordan/ProductCloteJordan';
 
 export default function HomePage() {
   const slides = [
@@ -97,7 +96,7 @@ export default function HomePage() {
 
         {/* Container shoe Brand*/}
         <ProductCloteNike />
-        <ProductCloteJordan />
+
         {/* --------------------------------------------------------- */}
 
         {/* Container clothes */}
