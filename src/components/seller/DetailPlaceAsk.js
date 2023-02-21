@@ -1,7 +1,7 @@
 import { HiXMark } from 'react-icons/hi2';
 import { HiChevronLeft } from 'react-icons/hi2';
-import InputPrice from '../componentSeller/InputPrice';
-import ButtonProduct from '../componentProduct/ButtonProduct';
+import InputPrice from '../seller/InputPrice';
+import ButtonProduct from '../product/ButtonProduct';
 
 export default function DetailPlaceAsk({ onClickBack, onClickBackProduct }) {
   return (

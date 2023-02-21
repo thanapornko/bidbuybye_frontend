@@ -64,7 +64,7 @@ export default function Dropdown({ pathname }) {
       </button>
 
       {category && (
-        <div className="flex flex-col items-start  gap-2 absulute mb-3 mt-3">
+        <div className="flex flex-col items-start  gap-2  mb-3 mt-3">
           <>
             {DataCategory.map((el, idx) => (
               <button onClick={navigator} href="#" className="cursor-pointer">
@@ -89,7 +89,7 @@ export default function Dropdown({ pathname }) {
       </button>
 
       {brand && (
-        <div className=" flex flex-col items-start  gap-2 absulute mb-3 mt-3">
+        <div className=" flex flex-col items-start  gap-2  mb-3 mt-3">
           {Databrands.map((el, idx) => (
             <>
               <button onClick={navigator} href="#" className="cursor-pointer">
@@ -121,7 +121,7 @@ export default function Dropdown({ pathname }) {
       </button>
 
       {price && (
-        <div className=" flex flex-col items-start  gap-2 absulute mb-3 mt-3">
+        <div className=" flex flex-col items-start  gap-2  mb-3 mt-3">
           <a href="#" className="cursor-pointer">
             <p className="text-[14px]">4 4 4</p>
           </a>

@@ -1,6 +1,3 @@
-import profile from '../Images/profile.jpg';
-import shoes from '../Images/shoes.png';
-
 export default function History() {
   return (
     <>
@@ -9,7 +6,7 @@ export default function History() {
         <div className="flex-col bg-white h-screen w-1/5 ">
           <div className="flex items-center justify-around pt-3 pb-2 px-5 shadow">
             <img
-              src={profile}
+              src={'https://picsum.photos/id/1/200/300'}
               className="h-16 w-16 rounded-full border-2 text-gray-600"
             />
             <h2 className="text-m text-gray-600 font-bold">BigPom NaKrub</h2>
@@ -60,7 +57,10 @@ export default function History() {
                 </div>
               </div>
               <div className="flex items-center px-2">
-                <img src={shoes} className="h-40 w-40 bg-gray-100" />
+                <img
+                  src={'https://picsum.photos/id/1/200/300'}
+                  className="h-40 w-40 bg-gray-100"
+                />
               </div>
             </div>
             <div className="flex border-2 mt-5 justify-between">
@@ -81,7 +81,10 @@ export default function History() {
                 </div>
               </div>
               <div className="flex items-center px-2">
-                <img src={shoes} className="h-40 w-40 bg-gray-100" />
+                <img
+                  src={'https://picsum.photos/id/1/200/300'}
+                  className="h-40 w-40 bg-gray-100"
+                />
               </div>
             </div>
             <div className="flex border-2 mt-5 justify-between">
@@ -102,7 +105,10 @@ export default function History() {
                 </div>
               </div>
               <div className="flex items-center px-2">
-                <img src={shoes} className="h-40 w-40 bg-gray-100" />
+                <img
+                  src={'https://picsum.photos/id/1/200/300'}
+                  className="h-40 w-40 bg-gray-100"
+                />
               </div>
             </div>
             <div className="flex border-2 mt-5 justify-between">
@@ -123,7 +129,10 @@ export default function History() {
                 </div>
               </div>
               <div className="flex items-center px-2">
-                <img src={shoes} className="h-40 w-40 bg-gray-100" />
+                <img
+                  src={'https://picsum.photos/id/1/200/300'}
+                  className="h-40 w-40 bg-gray-100"
+                />
               </div>
             </div>
             <div className="flex border-2 mt-5 justify-between">
@@ -144,7 +153,10 @@ export default function History() {
                 </div>
               </div>
               <div className="flex items-center px-2">
-                <img src={shoes} className="h-40 w-40 bg-gray-100" />
+                <img
+                  src={'https://picsum.photos/id/1/200/300'}
+                  className="h-40 w-40 bg-gray-100"
+                />
               </div>
             </div>
             <div className="flex border-2 mt-5 justify-between">
@@ -165,7 +177,10 @@ export default function History() {
                 </div>
               </div>
               <div className="flex items-center px-2">
-                <img src={shoes} className="h-40 w-40 bg-gray-100" />
+                <img
+                  src={'https://picsum.photos/id/1/200/300'}
+                  className="h-40 w-40 bg-gray-100"
+                />
               </div>
             </div>
           </div>
