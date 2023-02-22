@@ -1,7 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { AiOutlineCaretDown, AiOutlineCaretUp } from 'react-icons/ai';
 
-export default function Dropdown({ pathname }) {
+export default function Dropdown({
+  setSearchBrand,
+  searchBrand,
+  setCategoryAllBrand
+}) {
   const [category, setCategory] = useState(false);
   const [brand, setBrand] = useState(false);
   const [price, setPrice] = useState(false);
@@ -9,7 +13,7 @@ export default function Dropdown({ pathname }) {
   const DataCategory = [
     {
       id: 1,
-      title: 'Shopes'
+      title: 'Shoes'
     },
     {
       id: 2,
@@ -26,27 +30,39 @@ export default function Dropdown({ pathname }) {
       id: 2,
       title: 'Adidas'
     },
-    {
-      id: 3,
-      title: 'Jordan'
-    },
+
     {
       id: 4,
       title: 'New Balance'
+    },
+    {
+      id: 5,
+      title: 'Stussy'
+    },
+    {
+      id: 6,
+      title: 'Carnival'
+    },
+    {
+      id: 7,
+      title: 'Anti Social Social Club'
+    },
+    {
+      id: 8,
+      title: 'Kaws'
     }
   ];
 
-  const [brandIndex, setBrandIndex] = useState();
+  const [brandIndex, setBrandIndex] = useState(false);
+  const [brandText, setBrandText] = useState('');
 
-  useEffect(() => {
-    {
-      Databrands.map((el, index) => {
-        if (pathname.includes(el.title.toLowerCase())) {
-          setBrandIndex(index);
-        }
-      });
+  const doFunc = (text) => {
+    setSearchBrand(text);
+    setBrandText(text);
+    if (searchBrand === brandText) {
+      setBrandIndex(true);
     }
-  }, []);
+  };
 
   return (
     <div className="relative flex flex-col  rounde-lg">
@@ -67,7 +83,11 @@ export default function Dropdown({ pathname }) {
         <div className="flex flex-col items-start  gap-2  mb-3 mt-3">
           <>
             {DataCategory.map((el, idx) => (
-              <button onClick={navigator} href="#" className="cursor-pointer">
+              <button
+                onClick={() => setCategoryAllBrand(el.title)}
+                href="#"
+                className="cursor-pointer"
+              >
                 <p className="text-[14px]">{el.title}</p>
               </button>
             ))}
@@ -92,10 +112,14 @@ export default function Dropdown({ pathname }) {
         <div className=" flex flex-col items-start  gap-2  mb-3 mt-3">
           {Databrands.map((el, idx) => (
             <>
-              <button onClick={navigator} href="#" className="cursor-pointer">
+              <button
+                onClick={() => doFunc(el.title)}
+                href="#"
+                className="cursor-pointer"
+              >
                 <p
                   className={`text-[14px] text-${
-                    brandIndex === idx ? '[#FF3722]' : '[black]'
+                    brandIndex ? '[#FF3722]' : '[black]'
                   }`}
                 >
                   {el.title}
@@ -123,7 +147,7 @@ export default function Dropdown({ pathname }) {
       {price && (
         <div className=" flex flex-col items-start  gap-2  mb-3 mt-3">
           <a href="#" className="cursor-pointer">
-            <p className="text-[14px]">4 4 4</p>
+            <p className="text-[14px]">ยังไม่ทำ</p>
           </a>
         </div>
       )}

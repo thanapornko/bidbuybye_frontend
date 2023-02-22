@@ -1,4 +1,11 @@
-export default function Card({ image, productname, tital, prict }) {
+export default function Card({
+  image,
+  productname,
+  title,
+  price,
+  brand,
+  category
+}) {
   return (
     <>
       <div className=" mt-3 p-2">
@@ -6,7 +13,7 @@ export default function Card({ image, productname, tital, prict }) {
         {/* // Card  */}
         <div className="flex flex-col cursor-pointer">
           {/* Box-top */}
-          <div className="border-2 bg-gray-200">
+          <div className="bg-[white] border border-gray-200">
             <img src={image} alt="#" className="w-[200px] h-[200px]" />
           </div>
           {/* Box-bottom */}
@@ -15,8 +22,10 @@ export default function Card({ image, productname, tital, prict }) {
               {productname.substring(12)}
             </p>
             <div className="mt-3">
-              <p className="text-[10px]">{tital}</p>
-              <p className="text-[16px]">{prict}</p>
+              <p className="text-[12px] font-bold">{brand}</p>
+              <p className="text-[12px] font-bold">{category}</p>
+              <p className="text-[10px]">{title}</p>
+              <p className="text-[16px]">{price}</p>
             </div>
           </div>
         </div>

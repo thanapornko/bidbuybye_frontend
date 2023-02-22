@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
-import ProductCloteNike from '../features/products/CloteNike/ProductCloteNike';
+import ProductClote from '../features/products/CloteNike/ProductClote';
 import NewBalance from '../assets/5a1ed88b4ac6b00ff574e2fa.png';
 
 export default function HomePage() {
@@ -95,7 +95,7 @@ export default function HomePage() {
         {/* --------------------------------------------------------- */}
 
         {/* Container shoe Brand*/}
-        <ProductCloteNike />
+        <ProductClote />
 
         {/* --------------------------------------------------------- */}
 

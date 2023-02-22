@@ -3,8 +3,8 @@ import { FaArrowRight } from 'react-icons/fa';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import './ProductCloteNike.css';
-import { dateProductCloteNike } from '../../../mocks/DataProductCloteNike';
+import './ProductClote.css';
+import { DataProductBrand } from '../../../mocks/DataProductBrand';
 import Card from '../../../components/Card';
 
 export default function ProductCloteNike() {
@@ -56,12 +56,13 @@ export default function ProductCloteNike() {
       </div>
 
       <Slider {...settings}>
-        {dateProductCloteNike.map((item) => (
+        {DataProductBrand.map((item) => (
           <Card
             image={item.linkImg}
             productname={item.prorductNmae}
-            tital={item.tital}
-            prict={item.price}
+            brand={item.brand}
+            title={item.title}
+            price={item.price}
           />
         ))}
       </Slider>
