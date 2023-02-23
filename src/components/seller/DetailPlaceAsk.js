@@ -5,10 +5,12 @@ import ButtonProduct from '../product/ButtonProduct';
 import useProduct from '../../hooks/useProduct';
 
 export default function DetailPlaceAsk() {
-  const { onClickBack, onClickBackProduct, handleSaveClick } = useProduct();
+  const { onClickBack, onClickBackProduct, handleSaveClick, resetPriceBid } =
+    useProduct();
   const handleSavePrice = () => {
     onClickBackProduct();
     handleSaveClick();
+    resetPriceBid();
   };
   return (
     <div className="p-10">

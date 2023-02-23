@@ -92,12 +92,20 @@ export default function ProductContextProvider({ children }) {
     setAskPrice(e.target.value);
   };
   const handleSaveClick = () => {
-    const formattedValue = Number(askPrice).toLocaleString('th-TH', {
+    const numberValue = Number(askPrice.replace(',', ''));
+    if (isNaN(numberValue)) {
+      return;
+    }
+    const formattedValue = Number(numberValue).toLocaleString('th-TH', {
       style: 'currency',
       currency: 'THB',
       minimumFractionDigits: 0
     });
     setSavedValue(formattedValue);
+  };
+
+  const resetPriceBid = () => {
+    setAskPrice('');
   };
 
   return (
@@ -126,7 +134,8 @@ export default function ProductContextProvider({ children }) {
         handleInputPrice,
         askPrice,
         handleSaveClick,
-        savedValue
+        savedValue,
+        resetPriceBid
       }}
     >
       {children}s
