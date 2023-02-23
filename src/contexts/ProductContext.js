@@ -1,11 +1,13 @@
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { DEFAULT, STEP_SELLER, STEP_BUYER } from '../constants/productDetail';
+import * as productApi from '../apis/product-api';
 
 export const ProductContext = createContext();
 
 export default function ProductContextProvider({ children }) {
   //state for change to sell, buy, bid or ask
   const [step, setStep] = useState(DEFAULT);
+  const [productDetail, setProductDetail] = useState();
 
   //click to sell page
   const onClickSeller = () => {
@@ -39,6 +41,14 @@ export default function ProductContextProvider({ children }) {
     setStep(STEP_BUYER.BidPrice);
   };
 
+  //get product from id
+  const fetchProductDetail = async (id) => {
+    try {
+      const res = await productApi.getProductDetail(id);
+      setProductDetail(res.data);
+    } catch (err) {}
+  };
+
   return (
     <ProductContext.Provider
       value={{
@@ -49,7 +59,9 @@ export default function ProductContextProvider({ children }) {
         onClickBack,
         onClickBackProduct,
         onClickBackBuyer,
-        onClickBid
+        onClickBid,
+        fetchProductDetail,
+        productDetail
       }}
     >
       {children}
