@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import DetailBid from '../components/buyer/DetailBid';
 import ProductBuyer from '../components/buyer/ProductBuyer';
 import NavigateList from '../components/product/NavigateList';
@@ -10,12 +11,16 @@ import { DEFAULT, STEP_SELLER, STEP_BUYER } from '../constants/productDetail';
 import useProduct from '../hooks/useProduct';
 
 export default function ProductDetailPage() {
-  const { step, fetchProductDetail, productDetail } = useProduct();
-
+  const { step, fetchProductDetail, productDetail, fetchSize } = useProduct();
+  const { productId } = useParams();
+  // fetch data from useParams find by Id
   useEffect(() => {
-    fetchProductDetail(3);
+    fetchProductDetail(productId);
+    // fetchPrice(productId);
+    fetchSize();
   }, []);
   // console.log(productDetail);
+
   return (
     <div>
       <NavigateList />

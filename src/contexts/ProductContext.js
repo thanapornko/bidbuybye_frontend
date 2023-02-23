@@ -8,6 +8,8 @@ export default function ProductContextProvider({ children }) {
   //state for change to sell, buy, bid or ask
   const [step, setStep] = useState(DEFAULT);
   const [productDetail, setProductDetail] = useState();
+  const [price, setPrice] = useState();
+  const [size, setSize] = useState();
 
   //click to sell page
   const onClickSeller = () => {
@@ -49,6 +51,21 @@ export default function ProductContextProvider({ children }) {
     } catch (err) {}
   };
 
+  const fetchPrice = async (id) => {
+    try {
+      const res = await productApi.getPrice(id);
+      setPrice(res.data);
+    } catch (err) {}
+  };
+
+  const fetchSize = async () => {
+    try {
+      const res = await productApi.getAllSize();
+      setSize(res.data);
+      console.log(res.data);
+    } catch (err) {}
+  };
+
   return (
     <ProductContext.Provider
       value={{
@@ -61,7 +78,11 @@ export default function ProductContextProvider({ children }) {
         onClickBackBuyer,
         onClickBid,
         fetchProductDetail,
-        productDetail
+        productDetail,
+        price,
+        fetchPrice,
+        fetchSize,
+        size
       }}
     >
       {children}

@@ -6,7 +6,7 @@ import useProduct from '../../hooks/useProduct';
 import ButtonProduct from '../product/ButtonProduct';
 
 export default function Product() {
-  const { onClickSeller, onClickBuyer, productDetail } = useProduct();
+  const { onClickSeller, onClickBuyer, productDetail, price } = useProduct();
   return (
     <div>
       <div className="flex justify-center">
