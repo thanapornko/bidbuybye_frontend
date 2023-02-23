@@ -1,14 +1,42 @@
+import { toast } from 'react-toastify';
+import useAuth from '../hooks/useAuth';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 export default function Login() {
+  const { login, authenticatedUser } = useAuth();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+
+  const handleSubmitForm = async (e) => {
+    try {
+      e.preventDefault();
+      await login(email, password);
+      console.log('-------------email-----', email);
+      console.log('-------------password-----', password);
+      toast.success('Welcome');
+      navigate('/');
+    } catch (err) {
+      console.log(err);
+      toast.error(err.response?.data.message);
+    }
+  };
+
   return (
     <div className="flex justify-center my-10">
       {/* ///////////// */}
       <div className="w-1/3 bg-white rounded-md shadow-md">
         <div className="px-6 py-8 space-y-4">
           <div className="w-full bg-gray-200 rounded-md p-1 flex justify-between">
-            <div className="w-1/2 text-center text-sm rounded-md p-1 hover:bg-white">
+            <Link
+              to="/register"
+              className="w-1/2 text-center text-sm rounded-md p-1 hover:bg-white"
+            >
               Signup
-            </div>
-            <div className="w-1/2 text-center text-sm rounded-md p-1 hover:bg-white">
+            </Link>
+            <div className="w-1/2 text-center text-sm rounded-md p-1 bg-white">
               Login
             </div>
           </div>
@@ -23,6 +51,8 @@ export default function Login() {
               <input
                 type="text"
                 name="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="block w-full p-2.5 bg-white border-b text-gray-900 focus:outline-none focus:border-b-black"
                 placeholder="Email Address"
               />
@@ -37,6 +67,8 @@ export default function Login() {
                 <input
                   type="password"
                   name="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   placeholder="Password"
                   className="form-input block w-full p-2.5 bg-white border-b text-gray-900 focus:outline-none focus:border-b-black"
                 />
@@ -51,7 +83,10 @@ export default function Login() {
               </a>
             </div>
             <div>
-              <button className="w-full text-white bg-black hover:bg-gray-600 rounded-lg text-sm px-5 py-2.5 text-center">
+              <button
+                onClick={handleSubmitForm}
+                className="w-full text-white bg-black hover:bg-gray-600 rounded-lg text-sm px-5 py-2.5 text-center"
+              >
                 Login
               </button>
               <p className="text-gray-500 text-center my-2">Or</p>
