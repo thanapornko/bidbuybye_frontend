@@ -4,7 +4,7 @@ import useProduct from '../../hooks/useProduct';
 import ButtonProduct from '../product/ButtonProduct';
 
 export default function DetailPriceSeller({ onClickBack, onClickAsk }) {
-  const { resetSelectSize, resetSelectEquipment } = useProduct();
+  const { resetSelectSize, resetSelectEquipment, savedValue } = useProduct();
   const handleResetSelectSize = () => {
     onClickBack();
     resetSelectSize();
@@ -17,8 +17,8 @@ export default function DetailPriceSeller({ onClickBack, onClickAsk }) {
         <div className="flex p-4 justify-between">
           <div className="text-[18px] text-gray-500">Ask Price</div>
           <div onClick={onClickAsk} className="flex items-center">
-            <div className="flex justify-center text-gray-400 cursor-pointer">
-              Add Price
+            <div className="flex justify-center text-xl text-gray-400 cursor-pointer">
+              {savedValue || 'Add price'}
             </div>
 
             <HiPencilSquare className="ml-4 cursor-pointer" />

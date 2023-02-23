@@ -5,8 +5,11 @@ import ButtonProduct from '../product/ButtonProduct';
 import useProduct from '../../hooks/useProduct';
 
 export default function DetailPlaceAsk() {
-  const { onClickBack, onClickBackProduct } = useProduct();
-
+  const { onClickBack, onClickBackProduct, handleSaveClick } = useProduct();
+  const handleSavePrice = () => {
+    onClickBackProduct();
+    handleSaveClick();
+  };
   return (
     <div className="p-10">
       <div className="flex items-center justify-center">
@@ -54,7 +57,10 @@ export default function DetailPlaceAsk() {
         >
           Back
         </ButtonProduct>
-        <ButtonProduct className={'bg-gray-300 hover hover:bg-gray-900'}>
+        <ButtonProduct
+          onClick={handleSavePrice}
+          className={'bg-gray-300 hover hover:bg-gray-900'}
+        >
           Save
         </ButtonProduct>
       </div>

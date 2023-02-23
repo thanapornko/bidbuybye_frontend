@@ -12,6 +12,8 @@ export default function ProductContextProvider({ children }) {
   const [size, setSize] = useState();
   const [selectSize, setSelectSize] = useState();
   const [selectEquipment, setSelectEquipment] = useState(null);
+  const [askPrice, setAskPrice] = useState();
+  const [savedValue, setSavedValue] = useState('');
 
   //click to sell page
   const onClickSeller = () => {
@@ -84,6 +86,20 @@ export default function ProductContextProvider({ children }) {
     setSelectEquipment(null);
   };
 
+  //onChange price askPrice and save
+
+  const handleInputPrice = (e) => {
+    setAskPrice(e.target.value);
+  };
+  const handleSaveClick = () => {
+    const formattedValue = Number(askPrice).toLocaleString('th-TH', {
+      style: 'currency',
+      currency: 'THB',
+      minimumFractionDigits: 0
+    });
+    setSavedValue(formattedValue);
+  };
+
   return (
     <ProductContext.Provider
       value={{
@@ -106,10 +122,14 @@ export default function ProductContextProvider({ children }) {
         resetSelectSize,
         handleSelectEquipment,
         selectEquipment,
-        resetSelectEquipment
+        resetSelectEquipment,
+        handleInputPrice,
+        askPrice,
+        handleSaveClick,
+        savedValue
       }}
     >
-      {children}
+      {children}s
     </ProductContext.Provider>
   );
 }
