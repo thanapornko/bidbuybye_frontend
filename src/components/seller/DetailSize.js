@@ -2,11 +2,15 @@ import { HiOutlineChevronDown } from 'react-icons/hi2';
 import useProduct from '../../hooks/useProduct';
 
 export default function DetailSize() {
-  const { size, productDetail } = useProduct();
+  const { size, productDetail, handleSelectSize, selectSize } = useProduct();
   const sizeProduct = () => {
     if (productDetail.products.Category.typeProduct === 'Shoes') {
       return size.getAllSizeShoes.map((el) => (
-        <li>
+        <li
+          onClick={() => {
+            handleSelectSize(el);
+          }}
+        >
           <a
             className="block w-full whitespace-nowrap bg-transparent py-2 px-4 text-sm font-normal text-neutral-700 
             hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400"
@@ -20,7 +24,11 @@ export default function DetailSize() {
       ));
     } else {
       return size.getAllSizeApperal.map((el) => (
-        <li>
+        <li
+          onClick={() => {
+            handleSelectSize(el);
+          }}
+        >
           <a
             className="block w-full whitespace-nowrap bg-transparent py-2 px-4 text-sm font-normal text-neutral-700 
             hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400"
@@ -52,8 +60,8 @@ export default function DetailSize() {
                 data-te-ripple-init
                 data-te-ripple-color="light"
               >
-                Select Size
-                <span className="ml-2 w-2">
+                {selectSize?.sizeProduct || 'Select Size'}
+                <span className="ml-2">
                   <HiOutlineChevronDown />
                 </span>
               </button>

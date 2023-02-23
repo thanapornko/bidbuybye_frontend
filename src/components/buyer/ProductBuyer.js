@@ -5,13 +5,18 @@ import DetailSizeBuyer from './DetailSizeBuyer';
 import ProductBox from './ProductBox';
 
 export default function ProductBuyer() {
-  const { onClickBid, onClickBack } = useProduct();
+  const { onClickBid, onClickBack, resetSelectSize } = useProduct();
+
+  const handleResetSelectSize = () => {
+    onClickBack();
+    resetSelectSize();
+  };
   return (
     <div>
       <div>
-        <div className="flex items-center justify-center px-10">
+        <div className="flex items-center justify-center p-10">
           <HiChevronLeft
-            onClick={onClickBack}
+            onClick={handleResetSelectSize}
             className="flex text-[20px] cursor-pointer"
           />
           <div className="flex justify-center mx-auto">

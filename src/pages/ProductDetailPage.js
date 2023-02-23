@@ -28,7 +28,7 @@ export default function ProductDetailPage() {
         {productDetail ? (
           <ProductImage imageURL={productDetail.products.ProductImage} />
         ) : null}
-        <div className="flex flex-col">
+        <div className="flex flex-col w-[800px]">
           {step === DEFAULT ? <Product /> : null}
           {step === STEP_SELLER.productList ? <ProductSeller /> : null}
           {step === STEP_SELLER.addPrice ? <DetailPlaceAsk /> : null}

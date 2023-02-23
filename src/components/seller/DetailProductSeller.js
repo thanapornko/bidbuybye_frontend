@@ -4,13 +4,17 @@ import DetailEquipment from './DetailEquipment';
 import DetailSize from './DetailSize';
 
 export default function DetailProductSeller() {
-  const { onClickBack } = useProduct();
+  const { onClickBack, resetSelectSize } = useProduct();
+  const handleResetSelectSize = () => {
+    onClickBack();
+    resetSelectSize();
+  };
   return (
     <div>
       <div className="flex items-center justify-center">
         <HiChevronLeft
           className="flex text-[20px] cursor-pointer"
-          onClick={onClickBack}
+          onClick={handleResetSelectSize}
         />
         <div className="flex justify-center mx-auto">
           <div className="text-[24px] p-5">Listing Information</div>

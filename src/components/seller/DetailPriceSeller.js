@@ -1,8 +1,14 @@
 import { HiPencilSquare } from 'react-icons/hi2';
 import { HiOutlineChevronRight } from 'react-icons/hi2';
+import useProduct from '../../hooks/useProduct';
 import ButtonProduct from '../product/ButtonProduct';
 
 export default function DetailPriceSeller({ onClickBack, onClickAsk }) {
+  const { resetSelectSize } = useProduct();
+  const handleResetSelectSize = () => {
+    onClickBack();
+    resetSelectSize();
+  };
   return (
     <div>
       <div>
@@ -31,7 +37,7 @@ export default function DetailPriceSeller({ onClickBack, onClickAsk }) {
         <div className="flex justify-evenly p-4">
           <ButtonProduct
             className={'bg-gray-900 hover:bg-gray-600'}
-            onClick={onClickBack}
+            onClick={handleResetSelectSize}
           >
             Back
           </ButtonProduct>

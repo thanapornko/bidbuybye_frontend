@@ -10,6 +10,7 @@ export default function ProductContextProvider({ children }) {
   const [productDetail, setProductDetail] = useState();
   const [price, setPrice] = useState();
   const [size, setSize] = useState();
+  const [selectSize, setSelectSize] = useState();
 
   //click to sell page
   const onClickSeller = () => {
@@ -66,6 +67,14 @@ export default function ProductContextProvider({ children }) {
     } catch (err) {}
   };
 
+  const handleSelectSize = (e) => {
+    setSelectSize(e);
+  };
+
+  const resetSelectSize = () => {
+    setSelectSize('');
+  };
+
   return (
     <ProductContext.Provider
       value={{
@@ -82,7 +91,10 @@ export default function ProductContextProvider({ children }) {
         price,
         fetchPrice,
         fetchSize,
-        size
+        size,
+        handleSelectSize,
+        selectSize,
+        resetSelectSize
       }}
     >
       {children}

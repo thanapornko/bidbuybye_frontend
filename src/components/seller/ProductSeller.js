@@ -6,7 +6,7 @@ export default function ProductSeller() {
   const { onClickAsk, onClickBack } = useProduct();
   return (
     <div>
-      <div className="flex justify-center p-10">
+      <div className="flex justify-center">
         <div className="flex flex-col w-[800px] justify-items-center p-10">
           <DetailProductSeller onClickBack={onClickBack} />
           <DetailPriceSeller
