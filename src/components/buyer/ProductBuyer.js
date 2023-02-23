@@ -1,9 +1,11 @@
 import { HiChevronLeft } from 'react-icons/hi2';
+import useProduct from '../../hooks/useProduct';
 import BidBuyer from './BidBuyer';
 import DetailSizeBuyer from './DetailSizeBuyer';
 import ProductBox from './ProductBox';
 
-export default function ProductBuyer({ onClickBack, onClickBid }) {
+export default function ProductBuyer() {
+  const { onClickBid, onClickBack } = useProduct();
   return (
     <div>
       <div>

@@ -2,8 +2,11 @@ import { HiXMark } from 'react-icons/hi2';
 import { HiChevronLeft } from 'react-icons/hi2';
 import InputPrice from '../seller/InputPrice';
 import ButtonProduct from '../product/ButtonProduct';
+import useProduct from '../../hooks/useProduct';
 
-export default function DetailPlaceAsk({ onClickBack, onClickBackProduct }) {
+export default function DetailPlaceAsk() {
+  const { onClickBack, onClickBackProduct } = useProduct();
+
   return (
     <div className="p-10">
       <div className="flex items-center justify-center">

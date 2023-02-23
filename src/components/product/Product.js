@@ -2,9 +2,11 @@ import { BsShieldCheck } from 'react-icons/bs';
 import { BsShieldLock } from 'react-icons/bs';
 import { BsFillLightningChargeFill } from 'react-icons/bs';
 import { BsBoxSeam } from 'react-icons/bs';
+import useProduct from '../../hooks/useProduct';
 import ButtonProduct from '../product/ButtonProduct';
 
-export default function Product({ onClickSeller, onClickBuyer }) {
+export default function Product() {
+  const { onClickSeller, onClickBuyer } = useProduct();
   return (
     <div>
       <div className="flex justify-center">

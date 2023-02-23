@@ -1,8 +1,10 @@
 import { HiChevronLeft } from 'react-icons/hi2';
+import useProduct from '../../hooks/useProduct';
 import DetailEquipment from './DetailEquipment';
 import DetailSize from './DetailSize';
 
-export default function DetailProductSeller({ onClickBack }) {
+export default function DetailProductSeller() {
+  const { onClickBack } = useProduct();
   return (
     <div>
       <div className="flex items-center justify-center">

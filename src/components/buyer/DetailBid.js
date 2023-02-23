@@ -2,8 +2,10 @@ import { HiXMark } from 'react-icons/hi2';
 import { HiChevronLeft } from 'react-icons/hi2';
 import InputPrice from '../seller/InputPrice';
 import ButtonProduct from '../product/ButtonProduct';
+import useProduct from '../../hooks/useProduct';
 
-export default function DetailBid({ onClickBack, onClickBackBuyer }) {
+export default function DetailBid() {
+  const { onClickBackBuyer, onClickBack } = useProduct();
   return (
     <div>
       <div className="p-10">
@@ -47,8 +49,8 @@ export default function DetailBid({ onClickBack, onClickBackBuyer }) {
         </div>
         <div className="flex justify-evenly p-4">
           <ButtonProduct
+            onClick={onClickBackBuyer}
             className={'bg-gray-900 hover:bg-gray-600'}
-            onClick={onClickBack}
           >
             Back
           </ButtonProduct>

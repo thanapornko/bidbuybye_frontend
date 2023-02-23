@@ -1,7 +1,9 @@
+import useProduct from '../../hooks/useProduct';
 import DetailPriceSeller from './DetailPriceSeller';
 import DetailProductSeller from './DetailProductSeller';
 
-export default function ProductSeller({ onClickBack, onClickAsk }) {
+export default function ProductSeller() {
+  const { onClickAsk, onClickBack } = useProduct();
   return (
     <div>
       <div className="flex justify-center p-10">
