@@ -2,7 +2,7 @@ import { BsShieldCheck } from 'react-icons/bs';
 import { BsShieldLock } from 'react-icons/bs';
 import { BsFillLightningChargeFill } from 'react-icons/bs';
 import { BsBoxSeam } from 'react-icons/bs';
-import ButtonProduct from '../componentProduct/ButtonProduct';
+import ButtonProduct from '../product/ButtonProduct';
 
 export default function Product({ onClickSeller, onClickBuyer }) {
   return (

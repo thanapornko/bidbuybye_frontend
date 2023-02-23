@@ -1,6 +1,6 @@
 import { HiPencilSquare } from 'react-icons/hi2';
 import { HiOutlineChevronRight } from 'react-icons/hi2';
-import ButtonProduct from '../componentProduct/ButtonProduct';
+import ButtonProduct from '../product/ButtonProduct';
 
 export default function DetailPriceSeller({ onClickBack, onClickAsk }) {
   return (
