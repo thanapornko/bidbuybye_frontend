@@ -46,12 +46,21 @@ export default function AuthContextProvider({ children }) {
     setAuthenticatedUser(null);
   };
 
+  const googleLogin = async (credential) => {
+    console.log('------------------cre', credential);
+    const res = await authApi.googleLogin(credential);
+    console.log(res.accessToken);
+    setAccessToken(res.accessToken);
+    setAuthenticatedUser(jwtDecode(res.accessToken));
+  };
+
   return (
     <AuthContext.Provider
       value={{
         authenticatedUser,
         login,
-        logout
+        logout,
+        googleLogin
       }}
     >
       {children}

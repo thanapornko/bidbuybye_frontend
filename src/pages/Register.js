@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 import validateRegister from '../validate/validate-register';
+import useAuth from '../hooks/useAuth';
 import * as authApi from '../apis/auth-api';
 
 const initialInput = {
@@ -10,6 +12,7 @@ const initialInput = {
 };
 
 export default function Register() {
+  const { login, authenticatedUser, googleLogin } = useAuth();
   const [input, setInput] = useState(initialInput);
   const [error, setError] = useState({});
 
@@ -40,8 +43,41 @@ export default function Register() {
     }
   };
 
+  const handleCallbackResponse = async (response) => {
+    // console.log('Encoded JWT ID token: ' + response.credential);
+    // let userObject = jwt_decoded(response.credential);
+    // let email = userObject.email;
+    // let fname = userObject.given_name;
+    // let lname = userObject.family_name;
+    // console.log('---------userobj', email, fname, lname);
+    try {
+      await googleLogin({ token: response.credential });
+      toast.success('Welcome');
+    } catch (err) {
+      console.dir('errdir----------', err);
+      toast.error(err.response?.data.message);
+    }
+  };
+
+  useEffect(() => {
+    /* google global */
+    window.google?.accounts.id.initialize({
+      client_id:
+        '290963822259-c9u4ha9lb9d2s45h1macv2m6kdk7u2t9.apps.googleusercontent.com',
+      callback: handleCallbackResponse
+    });
+
+    window.google?.accounts.id.renderButton(
+      document.getElementById('signInDiv'),
+      {
+        theme: 'outline',
+        type: 'standard'
+      }
+    );
+  }, []);
+
   return (
-    <div className="flex justify-center mt-10">
+    <div className="flex justify-center my-16">
       {/* ///////////// */}
       <div className="w-1/3 bg-white rounded-md shadow-md">
         <div className="px-6 py-8 space-y-4">
@@ -110,10 +146,14 @@ export default function Register() {
                 Signup
               </button>
               <p className="text-gray-500 text-center my-2">Or</p>
-              <button className="w-full text-gray-600 bg-white border border-gray-300 hover:border-gray-700 rounded-lg text-sm px-5 py-2.5 text-center">
+              <div id="signInDiv"></div>
+              {/* <button
+                id="signInDiv"
+                className="w-full text-gray-600 bg-white border border-gray-300 hover:border-gray-700 rounded-lg text-sm px-5 py-2.5 text-center"
+              >
                 <i className="fa-brands fa-google pr-1"></i> Continue with
                 Google
-              </button>
+              </button> */}
             </div>
           </form>
         </div>

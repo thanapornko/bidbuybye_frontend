@@ -3,7 +3,12 @@ import axios from 'axios';
 
 // export const register = (input) => axios.post('/auth/register', input);
 // export const login = (input) => axios.post('/auth/login', input);
-export const getMe = () => axios.get('/auth/me');
+
+const getMe = () => {
+  const url = 'http://localhost:8080/auth/me';
+  const response = axios.get(url);
+  return response.data;
+};
 
 const register = async (data) => {
   const url = 'http://localhost:8080/auth/register';
@@ -17,4 +22,10 @@ const login = async (data) => {
   return response.data;
 };
 
-export { register, login };
+const googleLogin = async (data) => {
+  const url = 'http://localhost:8080/auth/googlelogin';
+  const response = await axios.post(url, data);
+  return response.data;
+};
+
+export { register, login, googleLogin, getMe };

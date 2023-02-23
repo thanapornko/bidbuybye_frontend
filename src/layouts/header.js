@@ -1,4 +1,5 @@
 import { BiSearch } from 'react-icons/bi';
+import { Link } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 
 export default function Header() {
@@ -11,10 +12,10 @@ export default function Header() {
       </div>
       <div>
         <div className="flex  items-center justify-around gap-80 h-14  ">
-          <h1 className="ml-2">
+          <Link to="/" className="ml-2">
             SA_ <br />
             SOM
-          </h1>
+          </Link>
           <form>
             <div className="flex gap-2 justify-Start items-center w-[608px] bg-gray-100 p-[10px] text-xs">
               <i className="text-sm text-gray-500">
@@ -27,9 +28,12 @@ export default function Header() {
               />
             </div>
           </form>
-          <button className="border-2 text-[#5a5a5a] py-[5px] px-[15px] rounded">
+          <Link
+            to="/login"
+            className="border-2 text-[#5a5a5a] py-[5px] px-[15px] rounded"
+          >
             Login
-          </button>
+          </Link>
         </div>
       </div>
     </div>
