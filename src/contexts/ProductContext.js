@@ -80,6 +80,10 @@ export default function ProductContextProvider({ children }) {
     setSelectEquipment(e);
   };
 
+  const resetSelectEquipment = () => {
+    setSelectEquipment(null);
+  };
+
   return (
     <ProductContext.Provider
       value={{
@@ -101,7 +105,8 @@ export default function ProductContextProvider({ children }) {
         selectSize,
         resetSelectSize,
         handleSelectEquipment,
-        selectEquipment
+        selectEquipment,
+        resetSelectEquipment
       }}
     >
       {children}

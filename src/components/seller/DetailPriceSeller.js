@@ -4,10 +4,11 @@ import useProduct from '../../hooks/useProduct';
 import ButtonProduct from '../product/ButtonProduct';
 
 export default function DetailPriceSeller({ onClickBack, onClickAsk }) {
-  const { resetSelectSize } = useProduct();
+  const { resetSelectSize, resetSelectEquipment } = useProduct();
   const handleResetSelectSize = () => {
     onClickBack();
     resetSelectSize();
+    resetSelectEquipment();
   };
   return (
     <div>
