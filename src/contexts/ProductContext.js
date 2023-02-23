@@ -11,6 +11,7 @@ export default function ProductContextProvider({ children }) {
   const [price, setPrice] = useState();
   const [size, setSize] = useState();
   const [selectSize, setSelectSize] = useState();
+  const [selectEquipment, setSelectEquipment] = useState(null);
 
   //click to sell page
   const onClickSeller = () => {
@@ -75,6 +76,10 @@ export default function ProductContextProvider({ children }) {
     setSelectSize('');
   };
 
+  const handleSelectEquipment = (e) => {
+    setSelectEquipment(e);
+  };
+
   return (
     <ProductContext.Provider
       value={{
@@ -94,7 +99,9 @@ export default function ProductContextProvider({ children }) {
         size,
         handleSelectSize,
         selectSize,
-        resetSelectSize
+        resetSelectSize,
+        handleSelectEquipment,
+        selectEquipment
       }}
     >
       {children}
