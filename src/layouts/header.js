@@ -1,16 +1,12 @@
 import { useEffect, useState } from 'react';
 import { BiSearch } from 'react-icons/bi';
+import { Link } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import Search from '../components/Search';
+import useAuth from '../hooks/useAuth';
 
 export default function Header() {
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => {
-    console.log('kuy');
-    setShow(false);
-  };
-
+  const { authenticatedUser, logout } = useAuth();
   return (
     <div className="flex flex-col border-b-2">
       <div className="flex justify-end bg-black">
@@ -19,23 +15,16 @@ export default function Header() {
         </h1>
       </div>
       <div>
-        <div className="flex items-center justify-around gap-80 h-14">
-          <h1 className="ml-2">
+        <div className="flex  items-center justify-around gap-80 h-14  ">
+          <Link to="/" className="ml-2">
             SA_ <br />
             SOM
-          </h1>
+          </Link>
           <form>
-            <div
-              className="flex gap-2 justify-Start items-center w-[608px] bg-gray-100  text-xs"
-              onClick={() => setShow(true)}
-            >
+            <div className="flex gap-2 justify-Start items-center w-[608px] bg-gray-100  text-xs">
               <i className="text-sm text-gray-500 ml-3 ">
                 <BiSearch />
-                <Search
-                  show={show}
-                  setShow={setShow}
-                  handleClose={handleClose}
-                />
+                <Search />
               </i>
               <input
                 className="outline-none bg-gray-100 border-none  w-[500px]"
@@ -44,9 +33,22 @@ export default function Header() {
               />
             </div>
           </form>
-          <button className="border-2 text-[#5a5a5a] py-[5px] px-[15px] rounded">
-            Login
-          </button>
+          {authenticatedUser ? (
+            <Link
+              to="/login"
+              onClick={logout}
+              className="border-2 text-[#5a5a5a] py-[5px] px-[15px] rounded"
+            >
+              Logout
+            </Link>
+          ) : (
+            <Link
+              to="/login"
+              className="border-2 text-[#5a5a5a] py-[5px] px-[15px] rounded"
+            >
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </div>

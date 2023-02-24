@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
-import ProductCloteNike from '../features/products/CloteNike/ProductCloteNike';
+import ProductClote from '../features/products/CloteNike/ProductClote';
 import NewBalance from '../assets/5a1ed88b4ac6b00ff574e2fa.png';
 
 export default function HomePage() {
@@ -36,7 +36,7 @@ export default function HomePage() {
   return (
     <div className="flex flex-col gap-8">
       {/* Container Image Slide */}
-      <div className="max-w-[100%] h-[780px] w-full h-full  relative group">
+      <div className=" w-full h-full  relative group">
         <div
           style={{ backgroundImage: `url(${slides[currentIndex].url}) ` }}
           className="w-[100%] h-[500px] bg-center bg-cover duration-500"
@@ -95,7 +95,7 @@ export default function HomePage() {
         {/* --------------------------------------------------------- */}
 
         {/* Container shoe Brand*/}
-        <ProductCloteNike />
+        <ProductClote />
 
         {/* --------------------------------------------------------- */}
 

@@ -1,6 +1,8 @@
+import useProduct from '../../hooks/useProduct';
 import ButtonProduct from '../product/ButtonProduct';
 
-export default function BidBuyer({ onClickBid }) {
+export default function BidBuyer() {
+  const { onClickBid } = useProduct();
   return (
     <div>
       <div className=" flex justify-between items-center h-[100px] w-auto bg-slate-900 m-10 rounded-lg">

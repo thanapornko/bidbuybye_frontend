@@ -1,6 +1,17 @@
 import { HiOutlineChevronDown } from 'react-icons/hi2';
+import useProduct from '../../hooks/useProduct';
 
 export default function DetailEquipment() {
+  const { handleSelectEquipment, selectEquipment } = useProduct();
+  const handleEquipment = () => {
+    if (selectEquipment === null) {
+      return 'Select Equipment';
+    } else if (selectEquipment === true) {
+      return 'Original box';
+    } else {
+      return 'Original box(defect)';
+    }
+  };
   return (
     <div>
       <div className="flex p-4 justify-between">
@@ -18,8 +29,8 @@ export default function DetailEquipment() {
                 data-te-ripple-init
                 data-te-ripple-color="light"
               >
-                Select Equipment
-                <span className="ml-2 w-2">
+                {handleEquipment()}
+                <span className="ml-2">
                   <HiOutlineChevronDown />
                 </span>
               </button>
@@ -30,7 +41,11 @@ export default function DetailEquipment() {
                 aria-labelledby="dropdownMenuButton1"
                 data-te-dropdown-menu-ref
               >
-                <li>
+                <li
+                  onClick={() => {
+                    handleSelectEquipment(true);
+                  }}
+                >
                   <a
                     className="block w-full whitespace-nowrap bg-transparent py-2 px-4 text-sm font-normal text-neutral-700 
                       hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400"
@@ -40,7 +55,12 @@ export default function DetailEquipment() {
                     Original box
                   </a>
                 </li>
-                <li>
+
+                <li
+                  onClick={() => {
+                    handleSelectEquipment(false);
+                  }}
+                >
                   <a
                     className="block w-full whitespace-nowrap bg-transparent py-2 px-4 text-sm font-normal text-neutral-700 
                       hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400"

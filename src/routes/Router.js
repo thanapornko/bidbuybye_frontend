@@ -11,6 +11,8 @@ import ProfilePage from '../pages/Profile';
 import AdminPage from '../pages/Admin';
 import HistoryPage from '../pages/History';
 
+import ProductDetailPage from '../pages/ProductDetailPage';
+
 import Checkout from '../pages/Checkout';
 import Payment from '../pages/Payment';
 import Completed from '../pages/Completed';
@@ -55,9 +57,14 @@ const router = createBrowserRouter([
         path: '/payment',
         element: <Payment />
       },
+
       {
         path: '/completed',
         element: <Completed />
+      },
+      {
+        path: '/product/detail/:productId',
+        element: <ProductDetailPage />
       }
     ]
   }
