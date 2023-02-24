@@ -1,5 +1,5 @@
 import 'flowbite';
-import profile from '../images/profile.jpg';
+
 export default function EditProfile() {
   return (
     <>
@@ -53,7 +53,7 @@ export default function EditProfile() {
         </button>
         {/* content */}
         <img
-          src={profile}
+          src={'https://picsum.photos/id/1/200/300'}
           className="m-auto h-28 w-28 rounded-full border text-gray-600"
         />
         <div className="p-5">

@@ -1,6 +1,3 @@
-import profile from '../Images/profile.jpg';
-import shoes from '../Images/shoes.png';
-
 export default function Admin() {
   return (
     <>
@@ -55,7 +52,10 @@ export default function Admin() {
                   </div>
                 </div>
                 <div className="flex items-center">
-                  <img src={shoes} className="h-48 w-48 mx-4 bg-gray-100" />
+                  <img
+                    src={'https://picsum.photos/id/1/200/300'}
+                    className="h-48 w-48 mx-4 bg-gray-100"
+                  />
                 </div>
               </div>
               <div className="flex my-5 mx-5 space-x-2 text-sm text-gray-600">
@@ -109,7 +109,10 @@ export default function Admin() {
                   </div>
                 </div>
                 <div className="flex items-center">
-                  <img src={shoes} className="h-48 w-48 mx-4 bg-gray-100" />
+                  <img
+                    src={'https://picsum.photos/id/1/200/300'}
+                    className="h-48 w-48 mx-4 bg-gray-100"
+                  />
                 </div>
               </div>
               <div className="flex my-5 mx-5 space-x-2 text-sm text-gray-600">
@@ -163,7 +166,10 @@ export default function Admin() {
                   </div>
                 </div>
                 <div className="flex items-center">
-                  <img src={shoes} className="h-48 w-48 mx-4 bg-gray-100" />
+                  <img
+                    src={'https://picsum.photos/id/1/200/300'}
+                    className="h-48 w-48 mx-4 bg-gray-100"
+                  />
                 </div>
               </div>
               <div className="flex my-5 mx-5 space-x-2 text-sm text-gray-600">
@@ -217,7 +223,10 @@ export default function Admin() {
                   </div>
                 </div>
                 <div className="flex items-center">
-                  <img src={shoes} className="h-48 w-48 mx-4 bg-gray-100" />
+                  <img
+                    src={'https://picsum.photos/id/1/200/300'}
+                    className="h-48 w-48 mx-4 bg-gray-100"
+                  />
                 </div>
               </div>
               <div className="flex my-5 mx-5 space-x-2 text-sm text-gray-600">
@@ -271,7 +280,10 @@ export default function Admin() {
                   </div>
                 </div>
                 <div className="flex items-center">
-                  <img src={shoes} className="h-48 w-48 mx-4 bg-gray-100" />
+                  <img
+                    src={'https://picsum.photos/id/1/200/300'}
+                    className="h-48 w-48 mx-4 bg-gray-100"
+                  />
                 </div>
               </div>
               <div className="flex my-5 mx-5 space-x-2 text-sm text-gray-600">

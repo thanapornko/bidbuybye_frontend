@@ -1,5 +1,3 @@
-import profile from '../Images/profile.jpg';
-
 export default function Profile() {
   return (
     <>
@@ -8,7 +6,7 @@ export default function Profile() {
         <div className="flex-col bg-white h-screen w-1/5 ">
           <div className="flex items-center justify-around pt-3 pb-2 px-5 shadow">
             <img
-              src={profile}
+              src={'https://picsum.photos/id/1/200/300'}
               className="h-16 w-16 rounded-full border-2 text-gray-600"
             />
             <h2 className="text-m text-gray-600 font-bold">BigPom NaKrub</h2>
@@ -44,7 +42,10 @@ export default function Profile() {
                 <i class="fa-solid fa-pen-to-square text-xl text-gray-600" />
               </button>
             </div>
-            <img src={profile} className="h-40 w-40 rounded-full border-2" />
+            <img
+              src={'https://picsum.photos/id/1/200/300'}
+              className="h-40 w-40 rounded-full border-2"
+            />
             <div className="flex">
               <div className="mt-8 mx-5 space-y-3 text-md font-bold w-1/5 text-gray-600">
                 <p className="">First Name</p>

@@ -6,9 +6,9 @@ import useAuth from '../hooks/useAuth';
 export default function Header() {
   const { authenticatedUser, logout } = useAuth();
   return (
-    <div className="flex  flex-col border-b-2">
-      <div className="flex flex justify-end  bg-black ">
-        <h1 className="flex justify-center items-center text-white text-xs h-[32px] text-xs p-3 cursor-pointer">
+    <div className="flex flex-col border-b-2">
+      <div className="flex justify-end bg-black">
+        <h1 className="flex justify-center items-center text-white text-xs h-[32px] p-3 cursor-pointer">
           HELP
         </h1>
       </div>
@@ -19,12 +19,12 @@ export default function Header() {
             SOM
           </Link>
           <form>
-            <div className="flex gap-2 justify-Start items-center w-[608px] bg-gray-100 p-[10px] text-xs">
-              <i className="text-sm text-gray-500">
+            <div className="flex gap-2 justify-Start items-center w-[608px] bg-gray-100  text-xs">
+              <i className="text-sm text-gray-500 ml-3 ">
                 <BiSearch />
               </i>
               <input
-                className="outline-none bg-gray-100  w-[500px]"
+                className="outline-none bg-gray-100 border-none  w-[500px]"
                 type="text"
                 placeholder="Search for porduct by brands, model or try # to discover more...."
               />
