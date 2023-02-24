@@ -1,6 +1,8 @@
+import { useEffect, useState } from 'react';
 import { BiSearch } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
+import Search from '../components/Search';
 import useAuth from '../hooks/useAuth';
 
 export default function Header() {
@@ -22,6 +24,7 @@ export default function Header() {
             <div className="flex gap-2 justify-Start items-center w-[608px] bg-gray-100  text-xs">
               <i className="text-sm text-gray-500 ml-3 ">
                 <BiSearch />
+                <Search />
               </i>
               <input
                 className="outline-none bg-gray-100 border-none  w-[500px]"
