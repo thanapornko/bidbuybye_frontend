@@ -4,17 +4,19 @@ import 'react-toastify/dist/ReactToastify.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'tw-elements';
 import './index.css';
-import store from './redux/store';
-import { Provider } from 'react-redux';
+import ProductContextProvider from './contexts/ProductContext';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import AuthContextProvider from './contexts/AuthContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <AuthContextProvider>
+      <ProductContextProvider>
+        <App />
+      </ProductContextProvider>
+    </AuthContextProvider>
   </React.StrictMode>
 );
 

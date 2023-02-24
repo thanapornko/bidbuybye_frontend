@@ -1,5 +1,4 @@
 import React from 'react';
-import nikeDunkLow from '../../images/4.png';
 
 function OrderSummary() {
   return (
@@ -14,7 +13,11 @@ function OrderSummary() {
       <div className="flex flex-col  w-[140%] ">
         <div className="flex flex-row justify-start">
           <div className="p-1 ">
-            <img src={nikeDunkLow} alt="nikeDunkLow" className="w-18 h-10" />
+            <img
+              src={'https://picsum.photos/id/1/200/300'}
+              alt="nikeDunkLow"
+              className="w-18 h-10"
+            />
           </div>
         </div>
         <div className="border-t-[1px] border-gray-300 ">
@@ -43,7 +46,7 @@ function OrderSummary() {
                 <div>
                   {' '}
                   <img
-                    src={nikeDunkLow}
+                    src={'https://picsum.photos/id/1/200/300'}
                     alt="nikeDunkLow"
                     className="w-8 h-6"
                   />
@@ -51,7 +54,7 @@ function OrderSummary() {
                 <div>
                   {' '}
                   <img
-                    src={nikeDunkLow}
+                    src={'https://picsum.photos/id/1/200/300'}
                     alt="nikeDunkLow"
                     className="w-8 h-6"
                   />
@@ -59,7 +62,7 @@ function OrderSummary() {
                 <div>
                   {' '}
                   <img
-                    src={nikeDunkLow}
+                    src={'https://picsum.photos/id/1/200/300'}
                     alt="nikeDunkLow"
                     className="w-8 h-6"
                   />
