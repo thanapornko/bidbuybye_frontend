@@ -14,6 +14,7 @@ export default function ProductContextProvider({ children }) {
   const [selectEquipment, setSelectEquipment] = useState(null);
   const [askPrice, setAskPrice] = useState();
   const [savedValue, setSavedValue] = useState('');
+  const [error, setError] = useState('');
 
   //click to sell page
   const onClickSeller = () => {
@@ -89,7 +90,15 @@ export default function ProductContextProvider({ children }) {
   //onChange price askPrice and save
 
   const handleInputPrice = (e) => {
-    setAskPrice(e.target.value);
+    const input = e.target.value;
+
+    // Only allow numbers and commas
+    if (/^\d*$/.test(input)) {
+      setAskPrice(input);
+      setError('');
+    } else {
+      setError('must contain only numbers.');
+    }
   };
   const handleSaveClick = () => {
     const numberValue = Number(askPrice.replace(',', ''));
@@ -135,7 +144,8 @@ export default function ProductContextProvider({ children }) {
         askPrice,
         handleSaveClick,
         savedValue,
-        resetPriceBid
+        resetPriceBid,
+        error
       }}
     >
       {children}s
