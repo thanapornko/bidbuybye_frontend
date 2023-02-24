@@ -36,7 +36,7 @@ export default function HomePage() {
   return (
     <div className="flex flex-col gap-8">
       {/* Container Image Slide */}
-      <div className="max-w-[100%] h-[780px] w-full h-full  relative group">
+      <div className="max-w-[100%] h-[780px] w-full relative group">
         <div
           style={{ backgroundImage: `url(${slides[currentIndex].url}) ` }}
           className="w-[100%] h-[500px] bg-center bg-cover duration-500"
