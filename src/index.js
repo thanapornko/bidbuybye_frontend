@@ -7,13 +7,16 @@ import './index.css';
 import ProductContextProvider from './contexts/ProductContext';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import AuthContextProvider from './contexts/AuthContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <ProductContextProvider>
-      <App />
-    </ProductContextProvider>
+    <AuthContextProvider>
+      <ProductContextProvider>
+        <App />
+      </ProductContextProvider>
+    </AuthContextProvider>
   </React.StrictMode>
 );
 
