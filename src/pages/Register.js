@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import validateRegister from '../validate/validate-register';
 import useAuth from '../hooks/useAuth';
 import * as authApi from '../apis/auth-api';
@@ -15,6 +17,7 @@ export default function Register() {
   const { login, authenticatedUser, googleLogin } = useAuth();
   const [input, setInput] = useState(initialInput);
   const [error, setError] = useState({});
+  const navigate = useNavigate();
 
   const handleChangeInput = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
@@ -53,6 +56,7 @@ export default function Register() {
     try {
       await googleLogin({ token: response.credential });
       toast.success('Welcome');
+      navigate('/');
     } catch (err) {
       console.dir('errdir----------', err);
       toast.error(err.response?.data.message);
@@ -71,7 +75,8 @@ export default function Register() {
       document.getElementById('signInDiv'),
       {
         theme: 'outline',
-        type: 'standard'
+        type: 'standard',
+        width: '320px'
       }
     );
   }, []);
@@ -79,7 +84,7 @@ export default function Register() {
   return (
     <div className="flex justify-center my-16">
       {/* ///////////// */}
-      <div className="w-1/3 bg-white rounded-md shadow-md">
+      <div className="w-1/4 bg-white rounded-md shadow-md">
         <div className="px-6 py-8 space-y-4">
           <div className="w-full bg-gray-200 rounded-md p-1 flex justify-between">
             <div className="w-1/2 text-center text-sm rounded-md p-1 bg-white">
@@ -138,10 +143,10 @@ export default function Register() {
               </a>
             </div>
 
-            <div>
+            <div className="grid justify-items-center">
               <button
                 onClick={handleSubmitForm}
-                className="w-full text-white bg-black hover:bg-gray-600 rounded-lg text-sm px-5 py-2.5 text-center"
+                className="w-80 text-white bg-black hover:bg-gray-600 rounded-lg text-sm px-5 py-2.5 text-center"
               >
                 Signup
               </button>

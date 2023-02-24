@@ -34,7 +34,14 @@ export default function Login() {
     // let fname = userObject.given_name;
     // let lname = userObject.family_name;
     // console.log('---------userobj', email, fname, lname);
-    await googleLogin({ token: response.credential });
+    try {
+      await googleLogin({ token: response.credential });
+      toast.success('Welcome');
+      navigate('/');
+    } catch (err) {
+      console.dir('errdir----------', err);
+      toast.error(err.response?.data.message);
+    }
   };
 
   useEffect(() => {
@@ -49,7 +56,8 @@ export default function Login() {
       document.getElementById('signInDiv'),
       {
         theme: 'outline',
-        type: 'standard'
+        type: 'standard',
+        width: '320px'
       }
     );
   }, []);
@@ -57,7 +65,7 @@ export default function Login() {
   return (
     <div className="flex justify-center my-16">
       {/* ///////////// */}
-      <div className="w-1/3 bg-white rounded-md shadow-md">
+      <div className="w-1/4 bg-white rounded-md shadow-md">
         <div className="px-6 py-8 space-y-4">
           <div className="w-full bg-gray-200 rounded-md p-1 flex justify-between">
             <Link
@@ -112,10 +120,10 @@ export default function Login() {
                 Forget password?
               </a>
             </div>
-            <div>
+            <div className="grid justify-items-center">
               <button
                 onClick={handleSubmitForm}
-                className="w-full text-white bg-black hover:bg-gray-600 rounded-lg text-sm px-5 py-2.5 text-center"
+                className="w-80 text-white bg-black hover:bg-gray-600 rounded-lg text-sm px-5 py-2.5 text-center"
               >
                 Login
               </button>

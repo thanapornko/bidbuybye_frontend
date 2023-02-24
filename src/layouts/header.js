@@ -1,8 +1,10 @@
 import { BiSearch } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
+import useAuth from '../hooks/useAuth';
 
 export default function Header() {
+  const { authenticatedUser, logout } = useAuth();
   return (
     <div className="flex  flex-col border-b-2">
       <div className="flex flex justify-end  bg-black ">
@@ -28,12 +30,22 @@ export default function Header() {
               />
             </div>
           </form>
-          <Link
-            to="/login"
-            className="border-2 text-[#5a5a5a] py-[5px] px-[15px] rounded"
-          >
-            Login
-          </Link>
+          {authenticatedUser ? (
+            <Link
+              to="/login"
+              onClick={logout}
+              className="border-2 text-[#5a5a5a] py-[5px] px-[15px] rounded"
+            >
+              Logout
+            </Link>
+          ) : (
+            <Link
+              to="/login"
+              className="border-2 text-[#5a5a5a] py-[5px] px-[15px] rounded"
+            >
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </div>
