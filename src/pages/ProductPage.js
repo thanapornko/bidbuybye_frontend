@@ -1,12 +1,10 @@
 import Dropdown from '../components/Dropwdown';
-import { useLocation } from 'react-router-dom';
 import Card from '../components/Card';
 import NavbarShop from '../components/NanbarShop';
 import { useEffect, useState } from 'react';
 import * as productAPI from '../apis/product-api';
 
 export default function ProductPage() {
-  const { pathname } = useLocation();
   const [searchBrand, setSearchBrand] = useState();
   const [categoryAllBrand, setCategoryAllBrand] = useState();
 
@@ -19,14 +17,43 @@ export default function ProductPage() {
     fetchProduct();
   }, []);
 
+  // -------------------------------------------------
+  const [selectedCategory, setSelectedCategory] = useState(0);
+  const [selectedBrand, setSelectedBrand] = useState(0);
+  console.log(selectedCategory, 'aaa');
+
+  let filter = [];
+
+  if (selectedCategory === 0) {
+    filter = products.filter(
+      (el) =>
+        el.Category.typeProduct === 'Shoes' ||
+        el.Category.typeProduct === 'Apperal'
+    );
+    filter = filter.filter((el) =>
+      selectedBrand ? el.brandId === selectedBrand : true
+    );
+  } else if (selectedCategory === 1) {
+    filter = products.filter((el) => el.Category.typeProduct === 'Shoes');
+    filter = filter.filter((el) =>
+      selectedBrand ? el.brandId === selectedBrand : true
+    );
+  } else if (selectedCategory === 2) {
+    filter = products.filter((el) => el.Category.typeProduct === 'Apperal');
+    filter = filter.filter((el) =>
+      selectedBrand ? el.brandId === selectedBrand : true
+    );
+    console.log(selectedBrand, 'selectedBrand');
+  }
+  // -------------------------------------------------
+
   return (
     <div className="flex w-[100%] ">
       {/* Box left menuDropwdown */}
       <div className=" w-[25%] ml-2">
         <Dropdown
-          setSearchBrand={setSearchBrand}
-          searchBrand={searchBrand}
-          setCategoryAllBrand={setCategoryAllBrand}
+          setSelectedCategory={setSelectedCategory}
+          setSelectedBrand={setSelectedBrand}
         />
       </div>
       {/* ----------------------------------------- */}
@@ -40,7 +67,7 @@ export default function ProductPage() {
         {/* box right bottom crad */}
         <div>
           <div className="flex flex-wrap  w-[100%] ">
-            {products
+            {filter
               .filter(
                 (item) =>
                   item.brand === searchBrand ||

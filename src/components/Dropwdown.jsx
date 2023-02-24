@@ -3,27 +3,13 @@ import { AiOutlineCaretDown, AiOutlineCaretUp } from 'react-icons/ai';
 import * as categoryAPI from '../apis/category-api';
 import * as brandAPI from '../apis/brand-api';
 
-export default function Dropdown({
-  setSearchBrand,
-  searchBrand,
-  setCategoryAllBrand
-}) {
+export default function Dropdown({ setSelectedCategory, setSelectedBrand }) {
   const [categoryDropdown, setCategoryDropdown] = useState(false);
   const [brandDropdown, setBrandDropdown] = useState(false);
   const [priceDropdown, setPriceDropdown] = useState(false);
 
-  const [brandIndex, setBrandIndex] = useState(false);
-  const [brandText, setBrandText] = useState('');
+  const [categorys, setCategorys] = useState('');
 
-  const doFunc = (text) => {
-    setSearchBrand(text);
-    setBrandText(text);
-    if (searchBrand === brandText) {
-      setBrandIndex(true);
-    }
-  };
-
-  const [categorys, setCategorys] = useState([]);
   useEffect(() => {
     const fetchCategory = async () => {
       const res = await categoryAPI.getCategory();
@@ -61,7 +47,13 @@ export default function Dropdown({
           {categorys && (
             <>
               {categorys?.map((el) => (
-                <button onClick={doFunc} href="#" className="cursor-pointer">
+                <button
+                  onClick={() => {
+                    setSelectedCategory(el.typeProduct === 'Shoes' ? 1 : 2);
+                  }}
+                  href="#"
+                  className="cursor-pointer"
+                >
                   <p className="text-[14px]">{el.typeProduct}</p>
                 </button>
               ))}
@@ -87,14 +79,20 @@ export default function Dropdown({
         <div className=" flex flex-col items-start  gap-2  mb-3 mt-3">
           {brands?.map((el) => (
             <>
-              <button href="#" className="cursor-pointer">
-                <p
-                  className={`text-[14px] text-${
-                    brandIndex ? '[#FF3722]' : '[black]'
-                  }`}
-                >
-                  {el.title}
-                </p>
+              <button
+                href="#"
+                className="cursor-pointer"
+                onClick={() => {
+                  setSelectedBrand(el.id);
+
+                  console.log(el.brand.title, ' el.brand.title');
+                  console.log(
+                    el.brand.Products.brandId,
+                    ' el.brand.Products.brandId'
+                  );
+                }}
+              >
+                <p className={'text-[14px]'}>{el.title}</p>
               </button>
             </>
           ))}
