@@ -1,7 +1,16 @@
+import { useEffect, useState } from 'react';
 import { BiSearch } from 'react-icons/bi';
 import { Outlet } from 'react-router-dom';
+import Search from '../components/Search';
 
 export default function Header() {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => {
+    console.log('kuy');
+    setShow(false);
+  };
+
   return (
     <div className="flex flex-col border-b-2">
       <div className="flex justify-end bg-black">
@@ -16,9 +25,17 @@ export default function Header() {
             SOM
           </h1>
           <form>
-            <div className="flex gap-2 justify-Start items-center w-[608px] bg-gray-100  text-xs">
+            <div
+              className="flex gap-2 justify-Start items-center w-[608px] bg-gray-100  text-xs"
+              onClick={() => setShow(true)}
+            >
               <i className="text-sm text-gray-500 ml-3 ">
                 <BiSearch />
+                <Search
+                  show={show}
+                  setShow={setShow}
+                  handleClose={handleClose}
+                />
               </i>
               <input
                 className="outline-none bg-gray-100 border-none  w-[500px]"
