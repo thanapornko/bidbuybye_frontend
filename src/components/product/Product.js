@@ -2,16 +2,16 @@ import { BsShieldCheck } from 'react-icons/bs';
 import { BsShieldLock } from 'react-icons/bs';
 import { BsFillLightningChargeFill } from 'react-icons/bs';
 import { BsBoxSeam } from 'react-icons/bs';
-import ButtonProduct from '../componentProduct/ButtonProduct';
+import useProduct from '../../hooks/useProduct';
+import ButtonProduct from '../product/ButtonProduct';
 
-export default function Product({ onClickSeller, onClickBuyer }) {
+export default function Product() {
+  const { onClickSeller, onClickBuyer, productDetail, price } = useProduct();
   return (
     <div>
       <div className="flex justify-center">
         <div className="flex flex-col w-[800px] justify-items-center p-10">
-          <div className="text-[24px] p-5">
-            Nike Dunk Low White Black (2021) (W)
-          </div>
+          <div className="text-[24px] p-5">{productDetail?.products.title}</div>
           <hr className="h-px bg-gray-200 border-0 " />
           <div className="flex justify-evenly mt-4">
             <div className=" text-xs text-gray-400">LOWEST ASK</div>

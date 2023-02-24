@@ -1,6 +1,47 @@
 import { HiOutlineChevronDown } from 'react-icons/hi2';
+import useProduct from '../../hooks/useProduct';
 
 export default function DetailSizeBuyer() {
+  const { size, productDetail, handleSelectSize, selectSize } = useProduct();
+  const sizeProduct = () => {
+    if (productDetail.products.Category.typeProduct === 'Shoes') {
+      return size.getAllSizeShoes.map((el) => (
+        <li
+          onClick={() => {
+            handleSelectSize(el);
+          }}
+        >
+          <a
+            className="block w-full whitespace-nowrap bg-transparent py-2 px-4 text-sm font-normal text-neutral-700 
+            hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400"
+            href="#"
+            data-te-dropdown-item-ref
+            key={el.id}
+          >
+            {el.sizeProduct}
+          </a>
+        </li>
+      ));
+    } else {
+      return size.getAllSizeApperal.map((el) => (
+        <li
+          onClick={() => {
+            handleSelectSize(el);
+          }}
+        >
+          <a
+            className="block w-full whitespace-nowrap bg-transparent py-2 px-4 text-sm font-normal text-neutral-700 
+            hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400"
+            href="#"
+            data-te-dropdown-item-ref
+            key={el.id}
+          >
+            {el.sizeProduct}
+          </a>
+        </li>
+      ));
+    }
+  };
   return (
     <div>
       <div className="flex justify-center">
@@ -15,7 +56,9 @@ export default function DetailSizeBuyer() {
               data-te-ripple-init
               data-te-ripple-color="light"
             >
-              Size
+              {selectSize?.sizeProduct
+                ? `Size: ${selectSize?.sizeProduct}`
+                : 'Select Size'}
               <span className="ml-2">
                 <HiOutlineChevronDown />
               </span>
@@ -27,76 +70,7 @@ export default function DetailSizeBuyer() {
               aria-labelledby="dropdownMenuButton1"
               data-te-dropdown-menu-ref
             >
-              <li>
-                <a
-                  className="block w-full whitespace-nowrap bg-transparent py-2 px-4  font-normal text-neutral-700 
-                      hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400"
-                  href="#"
-                  data-te-dropdown-item-ref
-                >
-                  36
-                </a>
-              </li>
-              <li>
-                <a
-                  className="block w-full whitespace-nowrap bg-transparent py-2 px-4 font-normal text-neutral-700 
-                      hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400"
-                  href="#"
-                  data-te-dropdown-item-ref
-                >
-                  36.5
-                </a>
-              </li>
-              <li>
-                <a
-                  className="block w-full whitespace-nowrap bg-transparent py-2 px-4 font-normal text-neutral-700 
-                      hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400"
-                  href="#"
-                  data-te-dropdown-item-ref
-                >
-                  37
-                </a>
-              </li>
-              <li>
-                <a
-                  className="block w-full whitespace-nowrap bg-transparent py-2 px-4 font-normal text-neutral-700 
-                      hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400"
-                  href="#"
-                  data-te-dropdown-item-ref
-                >
-                  38
-                </a>
-              </li>
-              <li>
-                <a
-                  className="block w-full whitespace-nowrap bg-transparent py-2 px-4 font-normal text-neutral-700 
-                      hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400"
-                  href="#"
-                  data-te-dropdown-item-ref
-                >
-                  39
-                </a>
-              </li>
-              <li>
-                <a
-                  className="block w-full whitespace-nowrap bg-transparent py-2 px-4 font-normal text-neutral-700 
-                      hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400"
-                  href="#"
-                  data-te-dropdown-item-ref
-                >
-                  40
-                </a>
-              </li>
-              <li>
-                <a
-                  className="block w-full whitespace-nowrap bg-transparent py-2 px-4 font-normal text-neutral-700 
-                      hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400"
-                  href="#"
-                  data-te-dropdown-item-ref
-                >
-                  40.5
-                </a>
-              </li>
+              {sizeProduct()}
             </ul>
           </div>
         </div>

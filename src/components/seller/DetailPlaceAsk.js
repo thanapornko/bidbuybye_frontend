@@ -2,8 +2,16 @@ import { HiXMark } from 'react-icons/hi2';
 import { HiChevronLeft } from 'react-icons/hi2';
 import InputPrice from '../seller/InputPrice';
 import ButtonProduct from '../product/ButtonProduct';
+import useProduct from '../../hooks/useProduct';
 
-export default function DetailPlaceAsk({ onClickBack, onClickBackProduct }) {
+export default function DetailPlaceAsk() {
+  const { onClickBack, onClickBackProduct, handleSaveClick, resetPriceBid } =
+    useProduct();
+  const handleSavePrice = () => {
+    onClickBackProduct();
+    handleSaveClick();
+    resetPriceBid();
+  };
   return (
     <div className="p-10">
       <div className="flex items-center justify-center">
@@ -51,7 +59,10 @@ export default function DetailPlaceAsk({ onClickBack, onClickBackProduct }) {
         >
           Back
         </ButtonProduct>
-        <ButtonProduct className={'bg-gray-300 hover hover:bg-gray-900'}>
+        <ButtonProduct
+          onClick={handleSavePrice}
+          className={'bg-gray-300 hover hover:bg-gray-900'}
+        >
           Save
         </ButtonProduct>
       </div>
