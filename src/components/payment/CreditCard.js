@@ -1,11 +1,63 @@
 import React from 'react';
 import { SiMastercard } from 'react-icons/si';
-import { BsTruck } from 'react-icons/bs';
-import { MdPayment, MdOutlineCropSquare } from 'react-icons/md';
+// import { BsTruck } from 'react-icons/bs';
+// import { MdPayment, MdOutlineCropSquare } from 'react-icons/md';
 import { AiFillCheckCircle } from 'react-icons/ai';
-function CreditCard() {
+import Script from 'react-load-script';
+
+let OmiseCard;
+
+function CreditCard(props) {
+  const { createCreditCardCharge } = props;
+
+  console.log(createCreditCardCharge);
+  // const [state, setState] = useState({ charge: undefined });
+
+  const handleLoadScript = () => {
+    OmiseCard = window.OmiseCard;
+
+    OmiseCard.configure({
+      publicKey: 'pkey_test_5uvx5eva0ecjrz016tp',
+      currency: 'thb',
+      frameLabel: 'BIDBUYBYE',
+      submitLabel: 'PAY NOW',
+      buttonLabel: 'Pay with Omise'
+    });
+  };
+
+  const creditCardConfigure = () => {
+    OmiseCard.configure({
+      defaultPaymentMethod: 'credit_card',
+      otherPaymentMethods: []
+    });
+    OmiseCard.configureButton('#credit-card1');
+    OmiseCard.attach();
+  };
+
+  const omiseCardHandle = () => {
+    // const { createCreditCardCharge } = props;
+    OmiseCard.open({
+      frameDescription: 'Invoice #3847',
+      amount: 50000,
+      onCreateTokenSuccess: (token) => {
+        createCreditCardCharge('guest@test.com', 'guset', 50000, token);
+      },
+      onFormClosed: () => {}
+    });
+  };
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    creditCardConfigure();
+    omiseCardHandle();
+  };
   return (
     <div className="flex flex-col w-[70%]  ">
+      <Script
+        type="text/javascript"
+        url="https://cdn.omise.co/omise.js"
+        onLoad={handleLoadScript}
+      />
       <div className="flex flex-row justify-center  px-[50px]  ">
         <div className="font-semibold mb-[20px] ml-[5px]">
           Credit/Debit card
@@ -44,12 +96,16 @@ function CreditCard() {
 
       <div className="flex flex-row justify-center ">
         <div>
-          <button
-            class="bg-gray-500 hover:bg-gray-700
+          <form>
+            <button
+              id="credit-card1"
+              className="bg-gray-500 hover:bg-gray-700
            text-white font-bold py-0.5 ml-[0px] px-[155px] mt-[150px] rounded"
-          >
-            Submit
-          </button>
+              onClick={handleClick}
+            >
+              Submit
+            </button>
+          </form>
         </div>
       </div>
     </div>

@@ -30,6 +30,7 @@ const router = createBrowserRouter([
         path: '/payment',
         element: <Payment />
       },
+
       {
         path: '/completed',
         element: <Completed />
