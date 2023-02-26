@@ -13,15 +13,22 @@ export default function Product() {
         <div className="flex flex-col w-[800px] justify-items-center p-10">
           <div className="text-[24px] p-5">{productDetail?.products.title}</div>
           <hr className="h-px bg-gray-200 border-0 " />
-          <div className="flex justify-evenly mt-4">
-            <div className=" text-xs text-gray-400">LOWEST ASK</div>
-            <div className=" text-xs text-gray-400">HIGHEST BID</div>
-            <div className=" text-xs text-gray-400">LAST SALE</div>
-          </div>
-          <div className="flex justify-evenly">
-            <div className="text-lg ">฿ {price?.minPrice}</div>
-            <div className="text-lg ">฿ 4,000</div>
-            <div className="text-lg ">฿ 4,000</div>
+
+          <div className="flex justify-evenly text-center m-4">
+            <div>
+              <div className=" text-xs text-gray-400">LOWEST ASK</div>
+              <div className="text-lg">
+                {price?.minPrice > 0 ? `฿ ${price?.minPrice}` : '-'}
+              </div>
+            </div>
+            <div>
+              <div className=" text-xs text-gray-400">HIGHEST BID</div>
+              <div className="text-lg ">฿ 4,000</div>
+            </div>
+            <div>
+              <div className=" text-xs text-gray-400">LAST SALE</div>
+              <div className="text-lg ">฿ 4,000</div>
+            </div>
           </div>
           <div className="mt-4">
             <hr className="h-px bg-gray-200" />
