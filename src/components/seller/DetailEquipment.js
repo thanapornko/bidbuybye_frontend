@@ -52,7 +52,7 @@ export default function DetailEquipment() {
                     href="#"
                     data-te-dropdown-item-ref
                   >
-                    Original box
+                    Packaging
                   </a>
                 </li>
 
@@ -67,7 +67,7 @@ export default function DetailEquipment() {
                     href="#"
                     data-te-dropdown-item-ref
                   >
-                    Original box(defect)
+                    None Packaging
                   </a>
                 </li>
               </ul>

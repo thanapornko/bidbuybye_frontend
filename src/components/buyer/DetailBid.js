@@ -3,9 +3,10 @@ import { HiChevronLeft } from 'react-icons/hi2';
 import InputPrice from '../seller/InputPrice';
 import ButtonProduct from '../product/ButtonProduct';
 import useProduct from '../../hooks/useProduct';
+import formattedValued from '../../utils/currency';
 
 export default function DetailBid() {
-  const { onClickBackBuyer, onClickBack } = useProduct();
+  const { onClickBackBuyer, onClickBack, bidPrice } = useProduct();
   return (
     <div>
       <div className="p-10">
@@ -34,8 +35,17 @@ export default function DetailBid() {
           <div className="p-4 text-[20px] text-center">Size: 38</div>
         </div>
         <div className="flex justify-evenly text-[20px] text-center ">
-          <div>฿ 4,500</div>
-          <div>฿ 4,700</div>
+          <div>
+            {bidPrice?.minBidPrice > 0
+              ? `฿ ${formattedValued(bidPrice?.minBidPrice)}`
+              : '-'}
+          </div>
+          <div>
+            {' '}
+            {bidPrice?.maxPrice > 0
+              ? `฿ ${formattedValued(bidPrice?.maxPrice)}`
+              : '-'}
+          </div>
         </div>
         <div className="flex justify-evenly text-[14px] text-center text-gray-400">
           <div>Lowest Bid</div>
