@@ -3,7 +3,7 @@ import React from 'react';
 function OrderSummary(props) {
   console.log(props);
   return (
-    <div className=" border border-gray-300 pl-0 pr-[109px]">
+    <div className=" border border-gray-300 pl-0  pr-[118px]">
       <div className=" flex flex-col ml-20">
         <div className=" text-[12px] font-semibold">
           {props.order[props.order.length - 1]?.Product.title}
@@ -24,7 +24,7 @@ function OrderSummary(props) {
             />
           </div>
         </div>
-        <div className="border-t-[1px] border-gray-300 ">
+        <div className="border-t-[1px] ">
           <div className="py-1 ">
             <div className="flex flex-row justify-between ">
               <div className="p-1 text-[12px]">Sell to bid</div>

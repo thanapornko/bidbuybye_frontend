@@ -4,10 +4,12 @@ import { SiMastercard } from 'react-icons/si';
 // import { MdPayment, MdOutlineCropSquare } from 'react-icons/md';
 import { AiFillCheckCircle } from 'react-icons/ai';
 import Script from 'react-load-script';
+import { useNavigate } from 'react-router-dom';
 
 let OmiseCard;
 
 function CreditCard(props) {
+  const navigate = useNavigate();
   const { createCreditCardCharge } = props;
 
   console.log(props.order);
@@ -18,7 +20,7 @@ function CreditCard(props) {
 
     OmiseCard.configure({
       publicKey: 'pkey_test_5uvx5eva0ecjrz016tp',
-      currency: 'thb',
+      currency: 'THB',
       frameLabel: 'BIDBUYBYE',
       submitLabel: 'PAY NOW',
       buttonLabel: 'Pay with Omise'
@@ -52,12 +54,14 @@ function CreditCard(props) {
     email = props.order[props.order.length - 1]?.User.email;
 
     OmiseCard.open({
-      frameDescription: 'Invoice #3847',
       amount: totalPrice,
-      onCreateTokenSuccess: (token) => {
+      onCreateTokenSuccess: function (token) {
         createCreditCardCharge(email, name, totalPrice, token);
+        navigate('/completed');
       },
-      onFormClosed: () => {}
+      onFormClosed: function () {
+        // Redirect to the next page after the modal is closed
+      }
     });
   };
 

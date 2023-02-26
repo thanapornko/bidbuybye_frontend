@@ -14,7 +14,7 @@ function Checkout() {
         <div>
           <OrderSummary order={order} />
         </div>
-        <div className="px-6"></div>
+        <div className="px-[8px]"></div>
         <div>
           <CheckOut order={order} />
         </div>

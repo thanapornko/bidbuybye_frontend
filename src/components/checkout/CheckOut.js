@@ -2,6 +2,8 @@ import { React, useState } from 'react';
 import { BiMap } from 'react-icons/bi';
 import { BsTruck } from 'react-icons/bs';
 import { MdPayment, MdOutlineCropSquare } from 'react-icons/md';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 function CheckOut(props) {
   return (
@@ -96,14 +98,22 @@ function CheckOut(props) {
       </div>
       <div className="flex flex-row justify-between ">
         <div>
-          <button class="border border-gray-300  bg-gray-50 hover:bg-gray-500 text-black font-bold py-0.5 px-[70px]  rounded">
-            Submit
-          </button>
+          <motion.div whileTap={{ scale: 0.75 }}>
+            <button class="border border-gray-300  bg-gray-50 hover:bg-gray-500 text-black font-bold py-0.5 px-[70px]  rounded">
+              Cancle
+            </button>
+          </motion.div>
         </div>
         <div>
-          <button class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-0.5 px-[70px]  rounded">
-            Submit
-          </button>
+          <motion.div whileTap={{ scale: 0.75 }}>
+            <nav>
+              <Link to="/payment">
+                <button class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-0.5 px-[70px]  rounded">
+                  Submit
+                </button>
+              </Link>
+            </nav>
+          </motion.div>
         </div>
       </div>
     </div>

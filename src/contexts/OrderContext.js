@@ -5,7 +5,10 @@ export const OrderContext = createContext();
 
 function OrderContextProvider({ children }) {
   const [order, setOrder] = useState([]);
+  const [charge, setCharge] = useState(undefined);
+  // const [newCharge, setNewCharge] = useState(undefined);
 
+  console.log(charge);
   useEffect(() => {
     const fetchPost = async () => {
       try {
@@ -20,9 +23,16 @@ function OrderContextProvider({ children }) {
     fetchPost();
   }, []);
 
-  console.log(order);
+  // useEffect(() => {
+  //   setNewCharge(charge);
+  // }, [charge]);
+
+  // console.log(newCharge);
+
   return (
-    <OrderContext.Provider value={{ order }}>{children}</OrderContext.Provider>
+    <OrderContext.Provider value={{ order, charge, setCharge }}>
+      {children}
+    </OrderContext.Provider>
   );
 }
 

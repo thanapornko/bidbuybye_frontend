@@ -8,8 +8,7 @@ import axios from 'axios';
 import useOrder from '../hooks/useOrder';
 
 function Payment() {
-  const { order } = useOrder();
-  const [charge, setCharge] = useState(undefined);
+  const { order, charge, setCharge } = useOrder();
 
   const createCreditCardCharge = async (email, name, amount, token) => {
     try {
