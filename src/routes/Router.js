@@ -18,14 +18,14 @@ import Payment from '../pages/Payment';
 import Completed from '../pages/Completed';
 
 const router = createBrowserRouter([
-  {
-    path: '/checkout',
-    element: <Checkout />
-  },
-  {
-    path: '/payment',
-    element: <Payment />
-  },
+  // {
+  //   path: '/checkout',
+  //   element: <Checkout />
+  // },
+  // {
+  //   path: '/payment',
+  //   element: <Payment />
+  // },
   {
     element: <Layout />,
 
@@ -58,14 +58,14 @@ const router = createBrowserRouter([
         path: '/product',
         element: <ProductPage />
       },
-      // {
-      //   path: '/checkout',
-      //   element: <Checkout />
-      // },
-      // {
-      //   path: '/payment',
-      //   element: <Payment />
-      // },
+      {
+        path: '/checkout',
+        element: <Checkout />
+      },
+      {
+        path: '/payment',
+        element: <Payment />
+      },
 
       {
         path: '/completed',

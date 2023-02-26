@@ -8,10 +8,13 @@ function OrderContextProvider({ children }) {
 
   useEffect(() => {
     const fetchPost = async () => {
-      const res = await OrderApi.getAllOrder();
-      if (res) {
+      try {
+        const res = await OrderApi.getAllOrder();
+        // if (res) {
+        //   setOrder(res.data);
+        // }
         setOrder(res.data);
-      }
+      } catch (err) {}
     };
 
     fetchPost();

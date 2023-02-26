@@ -10,7 +10,7 @@ let OmiseCard;
 function CreditCard(props) {
   const { createCreditCardCharge } = props;
 
-  console.log(createCreditCardCharge);
+  console.log(props.order);
   // const [state, setState] = useState({ charge: undefined });
 
   const handleLoadScript = () => {
@@ -33,14 +33,29 @@ function CreditCard(props) {
     OmiseCard.configureButton('#credit-card1');
     OmiseCard.attach();
   };
-
+  let totalPrice;
+  let name;
+  let email;
   const omiseCardHandle = () => {
-    // const { createCreditCardCharge } = props;
+    const { createCreditCardCharge } = props;
+    totalPrice = (
+      (parseFloat(props.order[props.order.length - 1]?.Bid.price) +
+        parseFloat(props.order[props.order.length - 1]?.Bid.price) *
+          0.049 *
+          1.07 +
+        parseFloat(props.order[props.order.length - 1]?.Bid.price) * 0.03) *
+      100
+    ).toFixed(2);
+
+    name = props.order[props.order.length - 1]?.User.firstName;
+
+    email = props.order[props.order.length - 1]?.User.email;
+
     OmiseCard.open({
       frameDescription: 'Invoice #3847',
-      amount: 50000,
+      amount: totalPrice,
       onCreateTokenSuccess: (token) => {
-        createCreditCardCharge('guest@test.com', 'guest', 50000, token);
+        createCreditCardCharge(email, name, totalPrice, token);
       },
       onFormClosed: () => {}
     });
@@ -103,7 +118,7 @@ function CreditCard(props) {
            text-white font-bold py-0.5 ml-[0px] px-[155px] mt-[150px] rounded"
               onClick={handleClick}
             >
-              Submit
+              Payment
             </button>
           </form>
         </div>

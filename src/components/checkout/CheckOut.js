@@ -53,8 +53,8 @@ function CheckOut(props) {
           ฿{' '}
           {(
             props.order[props.order.length - 1]?.Bid.price *
-            0.07 *
-            1.049
+            0.049 *
+            1.07
           ).toFixed(2)}
         </div>
       </div>
@@ -73,8 +73,8 @@ function CheckOut(props) {
           {(
             parseFloat(props.order[props.order.length - 1]?.Bid.price) +
             parseFloat(props.order[props.order.length - 1]?.Bid.price) *
-              0.07 *
-              1.049 +
+              0.049 *
+              1.07 +
             parseFloat(props.order[props.order.length - 1]?.Bid.price) * 0.03
           ).toFixed(2)}{' '}
         </div>

@@ -5,8 +5,10 @@ import CreditCard from '../components/payment/CreditCard';
 import TotalPrices from '../components/payment/TotalPrices';
 import axios from 'axios';
 // import axios from '../config/axios';
+import useOrder from '../hooks/useOrder';
 
 function Payment() {
+  const { order } = useOrder();
   const [charge, setCharge] = useState(undefined);
 
   const createCreditCardCharge = async (email, name, amount, token) => {
@@ -38,17 +40,20 @@ function Payment() {
     <div className="ml-40 ">
       <div className="flex flex-row justify-center mt-20 ">
         <div>
-          {/* <div>
-            <OrderSummary />
+          <div>
+            <OrderSummary order={order} />
           </div>
 
           <div>
-            <TotalPrices />
-          </div> */}
+            <TotalPrices order={order} />
+          </div>
         </div>
         <div className="px-3"></div>
         <div>
-          <CreditCard createCreditCardCharge={createCreditCardCharge} />
+          <CreditCard
+            createCreditCardCharge={createCreditCardCharge}
+            order={order}
+          />
         </div>
       </div>
     </div>
