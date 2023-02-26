@@ -4,9 +4,11 @@ import { BsFillLightningChargeFill } from 'react-icons/bs';
 import { BsBoxSeam } from 'react-icons/bs';
 import useProduct from '../../hooks/useProduct';
 import ButtonProduct from '../product/ButtonProduct';
+import formattedValued from '../../utils/currency';
 
 export default function Product() {
-  const { onClickSeller, onClickBuyer, productDetail, price } = useProduct();
+  const { onClickSeller, onClickBuyer, productDetail, askPrice, bidPrice } =
+    useProduct();
   return (
     <div>
       <div className="flex justify-center">
@@ -14,16 +16,22 @@ export default function Product() {
           <div className="text-[24px] p-5">{productDetail?.products.title}</div>
           <hr className="h-px bg-gray-200 border-0 " />
 
-          <div className="flex justify-evenly text-center m-4">
+          <div className="flex justify-evenly text-center mx-4 mt-4">
             <div>
               <div className=" text-xs text-gray-400">LOWEST ASK</div>
               <div className="text-lg">
-                {price?.minPrice > 0 ? `฿ ${price?.minPrice}` : '-'}
+                {askPrice?.minPrice > 0
+                  ? `฿ ${formattedValued(askPrice?.minPrice)}`
+                  : '-'}
               </div>
             </div>
             <div>
               <div className=" text-xs text-gray-400">HIGHEST BID</div>
-              <div className="text-lg ">฿ 4,000</div>
+              <div className="text-lg ">
+                {bidPrice?.maxPrice > 0
+                  ? `฿ ${formattedValued(bidPrice?.maxPrice)}`
+                  : '-'}
+              </div>
             </div>
             <div>
               <div className=" text-xs text-gray-400">LAST SALE</div>

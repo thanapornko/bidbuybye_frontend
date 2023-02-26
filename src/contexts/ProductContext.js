@@ -8,11 +8,12 @@ export default function ProductContextProvider({ children }) {
   //state for change to sell, buy, bid or ask
   const [step, setStep] = useState(DEFAULT);
   const [productDetail, setProductDetail] = useState();
-  const [price, setPrice] = useState();
+  const [askPrice, setAskPrice] = useState();
+  const [bidPrice, setBidPrice] = useState();
   const [size, setSize] = useState();
   const [selectSize, setSelectSize] = useState();
   const [selectEquipment, setSelectEquipment] = useState(null);
-  const [askPrice, setAskPrice] = useState();
+  const [priceSeller, setPriceSeller] = useState();
   const [savedValue, setSavedValue] = useState('');
   const [error, setError] = useState('');
 
@@ -56,10 +57,17 @@ export default function ProductContextProvider({ children }) {
     } catch (err) {}
   };
 
-  const fetchPrice = async (id) => {
+  const fetchPriceAsk = async (id) => {
     try {
-      const res = await productApi.getPrice(id);
-      setPrice(res.data);
+      const res = await productApi.getPriceAsk(id);
+      setAskPrice(res.data);
+    } catch (err) {}
+  };
+
+  const fetchPriceBid = async (id) => {
+    try {
+      const res = await productApi.getPriceBid(id);
+      setBidPrice(res.data);
     } catch (err) {}
   };
 
@@ -94,14 +102,14 @@ export default function ProductContextProvider({ children }) {
 
     // Only allow numbers and commas
     if (/^\d*$/.test(input)) {
-      setAskPrice(input);
+      setPriceSeller(input);
       setError('');
     } else {
       setError('must contain only numbers.');
     }
   };
   const handleSaveClick = () => {
-    const numberValue = Number(askPrice.replace(',', ''));
+    const numberValue = Number(priceSeller.replace(',', ''));
     if (isNaN(numberValue)) {
       return;
     }
@@ -114,7 +122,7 @@ export default function ProductContextProvider({ children }) {
   };
 
   const resetPriceBid = () => {
-    setAskPrice('');
+    setPriceSeller('');
   };
 
   return (
@@ -130,8 +138,10 @@ export default function ProductContextProvider({ children }) {
         onClickBid,
         fetchProductDetail,
         productDetail,
-        price,
-        fetchPrice,
+        askPrice,
+        fetchPriceAsk,
+        bidPrice,
+        fetchPriceBid,
         fetchSize,
         size,
         handleSelectSize,
@@ -141,7 +151,7 @@ export default function ProductContextProvider({ children }) {
         selectEquipment,
         resetSelectEquipment,
         handleInputPrice,
-        askPrice,
+        priceSeller,
         handleSaveClick,
         savedValue,
         resetPriceBid,
