@@ -22,7 +22,7 @@ export default function AuthContextProvider({ children }) {
         setAuthenticatedUser(res.data.user);
         // console.log(res.data.user);
       } catch (err) {
-        removeAccessToken();
+        // removeAccessToken();
       }
     };
     if (getAccessToken()) {

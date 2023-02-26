@@ -3,7 +3,7 @@ import { BiMap } from 'react-icons/bi';
 import { BsTruck } from 'react-icons/bs';
 import { MdPayment, MdOutlineCropSquare } from 'react-icons/md';
 
-function CheckOut() {
+function CheckOut(props) {
   return (
     <div className="flex flex-col w-[70%]  border-t-[1px] border-gray-300">
       <div className="flex flex-row justify-center ">
@@ -41,22 +41,43 @@ function CheckOut() {
       <div className="flex flex-row justify-between border-t-[1px] border-gray-300 ">
         <div className="p-1  text-[12px]">Sub total</div>
 
-        <div className="p-1  mr-1 text-[12px] font-semibold">฿ 3,000.00</div>
+        <div className="p-1  text-[12px] font-semibold">
+          {' '}
+          ฿ {props.order[props.order.length - 1]?.Bid.price}
+        </div>
       </div>
       <div className="flex flex-row justify-between  ">
         <div className="p-1  text-[12px]">Transaction fee 7.0 %4.9 %</div>
 
-        <div className="p-1 text-[12px] font-semibold">฿ 147.00</div>
+        <div className="p-1 text-[12px] font-semibold">
+          ฿{' '}
+          {(
+            props.order[props.order.length - 1]?.Bid.price *
+            0.07 *
+            1.049
+          ).toFixed(2)}
+        </div>
       </div>
       <div className="flex flex-row justify-between  ">
         <div className="p-1  text-[12px]">Payment Processing fee 3.0 %</div>
 
-        <div className="p-1 text-[12px] font-semibold">฿ 90.00</div>
+        <div className="p-1 text-[12px] font-semibold">
+          ฿ {(props.order[props.order.length - 1]?.Bid.price * 0.03).toFixed(2)}
+        </div>
       </div>
       <div className="flex flex-row justify-between  ">
         <div className="p-1  text-[12px]">Total</div>
 
-        <div className="p-1 text-[12px] font-semibold">฿ 2,763.00</div>
+        <div className="p-1 text-[12px] font-semibold">
+          ฿{' '}
+          {(
+            parseFloat(props.order[props.order.length - 1]?.Bid.price) +
+            parseFloat(props.order[props.order.length - 1]?.Bid.price) *
+              0.07 *
+              1.049 +
+            parseFloat(props.order[props.order.length - 1]?.Bid.price) * 0.03
+          ).toFixed(2)}{' '}
+        </div>
       </div>
 
       <div className="flex flex-row">

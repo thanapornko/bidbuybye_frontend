@@ -4,6 +4,7 @@ import OrderSummary from '../components/checkout/OrderSummary';
 import CreditCard from '../components/payment/CreditCard';
 import TotalPrices from '../components/payment/TotalPrices';
 import axios from 'axios';
+// import axios from '../config/axios';
 
 function Payment() {
   const [charge, setCharge] = useState(undefined);
@@ -26,6 +27,7 @@ function Payment() {
 
       const resData = res.data;
       setCharge(resData);
+      console.log(resData);
     } catch (error) {
       console.log(error);
     }
@@ -36,13 +38,13 @@ function Payment() {
     <div className="ml-40 ">
       <div className="flex flex-row justify-center mt-20 ">
         <div>
-          <div>
+          {/* <div>
             <OrderSummary />
           </div>
 
           <div>
             <TotalPrices />
-          </div>
+          </div> */}
         </div>
         <div className="px-3"></div>
         <div>

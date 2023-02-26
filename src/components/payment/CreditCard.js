@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useState } from 'react';
 import { SiMastercard } from 'react-icons/si';
 // import { BsTruck } from 'react-icons/bs';
 // import { MdPayment, MdOutlineCropSquare } from 'react-icons/md';
@@ -40,7 +40,7 @@ function CreditCard(props) {
       frameDescription: 'Invoice #3847',
       amount: 50000,
       onCreateTokenSuccess: (token) => {
-        createCreditCardCharge('guest@test.com', 'guset', 50000, token);
+        createCreditCardCharge('guest@test.com', 'guest', 50000, token);
       },
       onFormClosed: () => {}
     });
