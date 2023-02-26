@@ -17,7 +17,9 @@ export default function ProductDetailPage() {
     productDetail,
     fetchSize,
     fetchPriceAsk,
-    fetchPriceBid
+    fetchPriceBid,
+    product,
+    setProduct
   } = useProduct();
   const { productId } = useParams();
   // fetch data from useParams find by Id
@@ -28,6 +30,7 @@ export default function ProductDetailPage() {
         await fetchPriceAsk(productId);
         await fetchPriceBid(productId);
         await fetchSize();
+        await setProduct(productId);
       } catch (error) {}
     })();
   }, []);

@@ -7,8 +7,24 @@ import ButtonProduct from '../product/ButtonProduct';
 import formattedValued from '../../utils/currency';
 
 export default function Product() {
-  const { onClickSeller, onClickBuyer, productDetail, askPrice, bidPrice } =
-    useProduct();
+  const {
+    onClickSeller,
+    onClickBuyer,
+    productDetail,
+    askPrice,
+    bidPrice,
+    setTypeUser
+  } = useProduct();
+
+  const onSelectSeller = () => {
+    onClickSeller();
+    setTypeUser('SELLER');
+  };
+
+  const onSelectBuyer = () => {
+    onClickBuyer();
+    setTypeUser('BUYER');
+  };
   return (
     <div>
       <div className="flex justify-center">
@@ -74,13 +90,13 @@ export default function Product() {
           <div className="flex justify-evenly p-4">
             <ButtonProduct
               className={'bg-gray-900 hover:bg-gray-600'}
-              onClick={onClickSeller}
+              onClick={onSelectSeller}
             >
               Sell
             </ButtonProduct>
             <ButtonProduct
               className={'bg-green-500 hover hover:bg-green-600'}
-              onClick={onClickBuyer}
+              onClick={onSelectBuyer}
             >
               Buy
             </ButtonProduct>

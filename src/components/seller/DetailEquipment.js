@@ -7,9 +7,9 @@ export default function DetailEquipment() {
     if (selectEquipment === null) {
       return 'Select Equipment';
     } else if (selectEquipment === true) {
-      return 'Original box';
+      return 'Packaging';
     } else {
-      return 'Original box(defect)';
+      return 'None Packaging';
     }
   };
   return (

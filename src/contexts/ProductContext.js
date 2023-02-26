@@ -15,8 +15,10 @@ export default function ProductContextProvider({ children }) {
   const [selectEquipment, setSelectEquipment] = useState(null);
   const [priceSeller, setPriceSeller] = useState();
   const [savedValue, setSavedValue] = useState('');
+  //state keep bid
+  const [product, setProduct] = useState();
   const [error, setError] = useState('');
-
+  const [typeUser, setTypeUser] = useState('');
   //click to sell page
   const onClickSeller = () => {
     setStep(STEP_SELLER.productList);
@@ -81,6 +83,7 @@ export default function ProductContextProvider({ children }) {
 
   const handleSelectSize = (e) => {
     setSelectSize(e);
+    console.log(e);
   };
 
   const resetSelectSize = () => {
@@ -155,7 +158,10 @@ export default function ProductContextProvider({ children }) {
         handleSaveClick,
         savedValue,
         resetPriceBid,
-        error
+        error,
+        product,
+        setProduct,
+        setTypeUser
       }}
     >
       {children}
