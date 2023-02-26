@@ -19,7 +19,7 @@ export default function Product() {
             <div className=" text-xs text-gray-400">LAST SALE</div>
           </div>
           <div className="flex justify-evenly">
-            <div className="text-lg ">฿ 4,000</div>
+            <div className="text-lg ">฿ {price?.minPrice}</div>
             <div className="text-lg ">฿ 4,000</div>
             <div className="text-lg ">฿ 4,000</div>
           </div>
