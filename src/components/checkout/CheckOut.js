@@ -75,12 +75,12 @@ function CheckOut() {
       </div>
       <div className="flex flex-row justify-between ">
         <div>
-          <button class="border border-gray-300  bg-gray-50 hover:bg-gray-500 text-black font-bold py-0.5 px-[70px]  rounded">
+          <button className="border border-gray-300  bg-gray-50 hover:bg-gray-500 text-black font-bold py-0.5 px-[70px]  rounded">
             Submit
           </button>
         </div>
         <div>
-          <button class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-0.5 px-[70px]  rounded">
+          <button className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-0.5 px-[70px]  rounded">
             Submit
           </button>
         </div>

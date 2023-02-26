@@ -22,7 +22,7 @@ export default function Login() {
       toast.success('Welcome');
       navigate('/');
     } catch (err) {
-      console.log(err);
+      console.log('errrrr----------', err);
       toast.error(err.response?.data.message);
     }
   };

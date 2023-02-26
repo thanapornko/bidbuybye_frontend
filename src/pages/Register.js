@@ -108,12 +108,12 @@ export default function Register() {
               <input
                 type="text"
                 name="email"
-                value={input.email}
+                value={input?.email}
                 onChange={handleChangeInput}
                 className="block w-full p-2.5 bg-white border-b text-gray-900 focus:outline-none focus:border-b-black"
                 placeholder="Email Address"
               />
-              <div className="text-red-500 text-sm pt-1">{error.email}</div>
+              <div className="text-red-500 text-sm pt-1">{error?.email}</div>
             </div>
             <div>
               <label
