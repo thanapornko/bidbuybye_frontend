@@ -13,6 +13,7 @@ import HistoryPage from '../pages/History';
 import OrderStatusPage from '../pages/OrderStatus';
 
 import ProductDetailPage from '../pages/ProductDetailPage';
+import RedirectAuth from '../auth/RedirectAuth';
 
 import Checkout from '../pages/Checkout';
 import Payment from '../pages/Payment';
@@ -56,7 +57,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/checkout',
-        element: <Checkout />
+        element: (
+          <RedirectAuth>
+            <Checkout />
+          </RedirectAuth>
+        )
       },
       {
         path: '/payment',

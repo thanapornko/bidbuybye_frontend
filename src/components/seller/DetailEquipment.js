@@ -7,9 +7,9 @@ export default function DetailEquipment() {
     if (selectEquipment === null) {
       return 'Select Equipment';
     } else if (selectEquipment === true) {
-      return 'Original box';
+      return 'Packaging';
     } else {
-      return 'Original box(defect)';
+      return 'None Packaging';
     }
   };
   return (
@@ -52,7 +52,7 @@ export default function DetailEquipment() {
                     href="#"
                     data-te-dropdown-item-ref
                   >
-                    Original box
+                    Packaging
                   </a>
                 </li>
 
@@ -67,7 +67,7 @@ export default function DetailEquipment() {
                     href="#"
                     data-te-dropdown-item-ref
                   >
-                    Original box(defect)
+                    None Packaging
                   </a>
                 </li>
               </ul>
