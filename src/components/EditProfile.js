@@ -1,22 +1,19 @@
 import 'flowbite';
+import { useState } from 'react';
+import useAuth from '../hooks/useAuth';
+import profile from '../Images/profile.jpg';
 
 export default function EditProfile() {
+  const { authenticatedUser } = useAuth();
+  const [file, setFile] = useState(null);
+
+  const handleClickSave = async () => {
+    try {
+    } catch (err) {}
+  };
+
   return (
     <>
-      {/* <!-- drawer init and toggle --> */}
-      <div className="text-center">
-        <button
-          className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-xs px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-          type="button"
-          data-drawer-target="drawer-right-example"
-          data-drawer-show="drawer-right-example"
-          data-drawer-placement="right"
-          aria-controls="drawer-right-example"
-        >
-          Show right drawer
-        </button>
-      </div>
-
       {/* <!-- drawer component --> */}
       <div
         id="drawer-right-example"
@@ -53,7 +50,11 @@ export default function EditProfile() {
         </button>
         {/* content */}
         <img
-          src={'https://picsum.photos/id/1/200/300'}
+          src={
+            file
+              ? URL.createObjectURL(file)
+              : authenticatedUser.profileImage || profile
+          }
           className="m-auto h-28 w-28 rounded-full border text-gray-600"
         />
         <div className="p-5">
@@ -64,7 +65,7 @@ export default function EditProfile() {
             type="text"
             name="fname"
             className="block w-full bg-gray-100 text-gray-900 text-xs border-none"
-            placeholder="BigPom"
+            placeholder={authenticatedUser.firstName || 'firstName'}
           />
           <label
             htmlFor="lname"
@@ -76,7 +77,7 @@ export default function EditProfile() {
             type="text"
             name="lname"
             className="block w-full bg-gray-100 text-gray-900 text-xs border-none"
-            placeholder="NaKrub"
+            placeholder={authenticatedUser.lastName || 'lastName'}
           />
           <label
             htmlFor="bday"
@@ -88,7 +89,7 @@ export default function EditProfile() {
             type="text"
             name="bday"
             className="block w-full bg-gray-100 text-gray-900 text-xs border-none"
-            placeholder="11/11/1888"
+            placeholder={authenticatedUser.birthDate || '-'}
           />
           <label
             htmlFor="email"
@@ -100,7 +101,7 @@ export default function EditProfile() {
             type="text"
             name="email"
             className="block w-full bg-gray-100 text-gray-900 text-xs border-none"
-            placeholder="pomza55@yahoo.com"
+            placeholder={authenticatedUser.email || '-'}
           />
 
           <label
@@ -113,7 +114,7 @@ export default function EditProfile() {
             type="text"
             name="mobile"
             className="block w-full bg-gray-100 text-gray-900 text-xs border-none"
-            placeholder="0812345678"
+            placeholder={authenticatedUser.mobilePhone || '-'}
           />
           <label
             htmlFor="address"
@@ -125,14 +126,22 @@ export default function EditProfile() {
             type="text"
             name="address"
             className="block w-full bg-gray-100 text-gray-900 text-xs border-none"
-            placeholder="Ayudhaya 99 Krungsri Thailand 11111"
+            placeholder={authenticatedUser.address || '-'}
           />
         </div>
         <div className="flex justify-center">
-          <button className="bg-green-600 hover:bg-green-500 px-4 py-2 mr-3 text-sm text-white">
+          <button
+            onClick={handleClickSave}
+            className="bg-green-600 hover:bg-green-500 px-4 py-2 mr-3 text-sm text-white"
+          >
             save
           </button>
-          <button className="bg-gray-400 hover:bg-gray-300 px-3 py-1 text-sm text-white">
+          <button
+            type="button"
+            data-drawer-hide="drawer-right-example"
+            aria-controls="drawer-right-example"
+            className="bg-gray-400 hover:bg-gray-300 px-3 py-1 text-sm text-white"
+          >
             cancel
           </button>
         </div>

@@ -2,9 +2,11 @@ import { HiPencilSquare } from 'react-icons/hi2';
 import { HiOutlineChevronRight } from 'react-icons/hi2';
 import useProduct from '../../hooks/useProduct';
 import ButtonProduct from '../product/ButtonProduct';
+import formattedValued from '../../utils/currency';
 
 export default function DetailPriceSeller({ onClickBack, onClickAsk }) {
-  const { resetSelectSize, resetSelectEquipment, savedValue } = useProduct();
+  const { resetSelectSize, resetSelectEquipment, savedValue, bidPrice } =
+    useProduct();
   const handleResetSelectSize = () => {
     onClickBack();
     resetSelectSize();
@@ -29,7 +31,12 @@ export default function DetailPriceSeller({ onClickBack, onClickAsk }) {
             Would you like to sell now to the highest bidder?
           </div>
           <div className="flex items-center ">
-            <div className="text-xl pr-2">฿ 4,200</div>
+            <div className="text-xl pr-2">
+              {' '}
+              {bidPrice?.maxPrice > 0
+                ? `฿ ${formattedValued(bidPrice?.maxPrice)}`
+                : '-'}
+            </div>
             <button>
               <HiOutlineChevronRight />
             </button>
