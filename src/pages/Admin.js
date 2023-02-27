@@ -11,14 +11,14 @@ export default function Admin() {
             href="#"
             className="flex items-center justify-center py-5 shadow-sm hover:bg-gray-100"
           >
-            <i class="fa-solid fa-truck-fast text-m pr-2 text-gray-600"></i>
+            <i className="fa-solid fa-truck-fast text-m pr-2 text-gray-600"></i>
             <h2 className="text-m text-gray-600">Order</h2>
           </a>
           <a
             href="#"
             className="flex items-center justify-center py-5 hover:bg-gray-100"
           >
-            <i class="fa-solid fa-right-from-bracket text-m pr-2 text-gray-600"></i>
+            <i className="fa-solid fa-right-from-bracket text-m pr-2 text-gray-600"></i>
             <h2 className="text-m text-gray-600">Logout</h2>
           </a>
         </div>
