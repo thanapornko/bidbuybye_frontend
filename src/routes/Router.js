@@ -10,6 +10,7 @@ import RegisterPage from '../pages/Register';
 import ProfilePage from '../pages/Profile';
 import AdminPage from '../pages/Admin';
 import HistoryPage from '../pages/History';
+import OrderStatusPage from '../pages/OrderStatus';
 
 import ProductDetailPage from '../pages/ProductDetailPage';
 import RedirectAuth from '../auth/RedirectAuth';
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
       {
         path: '/product',
         element: <ProductPage />
+      },
+      {
+        path: '/orderstatus',
+        element: <OrderStatusPage />
       },
       {
         path: '/checkout',
