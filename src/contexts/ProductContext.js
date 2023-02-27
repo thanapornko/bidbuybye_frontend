@@ -148,7 +148,7 @@ export default function ProductContextProvider({ children }) {
         error
       }}
     >
-      {children}s
+      {children}
     </ProductContext.Provider>
   );
 }

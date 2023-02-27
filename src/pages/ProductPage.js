@@ -20,30 +20,28 @@ export default function ProductPage() {
   // -------------------------------------------------
   const [selectedCategory, setSelectedCategory] = useState(0);
   const [selectedBrand, setSelectedBrand] = useState(0);
-  console.log(selectedCategory, 'aaa');
 
   let filter = [];
 
   if (selectedCategory === 0) {
     filter = products.filter(
-      (el) =>
-        el.Category.typeProduct === 'Shoes' ||
-        el.Category.typeProduct === 'Apperal'
+      (el) => true
+      // el.Category.typeProduct === 'Shoes' ||
+      // el.Category.typeProduct === 'Apperal'
     );
     filter = filter.filter((el) =>
       selectedBrand ? el.brandId === selectedBrand : true
     );
-  } else if (selectedCategory === 1) {
+  } else if (selectedCategory === 'Shoes') {
     filter = products.filter((el) => el.Category.typeProduct === 'Shoes');
     filter = filter.filter((el) =>
       selectedBrand ? el.brandId === selectedBrand : true
     );
-  } else if (selectedCategory === 2) {
+  } else if (selectedCategory === 'Apperal') {
     filter = products.filter((el) => el.Category.typeProduct === 'Apperal');
     filter = filter.filter((el) =>
       selectedBrand ? el.brandId === selectedBrand : true
     );
-    console.log(selectedBrand, 'selectedBrand');
   }
   // -------------------------------------------------
 
@@ -54,19 +52,24 @@ export default function ProductPage() {
         <Dropdown
           setSelectedCategory={setSelectedCategory}
           setSelectedBrand={setSelectedBrand}
+          selectedCategory={selectedCategory}
+          selectedBrand={selectedBrand}
         />
       </div>
       {/* ----------------------------------------- */}
       {/* Box right */}
       <div className=" w-[100%] ml-5">
         {/* box right top  content*/}
-        <NavbarShop />
+        <NavbarShop
+          setSelectedCategory={setSelectedCategory}
+          setSelectedBrand={setSelectedBrand}
+        />
 
         {/* ----------------------------------------- */}
 
         {/* box right bottom crad */}
         <div>
-          <div className="flex flex-wrap  w-[100%] ">
+          <div className="flex flex-wrap  w-[100%]  ">
             {filter
               .filter(
                 (item) =>

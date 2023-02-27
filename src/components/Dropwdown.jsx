@@ -3,7 +3,12 @@ import { AiOutlineCaretDown, AiOutlineCaretUp } from 'react-icons/ai';
 import * as categoryAPI from '../apis/category-api';
 import * as brandAPI from '../apis/brand-api';
 
-export default function Dropdown({ setSelectedCategory, setSelectedBrand }) {
+export default function Dropdown({
+  setSelectedCategory,
+  setSelectedBrand,
+  selectedCategory,
+  selectedBrand
+}) {
   const [categoryDropdown, setCategoryDropdown] = useState(false);
   const [brandDropdown, setBrandDropdown] = useState(false);
   const [priceDropdown, setPriceDropdown] = useState(false);
@@ -49,12 +54,22 @@ export default function Dropdown({ setSelectedCategory, setSelectedBrand }) {
               {categorys?.map((el) => (
                 <button
                   onClick={() => {
-                    setSelectedCategory(el.typeProduct === 'Shoes' ? 1 : 2);
+                    setSelectedCategory(
+                      el.typeProduct === 'Shoes' ? 'Shoes' : 'Apperal'
+                    );
                   }}
                   href="#"
                   className="cursor-pointer"
                 >
-                  <p className="text-[14px]">{el.typeProduct}</p>
+                  <p
+                    className={`text-[14px] ${
+                      el.typeProduct === selectedCategory
+                        ? 'text-[#FF3722]'
+                        : 'text-black'
+                    }`}
+                  >
+                    {el.typeProduct}
+                  </p>
                 </button>
               ))}
             </>
@@ -84,15 +99,15 @@ export default function Dropdown({ setSelectedCategory, setSelectedBrand }) {
                 className="cursor-pointer"
                 onClick={() => {
                   setSelectedBrand(el.id);
-
-                  console.log(el.brand.title, ' el.brand.title');
-                  console.log(
-                    el.brand.Products.brandId,
-                    ' el.brand.Products.brandId'
-                  );
                 }}
               >
-                <p className={'text-[14px]'}>{el.title}</p>
+                <p
+                  className={`text-[14px] ${
+                    el.id === selectedBrand ? 'text-[#FF3722]' : 'text-black'
+                  }`}
+                >
+                  {el.title}
+                </p>
               </button>
             </>
           ))}
@@ -115,9 +130,42 @@ export default function Dropdown({ setSelectedCategory, setSelectedBrand }) {
 
       {priceDropdown && (
         <div className=" flex flex-col items-start  gap-2  mb-3 mt-3">
-          <a href="#" className="cursor-pointer">
-            <p className="text-[14px]">ยังไม่ทำ</p>
-          </a>
+          <form className="flex flex-col">
+            <div>
+              <input type="radio" id="html" name="fav_language" value="HTML" />
+              <label for="html">&gt;10,000</label>
+            </div>
+
+            <div>
+              <input type="radio" id="html" name="fav_language" value="HTML" />
+              <label for="html">&gt;10,000 - 20,000</label>
+            </div>
+
+            <div>
+              <input type="radio" id="html" name="fav_language" value="HTML" />
+              <label for="html">&gt;20,000 - 30,000</label>
+            </div>
+
+            <div>
+              <input type="radio" id="html" name="fav_language" value="HTML" />
+              <label for="html">&gt;30,000 - 40,000</label>
+            </div>
+
+            <div>
+              <input type="radio" id="html" name="fav_language" value="HTML" />
+              <label for="html">&gt;40,000 - 50,000</label>
+            </div>
+
+            <div>
+              <input type="radio" id="html" name="fav_language" value="HTML" />
+              <label for="html">&gt;= 50,000</label>
+            </div>
+
+            <div>
+              <input type="radio" id="html" name="fav_language" value="HTML" />
+              <label for="html">All</label>
+            </div>
+          </form>
         </div>
       )}
       {/* ----------------------------------------------------------------------- */}

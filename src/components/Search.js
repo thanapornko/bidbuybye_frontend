@@ -5,7 +5,6 @@ const Search = ({ show, setShow, handleClose }) => {
   console.log(show);
   return (
     <>
-      <button>click</button>
       <Modal
         show={show}
         size="100vw"
