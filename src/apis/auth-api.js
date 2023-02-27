@@ -4,10 +4,16 @@ import axios from 'axios';
 // export const register = (input) => axios.post('/auth/register', input);
 // export const login = (input) => axios.post('/auth/login', input);
 
+// const getMe = () => {
+//   const url = 'http://localhost:8080/auth/me';
+//   const response = axios.get(url);
+//   return response.data;
+// };
+
 const getMe = () => {
   const url = 'http://localhost:8080/auth/me';
   const response = axios.get(url);
-  return response.data;
+  return response;
 };
 
 const register = async (data) => {

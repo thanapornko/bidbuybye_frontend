@@ -21,7 +21,7 @@ function Approved(props) {
         </nav>
       </div>
 
-      <div className="ml-[250px] mt-[110px] ">
+      <div className="ml-[380px] mt-[110px] ">
         {props.charge && (
           <div className="message">
             <h4 className="mr-[100px] font-bold text-3xl">

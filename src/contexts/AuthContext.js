@@ -15,14 +15,36 @@ export default function AuthContextProvider({ children }) {
   );
 
   //?
+  // useEffect(() => {
+  //   const fetchAuthUser = async () => {
+  //     try {
+  //       const res = await authApi.getMe();
+  //       setAuthenticatedUser(res.data.user);
+  //       // console.log(res.data.user);
+  //     } catch (err) {
+  //       // removeAccessToken();
+  //     }
+  //   };
+  //   if (getAccessToken()) {
+  //     fetchAuthUser();
+  //   }
+  // }, []);
+
   useEffect(() => {
     const fetchAuthUser = async () => {
       try {
         const res = await authApi.getMe();
+        // console.log('ressssssssssss', res.data.user);
         setAuthenticatedUser(res.data.user);
-        // console.log(res.data.user);
       } catch (err) {
-        // removeAccessToken();
+        if (err.response && err.response.status === 401) {
+          console.log('unauthorized please login.');
+        } else if (err.response && err.response.status === 404) {
+          console.log('user not found');
+        } else {
+          console.log('fetch err');
+        }
+        removeAccessToken();
       }
     };
     if (getAccessToken()) {
