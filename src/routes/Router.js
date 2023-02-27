@@ -10,8 +10,10 @@ import RegisterPage from '../pages/Register';
 import ProfilePage from '../pages/Profile';
 import AdminPage from '../pages/Admin';
 import HistoryPage from '../pages/History';
+import OrderStatusPage from '../pages/OrderStatus';
 
 import ProductDetailPage from '../pages/ProductDetailPage';
+import RedirectAuth from '../auth/RedirectAuth';
 
 import Checkout from '../pages/Checkout';
 import Payment from '../pages/Payment';
@@ -59,8 +61,16 @@ const router = createBrowserRouter([
         element: <ProductPage />
       },
       {
+        path: '/orderstatus',
+        element: <OrderStatusPage />
+      },
+      {
         path: '/checkout',
-        element: <Checkout />
+        element: (
+          <RedirectAuth>
+            <Checkout />
+          </RedirectAuth>
+        )
       },
       {
         path: '/payment',

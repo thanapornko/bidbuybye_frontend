@@ -100,7 +100,7 @@ function CheckOut(props) {
         <div>
           <motion.div whileTap={{ scale: 0.75 }}>
             <button class="border border-gray-300  bg-gray-50 hover:bg-gray-500 text-black font-bold py-0.5 px-[70px]  rounded">
-              Cancle
+              Cancel
             </button>
           </motion.div>
         </div>

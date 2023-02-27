@@ -57,9 +57,9 @@ export default function AuthContextProvider({ children }) {
       email,
       password
     });
-    console.log(res);
-    setAccessToken(res.accessToken);
-    setAuthenticatedUser(jwtDecode(res.accessToken));
+    console.log('reslogin', res);
+    setAccessToken(res.data.accessToken);
+    setAuthenticatedUser(jwtDecode(res.data.accessToken));
     // ได้มาเป็น payload
   };
 
@@ -71,9 +71,9 @@ export default function AuthContextProvider({ children }) {
   const googleLogin = async (credential) => {
     console.log('------------------cre', credential);
     const res = await authApi.googleLogin(credential);
-    console.log(res.accessToken);
-    setAccessToken(res.accessToken);
-    setAuthenticatedUser(jwtDecode(res.accessToken));
+    console.log(res.data.accessToken);
+    setAccessToken(res.data.accessToken);
+    setAuthenticatedUser(jwtDecode(res.data.accessToken));
   };
 
   return (
