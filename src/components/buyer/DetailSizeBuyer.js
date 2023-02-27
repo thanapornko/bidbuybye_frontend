@@ -1,8 +1,10 @@
+import { useEffect } from 'react';
 import { HiOutlineChevronDown } from 'react-icons/hi2';
 import useProduct from '../../hooks/useProduct';
 
 export default function DetailSizeBuyer() {
-  const { size, productDetail, handleSelectSize, selectSize } = useProduct();
+  const { size, productDetail, handleSelectSize, selectSize, showPriceBySize } =
+    useProduct();
   const sizeProduct = () => {
     if (productDetail.products.Category.typeProduct === 'Shoes') {
       return size.getAllSizeShoes.map((el) => (
@@ -42,6 +44,11 @@ export default function DetailSizeBuyer() {
       ));
     }
   };
+
+  useEffect(() => {
+    showPriceBySize();
+  }, [selectSize]);
+
   return (
     <div>
       <div className="flex justify-center">
