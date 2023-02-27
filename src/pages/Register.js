@@ -130,7 +130,7 @@ export default function Register() {
                   className="form-input block w-full p-2.5 bg-white border-b text-gray-900 focus:outline-none focus:border-b-black"
                 />
                 <button className="fa-solid fa-eye pr-1 absolute right-5 bottom-3" />
-                {/* <i class="fa-solid fa-eye-slash"/> */}
+                {/* <i className="fa-solid fa-eye-slash"/> */}
               </label>
 
               <div className="text-red-500 text-sm pt-1">{error.password}</div>

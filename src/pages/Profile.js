@@ -41,7 +41,7 @@ export default function Profile() {
             href="#"
             className="flex items-center justify-center py-5 shadow-sm hover:bg-gray-100"
           >
-            <i class="fa-solid fa-basket-shopping text-m pr-2 text-gray-600"></i>
+            <i className="fa-solid fa-basket-shopping text-m pr-2 text-gray-600"></i>
             <h2 className="text-m text-gray-600">Order Status</h2>
           </Link>
           <Link
