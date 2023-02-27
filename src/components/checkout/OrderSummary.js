@@ -1,68 +1,84 @@
 import React from 'react';
 
-function OrderSummary() {
+function OrderSummary(props) {
+  console.log(props);
   return (
-    <div className=" border border-gray-300 pl-0 pr-24">
+    <div className=" border border-gray-300 pl-0  pr-[118px]">
       <div className=" flex flex-col ml-20">
         <div className=" text-[12px] font-semibold">
-          Nike Dunk Low Reverse Brazil
+          {props.order[props.order.length - 1]?.Product.title}
         </div>
 
-        <div className=" text-[12px]">Nike | DV0833-300</div>
+        <div className=" text-[12px]">
+          {props.order[props.order.length - 1]?.Product.Brand.title} |
+          {props.order[props.order.length - 1]?.Product.skuProduct}
+        </div>
       </div>
       <div className="flex flex-col  w-[140%] ">
         <div className="flex flex-row justify-start">
           <div className="p-1 ">
             <img
-              src={'https://picsum.photos/id/1/200/300'}
+              src={props.order[props.order.length - 1]?.Product.ProductImage}
               alt="nikeDunkLow"
               className="w-18 h-10"
             />
           </div>
         </div>
-        <div className="border-t-[1px] border-gray-300 ">
-          <div className="p-1 ">
+        <div className="border-t-[1px] ">
+          <div className="py-1 ">
             <div className="flex flex-row justify-between ">
               <div className="p-1 text-[12px]">Sell to bid</div>
-              <div className="p-1  text-[12px] font-semibold">฿ 3,000</div>
+              <div className="py-1 px-4  text-[12px] font-semibold">
+                ฿ {props.order[props.order.length - 1]?.Bid.price}
+              </div>
             </div>
             <div className="flex flex-row justify-between">
               <div className="p-1  text-[12px]">Size</div>
-              <div className="p-1 text-[12px] font-semibold">US 7.5</div>
+              <div className="py-1 px-4  text-[12px] font-semibold">
+                {
+                  props.order[props.order.length - 1]?.Bid.ProductSize.Size
+                    .sizeProduct
+                }
+              </div>
             </div>
             <div className="flex flex-row justify-between">
               <div className="p-1  text-[12px]">Condition</div>
-              <div className="p-1  text-[12px] font-semibold">Brand new</div>
+              <div className="py-1 px-4   text-[12px] font-semibold">
+                Brand new
+              </div>
             </div>
             <div className="flex flex-row justify-between">
               <div className="p-1  text-[12px]">Equipment</div>
-              <div className="p-1  text-[12px] font-semibold">
+              <div className="py-1 px-4   text-[12px] font-semibold">
                 Original box (no defect)
               </div>
             </div>
             <div className="flex flex-row justify-between">
               <div className="p-1  text-[12px]">Product images</div>
-              <div className="p-1 text-[12px] flex flex-row  font-semibold">
+              <div className="py-1 px-4  text-[12px] flex flex-row  font-semibold">
                 <div>
-                  {' '}
                   <img
-                    src={'https://picsum.photos/id/1/200/300'}
+                    src={
+                      props.order[props.order.length - 1]?.Product.ProductImage
+                    }
                     alt="nikeDunkLow"
                     className="w-8 h-6"
                   />
                 </div>
                 <div>
-                  {' '}
                   <img
-                    src={'https://picsum.photos/id/1/200/300'}
+                    src={
+                      props.order[props.order.length - 1]?.Product.ProductImage
+                    }
                     alt="nikeDunkLow"
                     className="w-8 h-6"
                   />
                 </div>
                 <div>
-                  {' '}
                   <img
-                    src={'https://picsum.photos/id/1/200/300'}
+                    src={
+                      props.order[props.order.length - 1]?.Product.ProductImage
+                    }
                     alt="nikeDunkLow"
                     className="w-8 h-6"
                   />

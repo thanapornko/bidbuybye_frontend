@@ -8,14 +8,17 @@ import ProductContextProvider from './contexts/ProductContext';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import AuthContextProvider from './contexts/AuthContext';
+import OrderContextProvider from './contexts/OrderContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <AuthContextProvider>
-      <ProductContextProvider>
-        <App />
-      </ProductContextProvider>
+      <OrderContextProvider>
+        <ProductContextProvider>
+          <App />
+        </ProductContextProvider>
+      </OrderContextProvider>
     </AuthContextProvider>
   </React.StrictMode>
 );

@@ -15,6 +15,21 @@ export default function AuthContextProvider({ children }) {
   );
 
   //?
+  // useEffect(() => {
+  //   const fetchAuthUser = async () => {
+  //     try {
+  //       const res = await authApi.getMe();
+  //       setAuthenticatedUser(res.data.user);
+  //       // console.log(res.data.user);
+  //     } catch (err) {
+  //       // removeAccessToken();
+  //     }
+  //   };
+  //   if (getAccessToken()) {
+  //     fetchAuthUser();
+  //   }
+  // }, []);
+
   useEffect(() => {
     const fetchAuthUser = async () => {
       try {
