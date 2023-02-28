@@ -1,17 +1,34 @@
 import 'flowbite';
+import { toast } from 'react-toastify';
 import { useState } from 'react';
 import useAuth from '../hooks/useAuth';
 import profile from '../Images/profile.jpg';
+// import * as userApi from '../apis/user-api';
 
 export default function EditProfile() {
-  const { authenticatedUser } = useAuth();
+  const { authenticatedUser, updateProfile } = useAuth();
   const [file, setFile] = useState(null);
 
   const handleClickSave = async () => {
     try {
-    } catch (err) {}
+      // convert => multipart form data
+      const formData = new FormData();
+      // method append เพิ่มkey
+      formData.append('profilePicture', file);
+      // ชื่อ key, file
+      await updateProfile(formData);
+      // await userApi.updateUserName({ name });
+      toast.success('successfully updated!');
+    } catch (err) {
+      toast.error(err.response?.data.message || 'Failed to update');
+    }
   };
 
+  console.log(
+    authenticatedUser.profilePicture,
+    '-------------------------------au'
+  );
+  console.log(file, '----------file');
   return (
     <>
       {/* <!-- drawer component --> */}
@@ -53,7 +70,7 @@ export default function EditProfile() {
           src={
             file
               ? URL.createObjectURL(file)
-              : authenticatedUser.profileImage || profile
+              : authenticatedUser.profilePicture || profile
           }
           className="m-auto h-28 w-28 rounded-full border text-gray-600"
         />

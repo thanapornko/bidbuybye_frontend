@@ -31,8 +31,6 @@ export default function ProductBuyer() {
         </div>
         <ProductBox />
         <hr className="m-10 bg-gray-200" />
-
-        <ProductBox />
       </div>
       <BidBuyer onClickBid={onClickBid} />
     </div>

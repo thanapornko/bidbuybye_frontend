@@ -44,7 +44,6 @@ export default function DetailBid() {
               : '-'}
           </div>
           <div>
-            {' '}
             {bidPrice?.maxPrice > 0
               ? `฿ ${formattedValued(bidPrice?.maxPrice)}`
               : '-'}

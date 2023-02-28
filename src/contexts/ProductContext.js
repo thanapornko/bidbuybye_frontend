@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from 'react';
 import { DEFAULT, STEP_SELLER, STEP_BUYER } from '../constants/productDetail';
 import * as productApi from '../apis/product-api';
+import * as bidApi from '../apis/bid-api';
 
 export const ProductContext = createContext();
 
@@ -11,7 +12,9 @@ export default function ProductContextProvider({ children }) {
   const [askPrice, setAskPrice] = useState();
   const [bidPrice, setBidPrice] = useState();
   const [size, setSize] = useState();
+  //size to send to back
   const [selectSize, setSelectSize] = useState();
+  //equipment to send to back
   const [selectEquipment, setSelectEquipment] = useState(null);
   const [priceSeller, setPriceSeller] = useState();
   const [savedValue, setSavedValue] = useState('');
@@ -19,6 +22,9 @@ export default function ProductContextProvider({ children }) {
   const [product, setProduct] = useState();
   const [error, setError] = useState('');
   const [typeUser, setTypeUser] = useState('');
+  // state keep minPriceBySize
+  const [minPriceBySize, setMinPriceBySize] = useState();
+
   //click to sell page
   const onClickSeller = () => {
     setStep(STEP_SELLER.productList);
@@ -128,6 +134,14 @@ export default function ProductContextProvider({ children }) {
     setPriceSeller('');
   };
 
+  const showPriceBySize = async () => {
+    const showPrice = await bidApi.getPriceBid(
+      productDetail.products.id,
+      selectSize.id
+    );
+    setMinPriceBySize(showPrice.data.minAskPrice);
+  };
+
   return (
     <ProductContext.Provider
       value={{
@@ -161,7 +175,9 @@ export default function ProductContextProvider({ children }) {
         error,
         product,
         setProduct,
-        setTypeUser
+        setTypeUser,
+        showPriceBySize,
+        minPriceBySize
       }}
     >
       {children}
