@@ -4,11 +4,9 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import jwt_decoded from 'jwt-decode';
 
 export default function Login() {
-  const { login, authenticatedUser, googleLogin } = useAuth();
-  // move to context
+  const { login, googleLogin } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -93,6 +91,7 @@ export default function Login() {
                 onChange={(e) => setEmail(e.target.value)}
                 className="block w-full p-2.5 bg-white border-b text-gray-900 focus:outline-none focus:border-b-black"
                 placeholder="Email Address"
+                autoComplete="off"
               />
               {/* <div className="text-red-500 text-sm pt-1">error</div> */}
             </div>

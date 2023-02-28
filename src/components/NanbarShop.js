@@ -1,12 +1,19 @@
 import { BiX } from 'react-icons/bi';
 import { AiOutlineCaretDown, AiOutlineCaretUp } from 'react-icons/ai';
 
-export default function NavbarShop() {
+export default function NavbarShop({ setSelectedCategory, setSelectedBrand }) {
+  const handleClear = () => {
+    setSelectedCategory(0);
+    setSelectedBrand(0);
+  };
+
   return (
     <div className="flex justify-between">
       <div className="flex flex-col gap-1 p-2">
-        <a className="underline">
-          <p className="text-[12px] text-[#969494]">Clear all</p>
+        <a className="hover:underline  cursor-pointer">
+          <p className="text-[12px] text-[#969494] " onClick={handleClear}>
+            Clear all
+          </p>
         </a>
 
         <div className="flex gap-2">
