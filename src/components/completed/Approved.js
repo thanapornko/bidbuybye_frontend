@@ -21,13 +21,13 @@ function Approved(props) {
         </nav>
       </div>
 
-      <div className="ml-[380px] mt-[110px] ">
+      <div className="text-center mt-[110px] ">
         {props.charge && (
           <div className="message">
-            <h4 className="mr-[100px] font-bold text-3xl">
+            <h4 className=" font-bold text-3xl">
               Thank you for your payment with credit card.
             </h4>
-            <p className="ml-[70px] font-semi-bold text-xl">
+            <p className="font-semi-bold text-xl">
               Your payment amount is{' '}
               <span className="amount">
                 {new Intl.NumberFormat().format(props.charge.amount / 100)}{' '}
