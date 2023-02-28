@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from 'react';
 import jwtDecode from 'jwt-decode';
 import * as authApi from '../apis/auth-api';
+import * as userApi from '../apis/user-api';
 import {
   getAccessToken,
   removeAccessToken,
@@ -76,13 +77,23 @@ export default function AuthContextProvider({ children }) {
     setAuthenticatedUser(jwtDecode(res.data.accessToken));
   };
 
+  const updateProfile = async (data) => {
+    const res = await userApi.updateProfilePicture(data);
+    // res.data =  {"profileImage": "https://res.cloudinary.com/dhgny94kc/image/upload/v1675919318/1675915242378428504823.jpg"}
+    setAuthenticatedUser({
+      ...authenticatedUser,
+      ...res.data
+    });
+  };
+
   return (
     <AuthContext.Provider
       value={{
         authenticatedUser,
         login,
         logout,
-        googleLogin
+        googleLogin,
+        updateProfile
       }}
     >
       {children}

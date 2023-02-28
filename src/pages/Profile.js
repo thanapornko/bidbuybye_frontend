@@ -9,6 +9,7 @@ export default function Profile() {
   const { authenticatedUser } = useAuth();
   const [file, setFile] = useState(null);
 
+  ////////////////////////////////
   return (
     <>
       {/* nav left */}
@@ -20,7 +21,7 @@ export default function Profile() {
               src={
                 file
                   ? URL.createObjectURL(file)
-                  : authenticatedUser.profileImage || profile
+                  : authenticatedUser.profilePicture || profile
               }
               className="h-16 w-16 rounded-full border-2 text-gray-600"
             />
@@ -62,7 +63,7 @@ export default function Profile() {
         </div>
         {/* profile right */}
         <div className="flex bg-gray-100 h-screen w-4/5 justify-center">
-          <div className="flex-col w-5/6 h-3/4 bg-white m-10 px-10 py-5 rounded-lg shadow-md">
+          <div className="flex-col w-5/6 h-3/4 bg-white m-10 px-10 py-5">
             <div className="flex justify-end items-end">
               <button
                 className="flex justify-end items-end"
@@ -79,7 +80,7 @@ export default function Profile() {
               src={
                 file
                   ? URL.createObjectURL(file)
-                  : authenticatedUser.profileImage || profile
+                  : authenticatedUser.profilePicture || profile
               }
               className="h-40 w-40 rounded-full border-2"
             />
