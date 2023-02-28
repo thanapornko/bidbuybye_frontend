@@ -68,11 +68,10 @@ export default function DetailBid() {
           >
             Back
           </ButtonProduct>
-          <Link to={`/checkout`}>
-            <ButtonProduct className={'bg-gray-300 hover hover:bg-gray-900'}>
-              Next
-            </ButtonProduct>
-          </Link>
+
+          <ButtonProduct className={'bg-gray-300 hover hover:bg-gray-900'}>
+            Next
+          </ButtonProduct>
         </div>
       </div>
     </div>

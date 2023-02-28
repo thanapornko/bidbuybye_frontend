@@ -16,9 +16,10 @@ export default function ProductContextProvider({ children }) {
   const [selectSize, setSelectSize] = useState();
   //equipment to send to back
   const [selectEquipment, setSelectEquipment] = useState(null);
+  //keep price from input
   const [priceSeller, setPriceSeller] = useState();
   const [savedValue, setSavedValue] = useState('');
-  //state keep bid
+  //state keep product
   const [product, setProduct] = useState();
   const [error, setError] = useState('');
   const [typeUser, setTypeUser] = useState('');
@@ -118,16 +119,10 @@ export default function ProductContextProvider({ children }) {
     }
   };
   const handleSaveClick = () => {
-    const numberValue = Number(priceSeller.replace(',', ''));
-    if (isNaN(numberValue)) {
+    if (isNaN(priceSeller)) {
       return;
     }
-    const formattedValue = Number(numberValue).toLocaleString('th-TH', {
-      style: 'currency',
-      currency: 'THB',
-      minimumFractionDigits: 0
-    });
-    setSavedValue(formattedValue);
+    setSavedValue(priceSeller);
   };
 
   const resetPriceBid = () => {
@@ -140,6 +135,18 @@ export default function ProductContextProvider({ children }) {
       selectSize.id
     );
     setMinPriceBySize(showPrice.data.minAskPrice);
+  };
+
+  //create bid
+
+  const createBid = async () => {
+    const bid = await bidApi.postBid({
+      sizeId: selectSize.id,
+      productId: productDetail.products.id,
+      price: +savedValue,
+      type: typeUser,
+      equipment: selectEquipment
+    });
   };
 
   return (
@@ -177,7 +184,8 @@ export default function ProductContextProvider({ children }) {
         setProduct,
         setTypeUser,
         showPriceBySize,
-        minPriceBySize
+        minPriceBySize,
+        createBid
       }}
     >
       {children}
