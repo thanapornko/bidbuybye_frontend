@@ -14,7 +14,7 @@ const initialInput = {
 };
 
 export default function Register() {
-  const { login, authenticatedUser, googleLogin } = useAuth();
+  const { googleLogin } = useAuth();
   const [input, setInput] = useState(initialInput);
   const [error, setError] = useState({});
   const navigate = useNavigate();
