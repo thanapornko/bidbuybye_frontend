@@ -7,7 +7,8 @@ import formattedValued from '../../utils/currency';
 import { Link } from 'react-router-dom';
 
 export default function DetailBid() {
-  const { onClickBackBuyer, onClickBack, bidPrice, selectSize } = useProduct();
+  const { onClickBackBuyer, onClickBack, bidPrice, selectSize, createBid } =
+    useProduct();
   return (
     <div>
       <div className="p-10">
@@ -68,10 +69,14 @@ export default function DetailBid() {
           >
             Back
           </ButtonProduct>
-
-          <ButtonProduct className={'bg-gray-300 hover hover:bg-gray-900'}>
-            Next
-          </ButtonProduct>
+          <Link to={'/history'}>
+            <ButtonProduct
+              onClick={createBid}
+              className={'bg-gray-300 hover hover:bg-gray-900'}
+            >
+              submit
+            </ButtonProduct>
+          </Link>
         </div>
       </div>
     </div>

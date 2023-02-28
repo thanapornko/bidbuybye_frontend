@@ -57,12 +57,14 @@ export default function DetailPriceSeller({ onClickBack, onClickAsk }) {
           >
             Back
           </ButtonProduct>
-          <ButtonProduct
-            className={'bg-gray-300 hover hover:bg-gray-900'}
-            onClick={createBid}
-          >
-            submit
-          </ButtonProduct>
+          <Link to={'/history'}>
+            <ButtonProduct
+              className={'bg-gray-300 hover hover:bg-gray-900'}
+              onClick={createBid}
+            >
+              submit
+            </ButtonProduct>
+          </Link>
         </div>
       </div>
     </div>
