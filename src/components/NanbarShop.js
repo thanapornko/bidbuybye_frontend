@@ -17,7 +17,7 @@ export default function NavbarShop({ setSelectedCategory, setSelectedBrand }) {
         </a>
 
         <div className="flex gap-2">
-          <div className="flex items-center gap-2 bg-[#00000014] px-3 rounded-full cursor-pointer">
+          <div className=" flex items-center gap-2 bg-[#00000014] px-3 rounded-full cursor-pointer">
             <p className="text-[#1b1b1b] text-[13px]  py-[2px]">Shoes</p>
             <i className="bg-gray-200 hover:bg-gray-300 rounded-full">
               <BiX className="text-[#1b1b1b42]" />
