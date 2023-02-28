@@ -7,7 +7,7 @@ function Checkout() {
   const { order } = useOrder();
   console.log(order);
 
-  console.log(order);
+  // console.log(order);
   return (
     <div className="ml-40  mb-10 flex justify-center mt-10">
       <div className="flex flex-row justify-center ">
