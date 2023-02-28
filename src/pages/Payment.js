@@ -39,13 +39,13 @@ function Payment() {
     <div className="ml-40 ">
       <div className="flex flex-row justify-center mt-20 ">
         <div>
-          <div>
+          {/* <div>
             <OrderSummary order={order} />
-          </div>
+          </div> */}
 
-          <div>
+          {/* <div>
             <TotalPrices order={order} />
-          </div>
+          </div> */}
         </div>
         <div className="px-3"></div>
         <div>
