@@ -1,12 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { BiSearch } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
-import { Outlet } from 'react-router-dom';
+
 import Search from '../components/Search';
 import useAuth from '../hooks/useAuth';
+import logo from '../assets/logo.png';
 
 export default function Header() {
   const { authenticatedUser, logout } = useAuth();
+  const [openSearch, setOpenSearch] = useState(false);
+
   return (
     <div className="flex flex-col border-b-2">
       <div className="flex justify-end bg-black">
@@ -17,22 +20,24 @@ export default function Header() {
       <div>
         <div className="flex  items-center justify-around gap-80 h-14  ">
           <Link to="/" className="ml-2">
-            SA_ <br />
-            SOM
+            <img className="w-[120px]" src={logo} alt="logoImage" />
           </Link>
           <form>
-            <div className="flex gap-2 justify-Start items-center w-[608px] bg-gray-100  text-xs">
+            <div
+              className="flex gap-2 justify-Start items-center w-[608px] bg-gray-100  text-xs"
+              onClick={() => setOpenSearch(true)}
+            >
               <i className="text-sm text-gray-500 ml-3 ">
                 <BiSearch />
-                <Search />
               </i>
               <input
                 className="outline-none bg-gray-100 border-none  w-[500px]"
                 type="text"
-                placeholder="Search for porduct by brands, model or try # to discover more...."
+                placeholder="Search for product by brands, model or try # to discover more...."
               />
             </div>
           </form>
+          <Search openSearch={openSearch} setOpenSearch={setOpenSearch} />
           {authenticatedUser ? (
             <Link
               to="/login"

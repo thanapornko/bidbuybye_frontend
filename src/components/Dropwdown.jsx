@@ -4,26 +4,17 @@ import * as categoryAPI from '../apis/category-api';
 import * as brandAPI from '../apis/brand-api';
 
 export default function Dropdown({
-  setSearchBrand,
-  searchBrand,
-  setCategoryAllBrand
+  setSelectedCategory,
+  setSelectedBrand,
+  selectedCategory,
+  selectedBrand
 }) {
   const [categoryDropdown, setCategoryDropdown] = useState(false);
   const [brandDropdown, setBrandDropdown] = useState(false);
   const [priceDropdown, setPriceDropdown] = useState(false);
 
-  const [brandIndex, setBrandIndex] = useState(false);
-  const [brandText, setBrandText] = useState('');
+  const [categorys, setCategorys] = useState('');
 
-  const doFunc = (text) => {
-    setSearchBrand(text);
-    setBrandText(text);
-    if (searchBrand === brandText) {
-      setBrandIndex(true);
-    }
-  };
-
-  const [categorys, setCategorys] = useState([]);
   useEffect(() => {
     const fetchCategory = async () => {
       const res = await categoryAPI.getCategory();
@@ -61,8 +52,24 @@ export default function Dropdown({
           {categorys && (
             <>
               {categorys?.map((el) => (
-                <button onClick={doFunc} href="#" className="cursor-pointer">
-                  <p className="text-[14px]">{el.typeProduct}</p>
+                <button
+                  onClick={() => {
+                    setSelectedCategory(
+                      el.typeProduct === 'Shoes' ? 'Shoes' : 'Apperal'
+                    );
+                  }}
+                  href="#"
+                  className="cursor-pointer"
+                >
+                  <p
+                    className={`text-[14px] ${
+                      el.typeProduct === selectedCategory
+                        ? 'text-[#FF3722]'
+                        : 'text-black'
+                    }`}
+                  >
+                    {el.typeProduct}
+                  </p>
                 </button>
               ))}
             </>
@@ -87,10 +94,16 @@ export default function Dropdown({
         <div className=" flex flex-col items-start  gap-2  mb-3 mt-3">
           {brands?.map((el) => (
             <>
-              <button href="#" className="cursor-pointer">
+              <button
+                href="#"
+                className="cursor-pointer"
+                onClick={() => {
+                  setSelectedBrand(el.id);
+                }}
+              >
                 <p
-                  className={`text-[14px] text-${
-                    brandIndex ? '[#FF3722]' : '[black]'
+                  className={`text-[14px] ${
+                    el.id === selectedBrand ? 'text-[#FF3722]' : 'text-black'
                   }`}
                 >
                   {el.title}
@@ -117,9 +130,42 @@ export default function Dropdown({
 
       {priceDropdown && (
         <div className=" flex flex-col items-start  gap-2  mb-3 mt-3">
-          <a href="#" className="cursor-pointer">
-            <p className="text-[14px]">ยังไม่ทำ</p>
-          </a>
+          <form className="flex flex-col">
+            <div>
+              <input type="radio" id="html" name="fav_language" value="HTML" />
+              <label for="html">&gt;10,000</label>
+            </div>
+
+            <div>
+              <input type="radio" id="html" name="fav_language" value="HTML" />
+              <label for="html">&gt;10,000 - 20,000</label>
+            </div>
+
+            <div>
+              <input type="radio" id="html" name="fav_language" value="HTML" />
+              <label for="html">&gt;20,000 - 30,000</label>
+            </div>
+
+            <div>
+              <input type="radio" id="html" name="fav_language" value="HTML" />
+              <label for="html">&gt;30,000 - 40,000</label>
+            </div>
+
+            <div>
+              <input type="radio" id="html" name="fav_language" value="HTML" />
+              <label for="html">&gt;40,000 - 50,000</label>
+            </div>
+
+            <div>
+              <input type="radio" id="html" name="fav_language" value="HTML" />
+              <label for="html">&gt;= 50,000</label>
+            </div>
+
+            <div>
+              <input type="radio" id="html" name="fav_language" value="HTML" />
+              <label for="html">All</label>
+            </div>
+          </form>
         </div>
       )}
       {/* ----------------------------------------------------------------------- */}

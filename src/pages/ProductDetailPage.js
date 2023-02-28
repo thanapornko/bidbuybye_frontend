@@ -11,13 +11,28 @@ import { DEFAULT, STEP_SELLER, STEP_BUYER } from '../constants/productDetail';
 import useProduct from '../hooks/useProduct';
 
 export default function ProductDetailPage() {
-  const { step, fetchProductDetail, productDetail, fetchSize } = useProduct();
+  const {
+    step,
+    fetchProductDetail,
+    productDetail,
+    fetchSize,
+    fetchPriceAsk,
+    fetchPriceBid,
+    product,
+    setProduct
+  } = useProduct();
   const { productId } = useParams();
   // fetch data from useParams find by Id
   useEffect(() => {
-    fetchProductDetail(productId);
-    // fetchPrice(productId);
-    fetchSize();
+    (async () => {
+      try {
+        await fetchProductDetail(productId);
+        await fetchPriceAsk(productId);
+        await fetchPriceBid(productId);
+        await fetchSize();
+        await setProduct(productId);
+      } catch (error) {}
+    })();
   }, []);
   // console.log(productDetail);
 

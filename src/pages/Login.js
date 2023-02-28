@@ -91,6 +91,7 @@ export default function Login() {
                 onChange={(e) => setEmail(e.target.value)}
                 className="block w-full p-2.5 bg-white border-b text-gray-900 focus:outline-none focus:border-b-black"
                 placeholder="Email Address"
+                autoComplete="off"
               />
               {/* <div className="text-red-500 text-sm pt-1">error</div> */}
             </div>
