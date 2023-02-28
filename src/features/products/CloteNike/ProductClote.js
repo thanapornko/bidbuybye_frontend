@@ -5,6 +5,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './ProductClote.css';
 import Card from '../../../components/Card';
+import { Link } from 'react-router-dom';
 import * as brandAPI from '../../../apis/brand-api';
 
 export default function ProductCloteNike() {
@@ -61,9 +62,9 @@ export default function ProductCloteNike() {
         {brands.map((el) => (
           <div>
             <div className="flex gap-[10px] items-center justify-center">
-              <a href="/product">
+              <Link to="/product" state={{ id: el.id }}>
                 <p className="text-[20px] font-semibold">{el.title}</p>
-              </a>
+              </Link>
               <i>
                 <FaArrowRight />
               </i>

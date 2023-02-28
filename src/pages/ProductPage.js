@@ -3,10 +3,21 @@ import Card from '../components/Card';
 import NavbarShop from '../components/NanbarShop';
 import { useEffect, useState } from 'react';
 import * as productAPI from '../apis/product-api';
+import { useLocation } from 'react-router-dom';
 
 export default function ProductPage() {
   const [searchBrand, setSearchBrand] = useState();
   const [categoryAllBrand, setCategoryAllBrand] = useState();
+  const [selectedCategory, setSelectedCategory] = useState(0);
+  const [selectedBrand, setSelectedBrand] = useState(0);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state) {
+      setSelectedBrand(location.state.id);
+    }
+  }, [location.state]);
 
   const [products, setProducts] = useState([]);
   useEffect(() => {
@@ -18,8 +29,6 @@ export default function ProductPage() {
   }, []);
 
   // -------------------------------------------------
-  const [selectedCategory, setSelectedCategory] = useState(0);
-  const [selectedBrand, setSelectedBrand] = useState(0);
 
   let filter = [];
 
