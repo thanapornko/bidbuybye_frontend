@@ -1,5 +1,6 @@
 import { HiPencilSquare } from 'react-icons/hi2';
 import { HiOutlineChevronRight } from 'react-icons/hi2';
+import { Link } from 'react-router-dom';
 import useProduct from '../../hooks/useProduct';
 import ButtonProduct from '../product/ButtonProduct';
 import formattedValued from '../../utils/currency';
@@ -37,9 +38,11 @@ export default function DetailPriceSeller({ onClickBack, onClickAsk }) {
                 ? `฿ ${formattedValued(bidPrice?.maxPrice)}`
                 : '-'}
             </div>
-            <button>
-              <HiOutlineChevronRight />
-            </button>
+            <Link to={`/checkout`}>
+              <button>
+                <HiOutlineChevronRight />
+              </button>
+            </Link>
           </div>
         </div>
         <div className="flex justify-evenly p-4">
