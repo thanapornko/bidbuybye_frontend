@@ -1,7 +1,7 @@
 import useProduct from '../../hooks/useProduct';
 
 export default function InputPrice({ placeholder }) {
-  const { handleInputPrice, askPrice, error } = useProduct();
+  const { handleInputPrice, priceSeller, error } = useProduct();
   return (
     <div>
       <input
@@ -10,7 +10,7 @@ export default function InputPrice({ placeholder }) {
         type="text"
         required
         placeholder={placeholder}
-        value={askPrice}
+        value={priceSeller}
         onChange={handleInputPrice}
       />
       {error && <p className="text-red-500">{error}</p>}

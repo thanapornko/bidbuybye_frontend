@@ -4,24 +4,55 @@ import { BsFillLightningChargeFill } from 'react-icons/bs';
 import { BsBoxSeam } from 'react-icons/bs';
 import useProduct from '../../hooks/useProduct';
 import ButtonProduct from '../product/ButtonProduct';
+import formattedValued from '../../utils/currency';
 
 export default function Product() {
-  const { onClickSeller, onClickBuyer, productDetail, price } = useProduct();
+  const {
+    onClickSeller,
+    onClickBuyer,
+    productDetail,
+    askPrice,
+    bidPrice,
+    setTypeUser
+  } = useProduct();
+
+  const onSelectSeller = () => {
+    onClickSeller();
+    setTypeUser('SELLER');
+  };
+
+  const onSelectBuyer = () => {
+    onClickBuyer();
+    setTypeUser('BUYER');
+  };
   return (
     <div>
       <div className="flex justify-center">
         <div className="flex flex-col w-[800px] justify-items-center p-10">
           <div className="text-[24px] p-5">{productDetail?.products.title}</div>
           <hr className="h-px bg-gray-200 border-0 " />
-          <div className="flex justify-evenly mt-4">
-            <div className=" text-xs text-gray-400">LOWEST ASK</div>
-            <div className=" text-xs text-gray-400">HIGHEST BID</div>
-            <div className=" text-xs text-gray-400">LAST SALE</div>
-          </div>
-          <div className="flex justify-evenly">
-            <div className="text-lg ">฿ 4,000</div>
-            <div className="text-lg ">฿ 4,000</div>
-            <div className="text-lg ">฿ 4,000</div>
+
+          <div className="flex justify-evenly text-center mx-4 mt-4">
+            <div>
+              <div className=" text-xs text-gray-400">LOWEST ASK</div>
+              <div className="text-lg">
+                {askPrice?.minPrice > 0
+                  ? `฿ ${formattedValued(askPrice?.minPrice)}`
+                  : '-'}
+              </div>
+            </div>
+            <div>
+              <div className=" text-xs text-gray-400">HIGHEST BID</div>
+              <div className="text-lg ">
+                {bidPrice?.maxPrice > 0
+                  ? `฿ ${formattedValued(bidPrice?.maxPrice)}`
+                  : '-'}
+              </div>
+            </div>
+            <div>
+              <div className=" text-xs text-gray-400">LAST SALE</div>
+              <div className="text-lg ">฿ 4,000</div>
+            </div>
           </div>
           <div className="mt-4">
             <hr className="h-px bg-gray-200" />
@@ -59,13 +90,13 @@ export default function Product() {
           <div className="flex justify-evenly p-4">
             <ButtonProduct
               className={'bg-gray-900 hover:bg-gray-600'}
-              onClick={onClickSeller}
+              onClick={onSelectSeller}
             >
               Sell
             </ButtonProduct>
             <ButtonProduct
               className={'bg-green-500 hover hover:bg-green-600'}
-              onClick={onClickBuyer}
+              onClick={onSelectBuyer}
             >
               Buy
             </ButtonProduct>

@@ -54,7 +54,7 @@ export default function OrderStatus() {
         <div className="flex justify-between mt-10">
           <div className="flex-col space-y-10">
             <div className="flex">
-              <i class="fa-solid fa-circle text-green-500 text-xs mr-1"></i>
+              <i className="fa-solid fa-circle text-green-500 text-xs mr-1"></i>
               <div className="flex-col">
                 <p className="text-sm text-gray-900">Seller sold to your bid</p>
                 <p className="text-sm text-gray-500">
@@ -63,7 +63,7 @@ export default function OrderStatus() {
               </div>
             </div>
             <div className="flex">
-              <i class="fa-solid fa-circle text-green-500 text-xs mr-1"></i>
+              <i className="fa-solid fa-circle text-green-500 text-xs mr-1"></i>
               <div className="flex-col">
                 <p className="text-sm text-gray-900">
                   Item arrived at bidbuybye
@@ -74,7 +74,7 @@ export default function OrderStatus() {
               </div>
             </div>
             <div className="flex">
-              <i class="fa-solid fa-circle text-green-500 text-xs mr-1"></i>
+              <i className="fa-solid fa-circle text-green-500 text-xs mr-1"></i>
               <div className="flex-col">
                 <p className="text-sm text-gray-900">Authentication</p>
                 <p className="text-sm text-gray-500">
@@ -83,7 +83,7 @@ export default function OrderStatus() {
               </div>
             </div>
             <div className="flex">
-              <i class="fa-solid fa-circle text-green-500 text-xs mr-1"></i>
+              <i className="fa-solid fa-circle text-green-500 text-xs mr-1"></i>
               <div className="flex-col">
                 <p className="text-sm text-gray-900">
                   Item shipped from bidbuybye
@@ -92,7 +92,7 @@ export default function OrderStatus() {
               </div>
             </div>
             <div className="flex">
-              <i class="fa-solid fa-circle text-green-500 text-xs mr-1"></i>
+              <i className="fa-solid fa-circle text-green-500 text-xs mr-1"></i>
               <div className="flex-col">
                 <p className="text-sm text-gray-900">Order completed</p>
                 <p className="text-sm text-gray-500">Item delivered</p>

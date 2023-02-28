@@ -6,7 +6,9 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { MdOutlineKeyboardBackspace } from 'react-icons/md';
 
-function Approved() {
+function Approved(props) {
+  console.log(props);
+
   return (
     <div>
       <div className="flex flex-col justify-start ml-5 ">
@@ -18,7 +20,32 @@ function Approved() {
           </Link>
         </nav>
       </div>
-      <div className="pt-40 flex flex-row justify-center ">
+
+      <div className="text-center mt-[110px] ">
+        {props.charge && (
+          <div className="message">
+            <h4 className=" font-bold text-3xl">
+              Thank you for your payment with credit card.
+            </h4>
+            <p className="font-semi-bold text-xl">
+              Your payment amount is{' '}
+              <span className="amount">
+                {new Intl.NumberFormat().format(props.charge.amount / 100)}{' '}
+                Baht.{' '}
+              </span>
+              Status{' '}
+              <span
+                className={
+                  props.charge.status === 'successful' ? 'success' : 'failed'
+                }
+              >
+                {props.charge.status}
+              </span>
+            </p>
+          </div>
+        )}
+      </div>
+      <div className="pt-[80px] flex flex-row justify-center ">
         <div className="flex flex-col justify-center ">
           <div className="text-7xl text-green-500 mb-10 ml-7">
             <AiOutlineCheckCircle />
@@ -37,6 +64,7 @@ function Approved() {
           </div>
         </div>
       </div>
+      <div></div>
     </div>
   );
 }

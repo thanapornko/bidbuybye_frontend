@@ -15,13 +15,35 @@ export default function AuthContextProvider({ children }) {
   );
 
   //?
+  // useEffect(() => {
+  //   const fetchAuthUser = async () => {
+  //     try {
+  //       const res = await authApi.getMe();
+  //       setAuthenticatedUser(res.data.user);
+  //       // console.log(res.data.user);
+  //     } catch (err) {
+  //       // removeAccessToken();
+  //     }
+  //   };
+  //   if (getAccessToken()) {
+  //     fetchAuthUser();
+  //   }
+  // }, []);
+
   useEffect(() => {
     const fetchAuthUser = async () => {
       try {
         const res = await authApi.getMe();
+        // console.log('ressssssssssss', res.data.user);
         setAuthenticatedUser(res.data.user);
-        // console.log(res.data.user);
       } catch (err) {
+        if (err.response && err.response.status === 401) {
+          console.log('unauthorized please login.');
+        } else if (err.response && err.response.status === 404) {
+          console.log('user not found');
+        } else {
+          console.log('fetch err');
+        }
         removeAccessToken();
       }
     };
@@ -35,9 +57,9 @@ export default function AuthContextProvider({ children }) {
       email,
       password
     });
-    console.log(res);
-    setAccessToken(res.accessToken);
-    setAuthenticatedUser(jwtDecode(res.accessToken));
+    console.log('reslogin', res);
+    setAccessToken(res.data.accessToken);
+    setAuthenticatedUser(jwtDecode(res.data.accessToken));
     // ได้มาเป็น payload
   };
 
@@ -49,9 +71,9 @@ export default function AuthContextProvider({ children }) {
   const googleLogin = async (credential) => {
     console.log('------------------cre', credential);
     const res = await authApi.googleLogin(credential);
-    console.log(res.accessToken);
-    setAccessToken(res.accessToken);
-    setAuthenticatedUser(jwtDecode(res.accessToken));
+    console.log(res.data.accessToken);
+    setAccessToken(res.data.accessToken);
+    setAuthenticatedUser(jwtDecode(res.data.accessToken));
   };
 
   return (
