@@ -3,25 +3,56 @@ import { toast } from 'react-toastify';
 import { useState } from 'react';
 import useAuth from '../hooks/useAuth';
 import profile from '../Images/profile.jpg';
-// import * as userApi from '../apis/user-api';
+import * as userApi from '../apis/user-api';
 
 export default function EditProfile() {
   const { authenticatedUser, updateProfile } = useAuth();
   const [file, setFile] = useState(null);
+  const [fname, setFname] = useState('');
+  const [lname, setLname] = useState('');
+  const [birthdate, setBirthdate] = useState('');
+  const [email, setEmail] = useState('');
+  const [address, setAddress] = useState('');
+  const [mobile, setMobile] = useState('');
+
+  const input = {
+    firstName: fname,
+    lastName: lname,
+    birthDate: birthdate,
+    email: email,
+    address: address,
+    mobilePhone: mobile
+  };
 
   const handleClickSave = async () => {
     try {
-      // convert => multipart form data
       const formData = new FormData();
-      // method append เพิ่มkey
       formData.append('profilePicture', file);
-      // ชื่อ key, file
       await updateProfile(formData);
-      // await userApi.updateUserName({ name });
+      await userApi.updateUserInfo(input);
       toast.success('successfully updated!');
     } catch (err) {
       toast.error(err.response?.data.message || 'Failed to update');
     }
+  };
+
+  const handleChangeFname = async (e) => {
+    setFname(e.target.value);
+  };
+  const handleChangeLname = async (e) => {
+    setLname(e.target.value);
+  };
+  const handleChangeBirthdate = async (e) => {
+    setBirthdate(e.target.value);
+  };
+  const handleChangeEmail = async (e) => {
+    setEmail(e.target.value);
+  };
+  const handleChangeAddress = async (e) => {
+    setAddress(e.target.value);
+  };
+  const handleChangeMobile = async (e) => {
+    setMobile(e.target.value);
   };
 
   console.log(
@@ -66,14 +97,30 @@ export default function EditProfile() {
           <span className="sr-only">Close menu</span>
         </button>
         {/* content */}
-        <img
-          src={
-            file
-              ? URL.createObjectURL(file)
-              : authenticatedUser.profilePicture || profile
-          }
-          className="m-auto h-28 w-28 rounded-full border text-gray-600"
-        />
+        <div className="text-center">
+          <button className="flex-col space-y-2">
+            <img
+              src={
+                file
+                  ? URL.createObjectURL(file)
+                  : authenticatedUser.profilePicture || profile
+              }
+              className="m-auto h-32 w-32 rounded-full border text-gray-600"
+            />
+            <input
+              onChange={(e) => {
+                if (e.target.files[0]) {
+                  setFile(e.target.files[0]);
+                }
+              }}
+              type="file"
+              className="text-xs text-grey-500
+            hover:file:cursor-pointer hover:file:bg-grey-300
+            hover:file:text-blue-500 m-auto 
+          "
+            />
+          </button>
+        </div>
         <div className="p-5">
           <label htmlFor="fname" className="block mb-2 text-xs text-gray-900">
             First Name
@@ -82,6 +129,8 @@ export default function EditProfile() {
             type="text"
             name="fname"
             className="block w-full bg-gray-100 text-gray-900 text-xs border-none"
+            value={fname}
+            onChange={(e) => handleChangeFname(e)}
             placeholder={authenticatedUser.firstName || 'firstName'}
           />
           <label
@@ -94,6 +143,8 @@ export default function EditProfile() {
             type="text"
             name="lname"
             className="block w-full bg-gray-100 text-gray-900 text-xs border-none"
+            value={lname}
+            onChange={(e) => handleChangeLname(e)}
             placeholder={authenticatedUser.lastName || 'lastName'}
           />
           <label
@@ -106,6 +157,8 @@ export default function EditProfile() {
             type="text"
             name="bday"
             className="block w-full bg-gray-100 text-gray-900 text-xs border-none"
+            value={birthdate}
+            onChange={(e) => handleChangeBirthdate(e)}
             placeholder={authenticatedUser.birthDate || '-'}
           />
           <label
@@ -118,6 +171,8 @@ export default function EditProfile() {
             type="text"
             name="email"
             className="block w-full bg-gray-100 text-gray-900 text-xs border-none"
+            value={email}
+            onChange={(e) => handleChangeEmail(e)}
             placeholder={authenticatedUser.email || '-'}
           />
 
@@ -131,6 +186,8 @@ export default function EditProfile() {
             type="text"
             name="mobile"
             className="block w-full bg-gray-100 text-gray-900 text-xs border-none"
+            value={mobile}
+            onChange={(e) => handleChangeMobile(e)}
             placeholder={authenticatedUser.mobilePhone || '-'}
           />
           <label
@@ -143,6 +200,8 @@ export default function EditProfile() {
             type="text"
             name="address"
             className="block w-full bg-gray-100 text-gray-900 text-xs border-none"
+            value={address}
+            onChange={(e) => handleChangeAddress(e)}
             placeholder={authenticatedUser.address || '-'}
           />
         </div>

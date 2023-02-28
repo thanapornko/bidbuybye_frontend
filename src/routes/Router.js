@@ -66,11 +66,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/checkout',
-        element: (
-          <RedirectAuth>
-            <Checkout />
-          </RedirectAuth>
-        )
+        element: <Checkout />
       },
       {
         path: '/payment',
