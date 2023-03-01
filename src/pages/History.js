@@ -16,11 +16,11 @@ export default function History() {
               src={
                 file
                   ? URL.createObjectURL(file)
-                  : authenticatedUser.profileImage || profile
+                  : authenticatedUser.profilePicture || profile
               }
               className="h-16 w-16 rounded-full border-2 text-gray-600"
             />
-            <h2 className="text-m text-gray-600 font-bold">
+            <h2 className="text-m text-gray-600 font-bold ">
               {authenticatedUser.firstName || 'firstName'}{' '}
               {authenticatedUser.lastName || 'lastName'}
             </h2>
@@ -57,7 +57,7 @@ export default function History() {
         </div>
         {/* profile right */}
         <div className="flex bg-gray-100 w-4/5 justify-center">
-          <div className="flex-col w-5/6 bg-white m-10 px-20 py-5 rounded-lg shadow-md">
+          <div className="flex-col w-5/6 bg-white m-10 px-20 py-5">
             <div className="flex justify-center pb-1 border-b">
               <p className="text-md pr-1 text-gray-600 ">History</p>
             </div>

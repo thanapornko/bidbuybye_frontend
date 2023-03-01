@@ -18,7 +18,7 @@ export default function OrderStatus() {
               src={
                 file
                   ? URL.createObjectURL(file)
-                  : authenticatedUser.profileImage || profile
+                  : authenticatedUser.profilePicture || profile
               }
               className="h-16 w-16 rounded-full border-2 text-gray-600"
             />
