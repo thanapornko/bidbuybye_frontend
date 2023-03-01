@@ -11,7 +11,8 @@ export default function DetailPriceSeller({ onClickBack, onClickAsk }) {
     resetSelectEquipment,
     savedValue,
     bidPrice,
-    createBid
+    createBid,
+    maxPriceBySize
   } = useProduct();
   const handleResetSelectSize = () => {
     onClickBack();
@@ -37,16 +38,13 @@ export default function DetailPriceSeller({ onClickBack, onClickAsk }) {
             Would you like to sell now to the highest bidder?
           </div>
           <div className="flex items-center ">
-            <div className="text-xl pr-2">
-              {' '}
-              {bidPrice?.maxPrice > 0
-                ? `฿ ${formattedValued(bidPrice?.maxPrice)}`
-                : '-'}
-            </div>
             <Link to={`/checkout`}>
-              <button>
+              <div className="flex items-center text-xl pr-2">
+                {maxPriceBySize?.maxPrice > 0
+                  ? `฿ ${formattedValued(maxPriceBySize?.maxPrice)}`
+                  : '-'}
                 <HiOutlineChevronRight />
-              </button>
+              </div>
             </Link>
           </div>
         </div>

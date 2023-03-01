@@ -9,7 +9,6 @@ export default function ProductBox() {
     <div>
       <div className="flex justify-between px-10">
         <div>
-          {' '}
           {minPriceBySize ? (
             `฿ ${minPriceBySize}`
           ) : (

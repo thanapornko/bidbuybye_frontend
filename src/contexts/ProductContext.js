@@ -25,6 +25,7 @@ export default function ProductContextProvider({ children }) {
   const [typeUser, setTypeUser] = useState('');
   // state keep minPriceBySize
   const [minPriceBySize, setMinPriceBySize] = useState();
+  const [maxPriceBySize, setMaxPriceBySize] = useState();
 
   //click to sell page
   const onClickSeller = () => {
@@ -90,7 +91,6 @@ export default function ProductContextProvider({ children }) {
 
   const handleSelectSize = (e) => {
     setSelectSize(e);
-    console.log(e);
   };
 
   const resetSelectSize = () => {
@@ -130,11 +130,19 @@ export default function ProductContextProvider({ children }) {
   };
 
   const showPriceBySize = async () => {
+    const showPrice = await bidApi.getPriceAsk(
+      productDetail.products.id,
+      selectSize.id
+    );
+    setMinPriceBySize(showPrice.data.minPrice);
+  };
+
+  const showMaxPriceBySize = async () => {
     const showPrice = await bidApi.getPriceBid(
       productDetail.products.id,
       selectSize.id
     );
-    setMinPriceBySize(showPrice.data.minAskPrice);
+    setMaxPriceBySize(showPrice.data);
   };
 
   //create bid
@@ -147,6 +155,16 @@ export default function ProductContextProvider({ children }) {
       type: typeUser,
       equipment: selectEquipment
     });
+  };
+
+  const handleClickBid = async () => {
+    // const bid = await bidApi.preCheckout({
+    //   sizeId: selectSize.id,
+    //   productId: productDetail.products.id,
+    //   price: +savedValue,
+    //   type: typeUser,
+    //   equipment: selectEquipment
+    // });
   };
 
   return (
@@ -185,7 +203,10 @@ export default function ProductContextProvider({ children }) {
         setTypeUser,
         showPriceBySize,
         minPriceBySize,
-        createBid
+        createBid,
+        handleClickBid,
+        maxPriceBySize,
+        showMaxPriceBySize
       }}
     >
       {children}
