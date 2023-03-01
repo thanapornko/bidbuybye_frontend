@@ -45,6 +45,8 @@ export default function ProductPage() {
   }
   // -------------------------------------------------
 
+  console.log(products);
+
   return (
     <div className="flex w-[100%] ">
       {/* Box left menuDropwdown */}

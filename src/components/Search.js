@@ -16,6 +16,7 @@ const Search = ({ openSearch, setOpenSearch }) => {
     fetchProduct();
   }, []);
 
+  // console.log(products);
   return (
     <>
       <Modal
@@ -54,10 +55,10 @@ const Search = ({ openSearch, setOpenSearch }) => {
                   {products.map((item) => (
                     <Card
                       key={item.id}
-                      image={item.ProductImage}
-                      productname={item.title}
-                      brand={item.Brand.title}
-                      title={item.Category?.typeProduct}
+                      // image={item.ProductImage}
+                      // productname={item.title}
+                      // brand={item.Brand.title}
+                      // title={item.Category?.typeProduct}
                       // price={item.price}
                     />
                   ))}

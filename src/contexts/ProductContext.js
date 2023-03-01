@@ -142,6 +142,8 @@ export default function ProductContextProvider({ children }) {
     setMinPriceBySize(showPrice.data.minAskPrice);
   };
 
+  console.log(step);
+
   return (
     <ProductContext.Provider
       value={{
