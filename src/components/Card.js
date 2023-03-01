@@ -4,11 +4,12 @@ export default function Card({
   title,
   price,
   brand,
-  category
+  category,
+  onClick
 }) {
   return (
     <>
-      <div className=" mt-3 p-2">
+      <div className=" mt-3 p-2 cursor-pointer" onClick={onClick}>
         {/* // container card All */}
         {/* // Card  */}
         <div className="flex flex-col cursor-pointer">
