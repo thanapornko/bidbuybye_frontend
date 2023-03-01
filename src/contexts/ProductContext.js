@@ -167,6 +167,8 @@ export default function ProductContextProvider({ children }) {
     // });
   };
 
+  console.log(step);
+
   return (
     <ProductContext.Provider
       value={{

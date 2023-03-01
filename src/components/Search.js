@@ -20,6 +20,7 @@ const Search = ({ openSearch, setOpenSearch }) => {
     fetchProduct();
   }, []);
 
+  // console.log(products);
   const searchProduct = (products) => {
     return products.filter((el) => {
       return (

@@ -1,112 +1,3 @@
-// import React from 'react';
-
-// function OrderSummary(props) {
-//   console.log(props);
-//   return (
-//     <div className=" border border-gray-300 pl-0  pr-[118px] h-[400px]">
-//       {/* ------------------------ */}
-//       <div className=" flex flex-col ml-20">
-//         <div className=" text-[12px] font-semibold border-2">
-//           {props.order[props.order.length - 1]?.Product.title}
-//         </div>
-
-//         <div className=" text-[12px]">
-//           {props.order[props.order.length - 1]?.Product.Brand.title} |
-//           {props.order[props.order.length - 1]?.Product.skuProduct}
-//         </div>
-//       </div>
-//       {/* ------------------------ */}
-//       <div className="flex flex-col  w-[140%] ">
-//         <div className="flex flex-row justify-start">
-//           <div className="p-1 ">
-//             <img
-//               src={props.order[props.order.length - 1]?.Product.ProductImage}
-//               alt="nikeDunkLow"
-//               className="w-18 h-10"
-//             />
-//           </div>
-//         </div>
-//         <div className="border-t-[1px] ">
-//           <div className="p-24 bg-gray-50 ">
-//             <div className="flex flex-row justify-between ">
-//               <div className="p-1 text-[12px]">Sell to bid</div>
-//               <div className="py-1 px-4  text-[12px] font-semibold">
-//                 ฿ {props.order[props.order.length - 1]?.Bid.price}
-//               </div>
-//             </div>
-//             <div className="flex flex-row justify-between">
-//               <div className="p-1  text-[12px]">Size</div>
-//               <div className="py-1 px-4  text-[12px] font-semibold">
-//                 {
-//                   props.order[props.order.length - 1]?.Bid.ProductSize.Size
-//                     .sizeProduct
-//                 }
-//               </div>
-//             </div>
-//             <div className="flex flex-row justify-between">
-//               <div className="p-1  text-[12px]">Condition</div>
-//               <div className="py-1 px-4   text-[12px] font-semibold">
-//                 Brand new
-//               </div>
-//             </div>
-//             <div className="flex flex-row justify-between">
-//               <div className="p-1  text-[12px]">Equipment</div>
-//               <div className="py-1 px-4   text-[12px] font-semibold">
-//                 Original box (no defect)
-//               </div>
-//             </div>
-//             <div className="flex flex-row justify-between">
-//               <div className="p-1  text-[12px]">Product images</div>
-//               <div className="py-1 px-4  text-[12px] flex flex-row  font-semibold">
-//                 <div>
-//                   <img
-//                     src={
-//                       props.order[props.order.length - 1]?.Product.ProductImage
-//                     }
-//                     alt="nikeDunkLow"
-//                     className="w-8 h-6"
-//                   />
-//                 </div>
-//                 <div>
-//                   <img
-//                     src={
-//                       props.order[props.order.length - 1]?.Product.ProductImage
-//                     }
-//                     alt="nikeDunkLow"
-//                     className="w-8 h-6"
-//                   />
-//                 </div>
-//                 <div>
-//                   <img
-//                     src={
-//                       props.order[props.order.length - 1]?.Product.ProductImage
-//                     }
-//                     alt="nikeDunkLow"
-//                     className="w-8 h-6"
-//                   />
-//                 </div>
-//               </div>
-//             </div>
-//             <div className="p-5 "></div>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default OrderSummary;
-
-// // import React from 'react';
-
-// // function OrderSummary(props) {
-// //   console.log(props);
-// //   return <div>ss</div>;
-// // }
-// // export default OrderSummary;
-
-// ------------------------------------------------------------------------------------------------
-
 import { BiMap } from 'react-icons/bi';
 import { BsTruck } from 'react-icons/bs';
 import { MdPayment, MdOutlineCropSquare } from 'react-icons/md';
@@ -114,12 +5,14 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 import React from 'react';
+import EditMethod from './EditMethod';
 
 function OrderSummary(props) {
   console.log(props);
   return (
     // container all
     <div className="flex gap-4">
+      <EditMethod />
       {/* box-left */}
       <div className="w-[533px] h-[562px] border-2">
         {/* top */}
@@ -209,7 +102,7 @@ function OrderSummary(props) {
         </div>
       </div>
       {/* box-right */}
-      <div className="w-[564px] h-[562px]">
+      <div className="w-[564px] ">
         <div>
           <p className="text-[18px] py-4 text-center ">Checkout</p>
           <div className="flex p-[16px] items-center justify-between border-t-2">
@@ -217,7 +110,25 @@ function OrderSummary(props) {
               <BiMap />
               Shipping address
             </div>
-            <button className="hover:underline">Add address &gt;</button>
+
+            {props.order.length > 0 &&
+            props.order[props.order.length - 1]?.User.address ? (
+              <div className="w-1/2">
+                {props.order[props.order.length - 1]?.User.address}
+              </div>
+            ) : (
+              <motion.div whileTap={{ scale: 0.75 }}>
+                <nav>
+                  <Link to="/profile">
+                    <div>
+                      <button className="hover:underline">
+                        Add address &gt;
+                      </button>
+                    </div>
+                  </Link>
+                </nav>
+              </motion.div>
+            )}
           </div>
 
           <div className="flex p-[16px] items-center justify-between border-t-2">
@@ -233,7 +144,15 @@ function OrderSummary(props) {
               <MdPayment />
               Payment method
             </div>
-            <button className="hover:underline">Payout method &gt;</button>
+            <button
+              className="hover:underline"
+              data-drawer-target="drawer-right"
+              data-drawer-show="drawer-right"
+              data-drawer-placement="right"
+              aria-controls="drawer-right"
+            >
+              Payout method &gt;
+            </button>
           </div>
 
           <div className="flex p-[16px] flex-col  border-t-2">
