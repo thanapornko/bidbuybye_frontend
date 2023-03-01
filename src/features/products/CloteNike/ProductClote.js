@@ -5,8 +5,9 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './ProductClote.css';
 import Card from '../../../components/Card';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import * as brandAPI from '../../../apis/brand-api';
+import { Navigate } from 'react-router-dom';
 
 export default function ProductCloteNike() {
   const settings = {
@@ -44,6 +45,8 @@ export default function ProductCloteNike() {
     ]
   };
 
+  const navigete = useNavigate();
+
   const [brands, setBrands] = useState([]);
   useEffect(() => {
     const fetchBrand = async () => {
@@ -73,6 +76,9 @@ export default function ProductCloteNike() {
               <Slider {...settings}>
                 {el.Products.map((item) => (
                   <Card
+                    onClick={() => {
+                      navigete(`/product/detail/${item.id}`);
+                    }}
                     key={item.id}
                     image={item.ProductImage}
                     productname={item.title}
