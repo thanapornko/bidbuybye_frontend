@@ -129,41 +129,55 @@ export default function Dropdown({
       </button>
 
       {priceDropdown && (
-        <div className=" flex flex-col items-start  gap-2  mb-3 mt-3">
-          <form className="flex flex-col">
-            <div>
+        <div className=" flex flex-col items-start  gap-2  mb-3 mt-3 p-2">
+          <form className="flex flex-col gap-2">
+            <div className="flex gap-2 items-center">
               <input type="radio" id="html" name="fav_language" value="HTML" />
-              <label for="html">&gt;10,000</label>
+              <label for="html" className="text-[14px]">
+                &lt; 10,000
+              </label>
             </div>
 
-            <div>
+            <div className="flex gap-2 items-center">
               <input type="radio" id="html" name="fav_language" value="HTML" />
-              <label for="html">&gt;10,000 - 20,000</label>
+              <label for="html" className="text-[14px]">
+                &gt; 10,000 - 20,000
+              </label>
             </div>
 
-            <div>
+            <div className="flex gap-2 items-center">
               <input type="radio" id="html" name="fav_language" value="HTML" />
-              <label for="html">&gt;20,000 - 30,000</label>
+              <label for="html" className="text-[14px]">
+                &gt; 20,000 - 30,000
+              </label>
             </div>
 
-            <div>
+            <div className="flex gap-2 items-center">
               <input type="radio" id="html" name="fav_language" value="HTML" />
-              <label for="html">&gt;30,000 - 40,000</label>
+              <label for="html" className="text-[14px]">
+                &gt; 30,000 - 40,000
+              </label>
             </div>
 
-            <div>
+            <div className="flex gap-2 items-center">
               <input type="radio" id="html" name="fav_language" value="HTML" />
-              <label for="html">&gt;40,000 - 50,000</label>
+              <label for="html" className="text-[14px]">
+                &gt; 40,000 - 50,000
+              </label>
             </div>
 
-            <div>
+            <div className="flex gap-2 items-center">
               <input type="radio" id="html" name="fav_language" value="HTML" />
-              <label for="html">&gt;= 50,000</label>
+              <label for="html" className="text-[14px]">
+                &gt;= 50,000
+              </label>
             </div>
 
-            <div>
+            <div className="flex gap-2 items-center">
               <input type="radio" id="html" name="fav_language" value="HTML" />
-              <label for="html">All</label>
+              <label for="html" className="text-[14px]">
+                All
+              </label>
             </div>
           </form>
         </div>
