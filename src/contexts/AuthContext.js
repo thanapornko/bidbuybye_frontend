@@ -79,7 +79,7 @@ export default function AuthContextProvider({ children }) {
 
   const updateProfile = async (data) => {
     const res = await userApi.updateProfilePicture(data);
-    // res.data =  {"profileImage": "https://res.cloudinary.com/dhgny94kc/image/upload/v1675919318/1675915242378428504823.jpg"}
+    // res.data =  {"profilePicture": "https://res.cloudinary.com/dhgny94kc/image/upload/v1675919318/1675915242378428504823.jpg"}
     setAuthenticatedUser({
       ...authenticatedUser,
       ...res.data
