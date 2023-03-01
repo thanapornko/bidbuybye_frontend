@@ -3,10 +3,18 @@ import { HiChevronLeft } from 'react-icons/hi2';
 import InputPrice from '../seller/InputPrice';
 import ButtonProduct from '../product/ButtonProduct';
 import useProduct from '../../hooks/useProduct';
+import formattedValued from '../../utils/currency';
 
 export default function DetailPlaceAsk() {
-  const { onClickBack, onClickBackProduct, handleSaveClick, resetPriceBid } =
-    useProduct();
+  const {
+    onClickBack,
+    onClickBackProduct,
+    handleSaveClick,
+    resetPriceBid,
+    bidPrice,
+    askPrice,
+    selectSize
+  } = useProduct();
   const handleSavePrice = () => {
     onClickBackProduct();
     handleSaveClick();
@@ -36,11 +44,22 @@ export default function DetailPlaceAsk() {
           Place an ask to sell at the price that you want or sell now to highest
           bid
         </div>
-        <div className="p-4 text-[20px] text-center">Size: 38</div>
+        <div className="p-4 text-[20px] text-center">
+          {selectSize?.sizeProduct}
+        </div>
       </div>
       <div className="flex justify-evenly text-[20px] text-center ">
-        <div>฿ 4,500</div>
-        <div>฿ 4,700</div>
+        <div>
+          {bidPrice?.maxPrice > 0
+            ? `฿ ${formattedValued(bidPrice?.maxPrice)}`
+            : '-'}
+        </div>
+        <div>
+          {' '}
+          {askPrice?.minPrice > 0
+            ? `฿ ${formattedValued(askPrice?.minPrice)}`
+            : '-'}
+        </div>
       </div>
       <div className="flex justify-evenly text-[14px] text-center text-gray-400">
         <div>Highest Bid</div>

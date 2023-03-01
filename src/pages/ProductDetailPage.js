@@ -33,7 +33,7 @@ export default function ProductDetailPage() {
         await setProduct(productId);
       } catch (error) {}
     })();
-  }, []);
+  }, [productId]);
   // console.log(productDetail);
 
   return (
