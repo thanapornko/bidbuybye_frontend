@@ -6,10 +6,14 @@ import { Link } from 'react-router-dom';
 import EditProfile from '../components/EditProfile';
 
 export default function Profile() {
+  const [open, setOpen] = useState(false);
   const { authenticatedUser } = useAuth();
   const [file, setFile] = useState(null);
 
   ////////////////////////////////
+  const bd = String(authenticatedUser.birthDate);
+  const newDate = bd.slice(0, 10);
+
   return (
     <>
       {/* nav left */}
@@ -96,7 +100,7 @@ export default function Profile() {
               <div className="mt-8 mx-5 space-y-3 text-md text-md">
                 <p className=""> {authenticatedUser.firstName || '-'}</p>
                 <p className="">{authenticatedUser.lastName || '-'}</p>
-                <p className="">{authenticatedUser.birthDate || '-'}</p>
+                <p className="">{newDate || '-'}</p>
                 <p className="">{authenticatedUser.email || '-'}</p>
                 <p className="">{authenticatedUser.mobilePhone || '-'}</p>
                 <p className="">{authenticatedUser.address || '-'}</p>

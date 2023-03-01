@@ -4,9 +4,11 @@ import { useState } from 'react';
 import useAuth from '../hooks/useAuth';
 import profile from '../Images/profile.jpg';
 import * as userApi from '../apis/user-api';
+import validateProfile from '../validate/validate-profile';
 
 export default function EditProfile() {
   const { authenticatedUser, updateProfile } = useAuth();
+  const [error, setError] = useState({});
   const [file, setFile] = useState(null);
   const [fname, setFname] = useState('');
   const [lname, setLname] = useState('');
@@ -29,12 +31,23 @@ export default function EditProfile() {
       const formData = new FormData();
       formData.append('profilePicture', file);
       await updateProfile(formData);
-      await userApi.updateUserInfo(input);
-      toast.success('successfully updated!');
+      const result = validateProfile(input);
+      console.log(result, '---validate-result----');
+      if (result) {
+        setError(result);
+      } else {
+        console.log('no error');
+        setError({});
+        await userApi.updateUserInfo(input);
+        toast.success('successfully updated!');
+      }
     } catch (err) {
-      toast.error(err.response?.data.message || 'Failed to update');
+      console.log(err.response?.data.message);
+      // toast.error(err.response?.data.message || 'Failed to update');
     }
   };
+
+  console.log(error, '************error******');
 
   const handleChangeFname = async (e) => {
     setFname(e.target.value);
@@ -60,6 +73,11 @@ export default function EditProfile() {
     '-------------------------------au'
   );
   console.log(file, '----------file');
+
+  ///convert date
+  const bd = String(authenticatedUser.birthDate);
+  const newDate = bd.slice(0, 10);
+
   return (
     <>
       {/* <!-- drawer component --> */}
@@ -133,6 +151,7 @@ export default function EditProfile() {
             onChange={(e) => handleChangeFname(e)}
             placeholder={authenticatedUser.firstName || 'firstName'}
           />
+          <p className="text-red-500 text-xs pt-1">{error?.firstName}</p>
           <label
             htmlFor="lname"
             className="block mb-2 text-xs text-gray-900 mt-3"
@@ -147,6 +166,7 @@ export default function EditProfile() {
             onChange={(e) => handleChangeLname(e)}
             placeholder={authenticatedUser.lastName || 'lastName'}
           />
+          <p className="text-red-500 text-xs pt-1">{error?.lastName}</p>
           <label
             htmlFor="bday"
             className="block mb-2 text-xs text-gray-900 mt-3"
@@ -159,8 +179,9 @@ export default function EditProfile() {
             className="block w-full bg-gray-100 text-gray-900 text-xs border-none"
             value={birthdate}
             onChange={(e) => handleChangeBirthdate(e)}
-            placeholder={authenticatedUser.birthDate || '-'}
+            placeholder={newDate || '-'}
           />
+          <p className="text-red-500 text-xs pt-1">{error?.birthDate}</p>
           <label
             htmlFor="email"
             className="block mb-2 text-xs text-gray-900 mt-3"
@@ -175,7 +196,7 @@ export default function EditProfile() {
             onChange={(e) => handleChangeEmail(e)}
             placeholder={authenticatedUser.email || '-'}
           />
-
+          <p className="text-red-500 text-xs pt-1">{error?.email}</p>
           <label
             htmlFor="mobile"
             className="block mb-2 text-xs text-gray-900 mt-3"
@@ -190,6 +211,7 @@ export default function EditProfile() {
             onChange={(e) => handleChangeMobile(e)}
             placeholder={authenticatedUser.mobilePhone || '-'}
           />
+          <p className="text-red-500 text-xs pt-1">{error?.mobilePhone}</p>
           <label
             htmlFor="address"
             className="block mb-2 text-xs text-gray-900 mt-3"
@@ -204,6 +226,7 @@ export default function EditProfile() {
             onChange={(e) => handleChangeAddress(e)}
             placeholder={authenticatedUser.address || '-'}
           />
+          <p className="text-red-500 text-xs pt-1">{error?.address}</p>
         </div>
         <div className="flex justify-center">
           <button
