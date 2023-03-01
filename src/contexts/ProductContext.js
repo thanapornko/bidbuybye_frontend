@@ -134,7 +134,7 @@ export default function ProductContextProvider({ children }) {
       productDetail.products.id,
       selectSize.id
     );
-    setMinPriceBySize(showPrice.data.minPrice);
+    setMinPriceBySize(showPrice.data);
   };
 
   const showMaxPriceBySize = async () => {

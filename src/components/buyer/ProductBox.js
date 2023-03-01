@@ -9,8 +9,8 @@ export default function ProductBox() {
     <div>
       <div className="flex justify-between px-10">
         <div>
-          {minPriceBySize ? (
-            `฿ ${minPriceBySize}`
+          {minPriceBySize?.minPrice ? (
+            `฿ ${minPriceBySize?.minPrice}`
           ) : (
             <p className="text-red-700">No one sell for now.</p>
           )}
