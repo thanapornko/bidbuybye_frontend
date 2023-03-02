@@ -7,7 +7,7 @@ import axios from 'axios';
 // import axios from '../config/axios';
 import useOrder from '../hooks/useOrder';
 
-function Payment() {
+function BuyPayment() {
   const { order, charge, setCharge } = useOrder();
 
   const createCreditCardCharge = async (email, name, amount, token) => {
@@ -50,4 +50,4 @@ function Payment() {
   );
 }
 
-export default Payment;
+export default BuyPayment;

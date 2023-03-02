@@ -13,7 +13,7 @@ function Approved(props) {
     <div>
       <div className="flex flex-col justify-start ml-5 ">
         <nav>
-          <Link to="/checkout">
+          <Link to="/product">
             <motion.div whileTap={{ scale: 0.75 }}>
               <MdOutlineKeyboardBackspace className="text-textColor text-3xl " />
             </motion.div>

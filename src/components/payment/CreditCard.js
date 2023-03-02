@@ -1,16 +1,25 @@
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import { SiMastercard } from 'react-icons/si';
 // import { BsTruck } from 'react-icons/bs';
 // import { MdPayment, MdOutlineCropSquare } from 'react-icons/md';
 import { AiFillCheckCircle } from 'react-icons/ai';
 import Script from 'react-load-script';
 import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import useProduct from '../../hooks/useProduct';
 
 let OmiseCard;
 
 function CreditCard(props) {
   const navigate = useNavigate();
   const { createCreditCardCharge } = props;
+  const {
+    fetchProductDetail,
+    productDetail,
+
+    NewMinPriceBySize
+  } = useProduct();
+  const { productId } = useParams();
 
   console.log(props.order);
   // const [state, setState] = useState({ charge: undefined });
@@ -41,11 +50,9 @@ function CreditCard(props) {
   const omiseCardHandle = () => {
     const { createCreditCardCharge } = props;
     totalPrice = (
-      (parseFloat(props.order[props.order.length - 1]?.Bid.price) +
-        parseFloat(props.order[props.order.length - 1]?.Bid.price) *
-          0.049 *
-          1.07 +
-        parseFloat(props.order[props.order.length - 1]?.Bid.price) * 0.03) *
+      (parseFloat(NewMinPriceBySize?.minPrice) +
+        parseFloat(NewMinPriceBySize?.minPrice) * 0.049 * 1.07 +
+        parseFloat(NewMinPriceBySize?.minPrice) * 0.03) *
       100
     ).toFixed(2);
 
@@ -55,9 +62,11 @@ function CreditCard(props) {
 
     OmiseCard.open({
       amount: totalPrice,
-      onCreateTokenSuccess: function (token) {
+      onCreateTokenSuccess: function async(token) {
         createCreditCardCharge(email, name, totalPrice, token);
         navigate('/completed');
+
+        localStorage.removeItem('minPrice');
       },
       onFormClosed: function () {
         // Redirect to the next page after the modal is closed
@@ -70,6 +79,15 @@ function CreditCard(props) {
     creditCardConfigure();
     omiseCardHandle();
   };
+
+  useEffect(() => {
+    (async () => {
+      try {
+        await fetchProductDetail(productId);
+      } catch (error) {}
+    })();
+  }, [productId]);
+
   return (
     <div className="flex gap-4 mb-10">
       <div className="w-[533px] h-[562px] border-2">
@@ -78,7 +96,7 @@ function CreditCard(props) {
           {/* left */}
           <div>
             <img
-              src={props.order[props.order.length - 1]?.Product.ProductImage}
+              src={productDetail?.products.ProductImage}
               alt="nikeDunkLow"
               className="w-[100px] h-[100px]"
             />
@@ -87,11 +105,11 @@ function CreditCard(props) {
           <div>
             <p className="text-[16px] text-[1B1B1B] leading-[1.5px]">
               {' '}
-              {props.order[props.order.length - 1]?.Product.title}
+              {productDetail?.products.title}
             </p>
             <p className="text-sm my-3 text-[#808080]">
-              {props.order[props.order.length - 1]?.Product.Brand.title} | //{' '}
-              {props.order[props.order.length - 1]?.Product.skuProduct}
+              {productDetail?.products.Brand.title} | //{' '}
+              {productDetail?.products.skuProduct}
             </p>
           </div>
         </div>
@@ -101,17 +119,12 @@ function CreditCard(props) {
           <div>
             <div className="flex justify-between">
               <p className="text-sm">Sell to bid</p>
-              <p>฿ {props.order[props.order.length - 1]?.Bid.price}</p>
+              <p>฿ {NewMinPriceBySize?.minPrice}</p>
             </div>
 
             <div className="flex justify-between my-6">
               <p className="text-sm">Size</p>
-              <p>
-                {
-                  props.order[props.order.length - 1]?.Bid.ProductSize.Size
-                    .sizeProduct
-                }
-              </p>
+              <p>{NewMinPriceBySize?.size}</p>
             </div>
 
             <div className="flex justify-between my-6">
@@ -129,25 +142,19 @@ function CreditCard(props) {
               <p>
                 <div className="flex">
                   <img
-                    src={
-                      props.order[props.order.length - 1]?.Product.ProductImage
-                    }
+                    src={productDetail?.products.ProductImage}
                     alt="nikeDunkLow"
                     className="w-[48px] h-[48px]"
                   />
 
                   <img
-                    src={
-                      props.order[props.order.length - 1]?.Product.ProductImage
-                    }
+                    src={productDetail?.products.ProductImage}
                     alt="nikeDunkLow"
                     className="w-[48px] h-[48px]"
                   />
 
                   <img
-                    src={
-                      props.order[props.order.length - 1]?.Product.ProductImage
-                    }
+                    src={productDetail?.products.ProductImage}
                     alt="nikeDunkLow"
                     className="w-[48px] h-[48px]"
                   />
@@ -162,12 +169,9 @@ function CreditCard(props) {
               {' '}
               ฿{' '}
               {(
-                parseFloat(props.order[props.order.length - 1]?.Bid.price) +
-                parseFloat(props.order[props.order.length - 1]?.Bid.price) *
-                  0.049 *
-                  1.07 +
-                parseFloat(props.order[props.order.length - 1]?.Bid.price) *
-                  0.03
+                parseFloat(NewMinPriceBySize?.minPrice) +
+                parseFloat(NewMinPriceBySize?.minPrice) * 0.049 * 1.07 +
+                parseFloat(NewMinPriceBySize?.minPrice) * 0.03
               ).toFixed(2)}{' '}
             </div>
           </div>

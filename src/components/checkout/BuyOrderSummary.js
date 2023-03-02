@@ -4,14 +4,50 @@ import { MdPayment, MdOutlineCropSquare } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import EditMethod from './EditMethod';
+import useProduct from '../../hooks/useProduct';
+import useAuth from '../../hooks/useAuth';
+import { useParams } from 'react-router-dom';
+import EditProfile from '../EditProfile';
 
-function OrderSummary(props) {
-  console.log(props);
+function BuyOrderSummary(props) {
+  // const { NewMinPriceBySize, productDetail } = useProduct();
+  const [open, setOpen] = useState(false);
+  const toggleDrawer = () => {
+    setOpen(!open);
+  };
+  const { authenticatedUser } = useAuth();
+
+  const {
+    fetchProductDetail,
+    productDetail,
+
+    NewMinPriceBySize
+  } = useProduct();
+  const { productId } = useParams();
+
+  useEffect(() => {
+    (async () => {
+      try {
+        await fetchProductDetail(productId);
+      } catch (error) {}
+      if (NewMinPriceBySize) {
+        localStorage.setItem('minPrice', JSON.stringify(NewMinPriceBySize));
+      }
+    })();
+  }, [productId]);
+  function deleteMinPrice() {
+    localStorage.removeItem('minPrice');
+  }
+
+  console.log(NewMinPriceBySize);
+  console.log(productDetail);
+  console.log(authenticatedUser);
   return (
     // container all
     <div className="flex gap-4">
+      <EditProfile open={open} setOpen={setOpen} toggleDrawer={toggleDrawer} />
       <EditMethod />
       {/* box-left */}
       <div className="w-[533px] h-[562px] border-2">
@@ -20,7 +56,7 @@ function OrderSummary(props) {
           {/* left */}
           <div>
             <img
-              src={props.order[props.order.length - 1]?.Product.ProductImage}
+              src={productDetail?.products.ProductImage}
               alt="nikeDunkLow"
               className="w-[100px] h-[100px]"
             />
@@ -29,11 +65,11 @@ function OrderSummary(props) {
           <div>
             <p className="text-[16px] text-[1B1B1B] leading-[1.5px]">
               {' '}
-              {props.order[props.order.length - 1]?.Product.title}
+              {productDetail?.products.title}
             </p>
             <p className="text-sm my-3 text-[#808080]">
-              {props.order[props.order.length - 1]?.Product.Brand.title} | //{' '}
-              {props.order[props.order.length - 1]?.Product.skuProduct}
+              {productDetail?.products.Brand.title} | //{' '}
+              {productDetail?.products.skuProduct}
             </p>
           </div>
         </div>
@@ -43,17 +79,12 @@ function OrderSummary(props) {
           <div>
             <div className="flex justify-between">
               <p className="text-sm">Sell to bid</p>
-              <p>฿ {props.order[props.order.length - 1]?.Bid.price}</p>
+              <p>฿ {NewMinPriceBySize?.minPrice}</p>
             </div>
 
             <div className="flex justify-between my-6">
               <p className="text-sm">Size</p>
-              <p>
-                {
-                  props.order[props.order.length - 1]?.Bid.ProductSize.Size
-                    .sizeProduct
-                }
-              </p>
+              <p>{NewMinPriceBySize?.size}</p>
             </div>
 
             <div className="flex justify-between my-6">
@@ -71,25 +102,19 @@ function OrderSummary(props) {
               <p>
                 <div className="flex">
                   <img
-                    src={
-                      props.order[props.order.length - 1]?.Product.ProductImage
-                    }
+                    src={productDetail?.products.ProductImage}
                     alt="nikeDunkLow"
                     className="w-[48px] h-[48px]"
                   />
 
                   <img
-                    src={
-                      props.order[props.order.length - 1]?.Product.ProductImage
-                    }
+                    src={productDetail?.products.ProductImage}
                     alt="nikeDunkLow"
                     className="w-[48px] h-[48px]"
                   />
 
                   <img
-                    src={
-                      props.order[props.order.length - 1]?.Product.ProductImage
-                    }
+                    src={productDetail?.products.ProductImage}
                     alt="nikeDunkLow"
                     className="w-[48px] h-[48px]"
                   />
@@ -111,21 +136,23 @@ function OrderSummary(props) {
               Shipping address
             </div>
 
-            {props.order.length > 0 &&
-            props.order[props.order.length - 1]?.User.address ? (
-              <div className="w-1/2">
-                {props.order[props.order.length - 1]?.User.address}
-              </div>
+            {authenticatedUser.address?.length > 0 &&
+            authenticatedUser?.address ? (
+              <div className="w-1/2">{authenticatedUser.address}</div>
             ) : (
               <motion.div whileTap={{ scale: 0.75 }}>
                 <nav>
-                  <Link to="/profile">
-                    <div>
-                      <button className="hover:underline">
-                        Add address &gt;
-                      </button>
-                    </div>
-                  </Link>
+                  <div>
+                    <button
+                      className="hover:underline
+                      
+                      
+                      "
+                      onClick={toggleDrawer}
+                    >
+                      Add address &gt;
+                    </button>
+                  </div>
                 </nav>
               </motion.div>
             )}
@@ -134,9 +161,9 @@ function OrderSummary(props) {
           <div className="flex p-[16px] items-center justify-between border-t-2">
             <div className="flex items-center text-[#000] gap-2">
               <BsTruck />
-              Shipping method to BidBuyBye
+              Shipping method
             </div>
-            <button className="hover:underline">Add method &gt;</button>
+            <div>Standard delivery </div>
           </div>
 
           <div className="flex p-[16px] items-center justify-between border-t-2">
@@ -144,21 +171,13 @@ function OrderSummary(props) {
               <MdPayment />
               Payment method
             </div>
-            <button
-              className="hover:underline"
-              data-drawer-target="drawer-right"
-              data-drawer-show="drawer-right"
-              data-drawer-placement="right"
-              aria-controls="drawer-right"
-            >
-              Payout method &gt;
-            </button>
+            <div>Credit Card </div>
           </div>
 
           <div className="flex p-[16px] flex-col  border-t-2">
             <div className="flex items-center justify-between">
               <p>Sub total</p>
-              <p>฿ {props.order[props.order.length - 1]?.Bid.price}</p>
+              <p>฿ {NewMinPriceBySize?.minPrice}</p>
             </div>
 
             <div className="flex items-center justify-between my-4">
@@ -168,24 +187,13 @@ function OrderSummary(props) {
               </p>
               <p>
                 {' '}
-                ฿{' '}
-                {(
-                  props.order[props.order.length - 1]?.Bid.price *
-                  0.049 *
-                  1.07
-                ).toFixed(2)}
+                ฿ {(NewMinPriceBySize?.minPrice * 0.049 * 1.07).toFixed(2)}
               </p>
             </div>
 
             <div className="flex items-center justify-between my-4">
               <p>Payment Processing fee 3.0 %</p>
-              <p>
-                {' '}
-                ฿{' '}
-                {(
-                  props.order[props.order.length - 1]?.Bid.price * 0.03
-                ).toFixed(2)}
-              </p>
+              <p> ฿ {(NewMinPriceBySize?.minPrice * 0.03).toFixed(2)}</p>
             </div>
 
             <div className="flex items-center justify-between my-4">
@@ -193,12 +201,9 @@ function OrderSummary(props) {
               <p className="text-[18px] text-[#00AA00]">
                 ฿{' '}
                 {(
-                  parseFloat(props.order[props.order.length - 1]?.Bid.price) +
-                  parseFloat(props.order[props.order.length - 1]?.Bid.price) *
-                    0.049 *
-                    1.07 +
-                  parseFloat(props.order[props.order.length - 1]?.Bid.price) *
-                    0.03
+                  parseFloat(NewMinPriceBySize?.minPrice) +
+                  parseFloat(NewMinPriceBySize?.minPrice) * 0.049 * 1.07 +
+                  parseFloat(NewMinPriceBySize?.minPrice) * 0.03
                 ).toFixed(2)}{' '}
               </p>
             </div>
@@ -228,15 +233,23 @@ function OrderSummary(props) {
               <div className="flex flex-row justify-between  mt-7 gap-5">
                 <div>
                   <motion.div whileTap={{ scale: 0.75 }}>
-                    <button class="text-[12px] text-[#5A5A5A] px-[15px] py-[5px] border-2 font-medium	text-center w-[273px] h-[36px] rounded	hover:border-gray-900 cursor-pointer">
-                      Cancel
-                    </button>
+                    <nav>
+                      <Link to={`/product/detail/${productId}`}>
+                        <button
+                          class="text-[12px] text-[#5A5A5A] px-[15px] py-[5px] border-2 font-medium
+                    	text-center w-[273px] h-[36px] rounded	hover:border-gray-900 cursor-pointer"
+                          onClick={deleteMinPrice}
+                        >
+                          Cancel
+                        </button>
+                      </Link>
+                    </nav>
                   </motion.div>
                 </div>
                 <div>
                   <motion.div whileTap={{ scale: 0.75 }}>
                     <nav>
-                      <Link to="/payment">
+                      <Link to={`/buy-payment/${productId}`}>
                         <button class="text-[12px] text-[#5A5A5A] px-[15px] py-[5px] bg-[#D9D9D9] font-medium	text-center w-[273px] h-[36px] rounded	">
                           Submit
                         </button>
@@ -252,4 +265,4 @@ function OrderSummary(props) {
     </div>
   );
 }
-export default OrderSummary;
+export default BuyOrderSummary;

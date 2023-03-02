@@ -15,9 +15,11 @@ import OrderStatusPage from '../pages/OrderStatus';
 import ProductDetailPage from '../pages/ProductDetailPage';
 import RedirectAuth from '../auth/RedirectAuth';
 
-import Checkout from '../pages/Checkout';
 import Payment from '../pages/Payment';
 import Completed from '../pages/Completed';
+import SellCheckout from '../pages/SellCheckout';
+import BuyCheckout from '../pages/BuyCheckout';
+import BuyPayment from '../pages/BuyPayment';
 
 const router = createBrowserRouter([
   // {
@@ -65,12 +67,20 @@ const router = createBrowserRouter([
         element: <OrderStatusPage />
       },
       {
-        path: '/checkout',
-        element: <Checkout />
+        path: '/sell-checkout/:productId',
+        element: <SellCheckout />
+      },
+      {
+        path: '/buy-checkout/:productId',
+        element: <BuyCheckout />
       },
       {
         path: '/payment',
         element: <Payment />
+      },
+      {
+        path: '/buy-payment/:productId',
+        element: <BuyPayment />
       },
 
       {

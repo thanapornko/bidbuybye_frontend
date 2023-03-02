@@ -27,6 +27,13 @@ export default function ProductContextProvider({ children }) {
   const [minPriceBySize, setMinPriceBySize] = useState();
   const [maxPriceBySize, setMaxPriceBySize] = useState();
 
+  const [NewMinPriceBySize, setNewMinPriceBySize] = useState(
+    JSON.parse(localStorage.getItem('minPrice')) || {}
+  );
+  const [NewmaxPriceBySize, setNewMaxPriceBySize] = useState(
+    JSON.parse(localStorage.getItem('maxPrice')) || {}
+  );
+
   //click to sell page
   const onClickSeller = () => {
     setStep(STEP_SELLER.productList);
@@ -134,7 +141,9 @@ export default function ProductContextProvider({ children }) {
       productDetail.products.id,
       selectSize.id
     );
+
     setMinPriceBySize(showPrice.data);
+    setNewMinPriceBySize(showPrice.data);
   };
 
   const showMaxPriceBySize = async () => {
@@ -143,6 +152,7 @@ export default function ProductContextProvider({ children }) {
       selectSize.id
     );
     setMaxPriceBySize(showPrice.data);
+    setNewMaxPriceBySize(showPrice.data);
   };
 
   //create bid
@@ -167,7 +177,7 @@ export default function ProductContextProvider({ children }) {
     // });
   };
 
-  console.log(step);
+  console.log(minPriceBySize);
 
   return (
     <ProductContext.Provider
@@ -208,7 +218,9 @@ export default function ProductContextProvider({ children }) {
         createBid,
         handleClickBid,
         maxPriceBySize,
-        showMaxPriceBySize
+        showMaxPriceBySize,
+        NewMinPriceBySize,
+        NewmaxPriceBySize
       }}
     >
       {children}
