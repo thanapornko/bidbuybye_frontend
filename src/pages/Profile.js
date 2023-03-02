@@ -96,6 +96,7 @@ export default function Profile() {
                 <p className="">Email Address</p>
                 <p className="">Mobile</p>
                 <p className="">Address</p>
+                <p className="">Line Token</p>
               </div>
               <div className="mt-8 mx-5 space-y-3 text-md text-md">
                 <p className=""> {authenticatedUser.firstName || '-'}</p>
@@ -104,6 +105,7 @@ export default function Profile() {
                 <p className="">{authenticatedUser.email || '-'}</p>
                 <p className="">{authenticatedUser.mobilePhone || '-'}</p>
                 <p className="">{authenticatedUser.address || '-'}</p>
+                <p className="">{authenticatedUser.lineToken || '-'}</p>
               </div>
             </div>
           </div>
