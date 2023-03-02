@@ -13,12 +13,21 @@ export default function Profile() {
   ////////////////////////////////
   const bd = String(authenticatedUser.birthDate);
   const newDate = bd.slice(0, 10);
-
+  //
+  const toggleDrawer = () => {
+    setOpen(!open);
+  };
   return (
     <>
       {/* nav left */}
+
       <div className="flex">
-        <EditProfile />
+        {/* <button onClick={toggleDrawer}>Show</button> */}
+        <EditProfile
+          open={open}
+          setOpen={setOpen}
+          toggleDrawer={toggleDrawer}
+        />
         <div className="flex-col bg-white h-screen w-1/5 ">
           <div className="flex items-center justify-around pt-3 pb-2 px-5 shadow">
             <img
@@ -71,10 +80,7 @@ export default function Profile() {
             <div className="flex justify-end items-end">
               <button
                 className="flex justify-end items-end"
-                data-drawer-target="drawer-right-example"
-                data-drawer-show="drawer-right-example"
-                data-drawer-placement="right"
-                aria-controls="drawer-right-example"
+                onClick={toggleDrawer}
               >
                 <p className="text-md pr-1 text-gray-600">Edit</p>
                 <i className="fa-solid fa-pen-to-square text-xl text-gray-600" />
@@ -96,6 +102,7 @@ export default function Profile() {
                 <p className="">Email Address</p>
                 <p className="">Mobile</p>
                 <p className="">Address</p>
+                {/* <p className="">Line Token</p> */}
               </div>
               <div className="mt-8 mx-5 space-y-3 text-md text-md">
                 <p className=""> {authenticatedUser.firstName || '-'}</p>
@@ -104,6 +111,7 @@ export default function Profile() {
                 <p className="">{authenticatedUser.email || '-'}</p>
                 <p className="">{authenticatedUser.mobilePhone || '-'}</p>
                 <p className="">{authenticatedUser.address || '-'}</p>
+                {/* <p className="">{authenticatedUser.lineToken || '-'}</p> */}
               </div>
             </div>
           </div>

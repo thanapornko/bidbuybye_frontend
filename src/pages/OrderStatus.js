@@ -5,13 +5,22 @@ import { Link } from 'react-router-dom';
 import OrderStatusModal from '../components/OrderStatusModal';
 
 export default function OrderStatus() {
+  const [open, setOpen] = useState(false);
   const { authenticatedUser } = useAuth();
   const [file, setFile] = useState(null);
+
+  const toggleDrawer = () => {
+    setOpen(!open);
+  };
   return (
     <>
       {/* nav left */}
       <div className="flex">
-        <OrderStatusModal />
+        <OrderStatusModal
+          open={open}
+          setOpen={setOpen}
+          toggleDrawer={toggleDrawer}
+        />
         <div className="flex-col bg-white h-screen w-1/5 ">
           <div className="flex items-center justify-around pt-3 pb-2 px-5 shadow">
             <img
@@ -75,10 +84,7 @@ export default function OrderStatus() {
                 </div>
                 <button
                   className="fa-solid fa-greater-than text-md text-gray-500 flex items-end pb-1"
-                  data-drawer-target="drawer-right-example"
-                  data-drawer-show="drawer-right-example"
-                  data-drawer-placement="right"
-                  aria-controls="drawer-right-example"
+                  onClick={toggleDrawer}
                 ></button>
               </div>
             </div>
