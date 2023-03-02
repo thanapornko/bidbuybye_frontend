@@ -16,6 +16,7 @@ export default function EditProfile() {
   const [email, setEmail] = useState('');
   const [address, setAddress] = useState('');
   const [mobile, setMobile] = useState('');
+  const [lineToken, setLineToken] = useState('');
 
   const input = {
     firstName: fname,
@@ -23,7 +24,8 @@ export default function EditProfile() {
     birthDate: birthdate,
     email: email,
     address: address,
-    mobilePhone: mobile
+    mobilePhone: mobile,
+    lineToken: lineToken
   };
 
   const handleClickSave = async () => {
@@ -66,6 +68,9 @@ export default function EditProfile() {
   };
   const handleChangeMobile = async (e) => {
     setMobile(e.target.value);
+  };
+  const handleChangeLineToken = async (e) => {
+    setLineToken(e.target.value);
   };
 
   console.log(
@@ -227,7 +232,23 @@ export default function EditProfile() {
             placeholder={authenticatedUser.address || '-'}
           />
           <p className="text-red-500 text-xs pt-1">{error?.address}</p>
+          <label
+            htmlFor="lineToken"
+            className="block mb-2 text-xs text-gray-900 mt-3"
+          >
+            lineToken
+          </label>
+          <input
+            type="text"
+            name="lineToken"
+            className="block w-full bg-gray-100 text-gray-900 text-xs border-none"
+            value={lineToken}
+            onChange={(e) => handleChangeLineToken(e)}
+            placeholder={authenticatedUser.lineToken || '-'}
+          />
+          <p className="text-red-500 text-xs pt-1">{error?.lineToken}</p>
         </div>
+
         <div className="flex justify-center">
           <button
             onClick={handleClickSave}
