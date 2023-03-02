@@ -35,6 +35,13 @@ export default function OrderStatus() {
             <h2 className="text-m text-gray-600">Profile</h2>
           </Link>
           <Link
+            to="/bidask"
+            className="flex items-center justify-center py-5 shadow-sm hover:bg-gray-100"
+          >
+            <i className="fa-solid fa-tag text-m pr-2 text-gray-600" />
+            <h2 className="text-m text-gray-600">Bid/Ask status</h2>
+          </Link>
+          <Link
             to="/orderstatus"
             href="#"
             className="flex items-center justify-center py-5 shadow-sm hover:bg-gray-100"

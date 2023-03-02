@@ -1,10 +1,12 @@
 import useAuth from '../hooks/useAuth';
+import useProduct from '../hooks/useProduct';
 import profile from '../Images/profile.jpg';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function History() {
   const { authenticatedUser } = useAuth();
+  const {} = useProduct();
   const [file, setFile] = useState(null);
   return (
     <>
@@ -31,6 +33,13 @@ export default function History() {
           >
             <i className="fa-solid fa-user text-m pr-2 text-gray-600" />
             <h2 className="text-m text-gray-600">Profile</h2>
+          </Link>
+          <Link
+            to="/bidask"
+            className="flex items-center justify-center py-5 shadow-sm hover:bg-gray-100"
+          >
+            <i className="fa-solid fa-tag text-m pr-2 text-gray-600" />
+            <h2 className="text-m text-gray-600">Bid/Ask status</h2>
           </Link>
           <Link
             to="/orderstatus"

@@ -18,6 +18,7 @@ import RedirectAuth from '../auth/RedirectAuth';
 import Checkout from '../pages/Checkout';
 import Payment from '../pages/Payment';
 import Completed from '../pages/Completed';
+import BidAskPage from '../pages/BidAskPage';
 
 const router = createBrowserRouter([
   // {
@@ -48,6 +49,7 @@ const router = createBrowserRouter([
         path: '/profile',
         element: <ProfilePage />
       },
+      { path: '/bidask', element: <BidAskPage /> },
       {
         path: '/history',
         element: <HistoryPage />
