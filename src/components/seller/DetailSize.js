@@ -8,8 +8,7 @@ export default function DetailSize() {
     productDetail,
     handleSelectSize,
     selectSize,
-    showMaxPriceBySize,
-    maxPriceBySize
+    showMaxPriceBySize
   } = useProduct();
   const sizeProduct = () => {
     if (productDetail.products.Category.typeProduct === 'Shoes') {

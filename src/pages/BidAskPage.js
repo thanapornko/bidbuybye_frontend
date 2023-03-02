@@ -1,11 +1,22 @@
 import useAuth from '../hooks/useAuth';
+import useProduct from '../hooks/useProduct';
 import profile from '../Images/profile.jpg';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import formattedValued from '../utils/currency';
 
 export default function BidAskPage() {
   const { authenticatedUser } = useAuth();
+  const { allBid, fetchAllBids } = useProduct();
   const [file, setFile] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        await fetchAllBids();
+      } catch (error) {}
+    })();
+  }, []);
 
   return (
     <>
@@ -48,13 +59,14 @@ export default function BidAskPage() {
             <i className="fa-solid fa-basket-shopping text-m pr-2 text-gray-600"></i>
             <h2 className="text-m text-gray-600">Order Status</h2>
           </Link>
-          <a
+          <Link
+            to="/history"
             href="#"
             className="flex items-center justify-center py-5 shadow-sm hover:bg-gray-100"
           >
             <i className="fa-solid fa-clock-rotate-left text-m pr-2 text-gray-600"></i>
             <h2 className="text-m text-gray-600">History</h2>
-          </a>
+          </Link>
           <a
             href="#"
             className="flex items-center justify-center py-5 hover:bg-gray-100"
@@ -69,30 +81,49 @@ export default function BidAskPage() {
             <div className="flex justify-center pb-1 border-b">
               <p className="text-md pr-1 text-gray-600 ">Bid/Ask Status</p>
             </div>
-            <div className="flex border-2 mt-5 justify-between">
-              <div className="flex justify-between w-1/2">
-                <div className="my-5 mx-5 space-y-2 text-sm font-bold w-2/5 text-gray-600 ">
-                  <p>Product :</p>
-                  <p>Size :</p>
-                  <p>Equipment :</p>
-                  <p>Price :</p>
-                  <p>Status :</p>
+            {allBid?.getBids.map((e) => (
+              <div
+                className="flex justify-between border-2 mt-5 w-auto"
+                key={e.id}
+              >
+                <div className="flex flex-col justify-center my-5 mx-5 space-y-2 text-sm font-bold w-2/5 text-gray-600 ">
+                  <div className="flex justify-between">
+                    <div>Product :</div>
+                    <div>{e.ProductSize.Product.title}</div>
+                  </div>
+                  <div className="flex justify-between">
+                    <div>Size :</div>
+                    <div>{e.ProductSize.Size.sizeProduct}</div>
+                  </div>
+                  <div className="flex justify-between">
+                    <div>Equipment :</div>
+                    {e.isSold === true ? (
+                      <div>packaging</div>
+                    ) : (
+                      <div>None packaging</div>
+                    )}
+                  </div>
+                  <div className="flex justify-between">
+                    <div>Price :</div>
+                    <div>฿ {formattedValued(e.price)}</div>
+                  </div>
+                  <div className="flex justify-between">
+                    <div>Status :</div>
+                    {e.type === 'SELLER' ? (
+                      <div>Asking</div>
+                    ) : (
+                      <div>Biding</div>
+                    )}
+                  </div>
                 </div>
-                <div className="my-5 mx-5 space-y-2 text-sm w-2/5 text-gray-600 ">
-                  <p>Nike M777</p>
-                  <p>38</p>
-                  <p>Yes</p>
-                  <p>9,600 THB</p>
-                  <p>Bidding</p>
+                <div className="flex items-center px-2">
+                  <img
+                    src={e.ProductSize.Product.ProductImage}
+                    className="h-40 w-40 bg-gray-100"
+                  />
                 </div>
               </div>
-              <div className="flex items-center px-2">
-                <img
-                  src={'https://picsum.photos/id/1/200/300'}
-                  className="h-40 w-40 bg-gray-100"
-                />
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
