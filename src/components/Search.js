@@ -1,6 +1,5 @@
 import { Modal } from 'flowbite-react';
 import { BiSearch } from 'react-icons/bi';
-
 import Card from './Card';
 import * as productAPI from '../apis/product-api';
 import { useEffect, useState } from 'react';
