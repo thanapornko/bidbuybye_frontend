@@ -24,6 +24,8 @@ export default function Profile() {
     logout();
     navigate('/');
   };
+
+  console.log(authenticatedUser, '-------------------AU');
   return (
     <>
       {/* nav left */}

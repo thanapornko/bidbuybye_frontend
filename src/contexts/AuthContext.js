@@ -12,13 +12,14 @@ export const AuthContext = createContext();
 
 export default function AuthContextProvider({ children }) {
   const [authenticatedUser, setAuthenticatedUser] = useState(
-    getAccessToken() ? true : null
+    getAccessToken() ? jwtDecode(getAccessToken()) : null
   );
 
   useEffect(() => {
     const fetchAuthUser = async () => {
       try {
         const res = await authApi.getMe();
+        console.log('#1', res.data.user);
         setAuthenticatedUser(res.data.user);
       } catch (err) {
         if (err.response && err.response.status === 401) {
@@ -43,8 +44,10 @@ export default function AuthContextProvider({ children }) {
     });
     console.log('reslogin', res);
     setAccessToken(res.data.accessToken);
+
     setAuthenticatedUser(jwtDecode(res.data.accessToken));
   };
+  // console.log('#2', jwtDecode(getAccessToken()));
 
   const logout = () => {
     removeAccessToken();
