@@ -36,7 +36,7 @@ function Payment() {
 
   console.log(charge);
   return (
-    <div className="ml-40 ">
+    <div className="ml-40 h-full">
       <div className="flex flex-row justify-center mt-20 ">
         <div>
           {/* <div>

@@ -9,7 +9,7 @@ function Checkout() {
 
   // console.log(order);
   return (
-    <div className="ml-40  mb-10 flex justify-center mt-10">
+    <div className="ml-40 mt-[5px] h-full mb-10 flex justify-center items-center">
       <div className="flex flex-row justify-center ">
         <div>
           <OrderSummary className="" order={order} />

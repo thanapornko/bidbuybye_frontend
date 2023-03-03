@@ -1,24 +1,41 @@
 import 'flowbite';
 import useAuth from '../hooks/useAuth';
 import profile from '../Images/profile.jpg';
-import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import EditProfile from '../components/EditProfile';
 
 export default function Profile() {
   const [open, setOpen] = useState(false);
-  const { authenticatedUser } = useAuth();
+  const { authenticatedUser, logout } = useAuth();
   const [file, setFile] = useState(null);
+  // const [user, setUser] = useState(authenticatedUser);
+  const navigate = useNavigate();
 
-  ////////////////////////////////
   const bd = String(authenticatedUser.birthDate);
   const newDate = bd.slice(0, 10);
 
+  const toggleDrawer = () => {
+    setOpen(!open);
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
+
+  console.log(authenticatedUser, '-------------------AU');
   return (
     <>
       {/* nav left */}
+
       <div className="flex">
-        <EditProfile />
+        <EditProfile
+          open={open}
+          setOpen={setOpen}
+          toggleDrawer={toggleDrawer}
+        />
         <div className="flex-col bg-white h-screen w-1/5 ">
           <div className="flex items-center justify-around pt-3 pb-2 px-5 shadow">
             <img
@@ -62,7 +79,9 @@ export default function Profile() {
             className="flex items-center justify-center py-5 hover:bg-gray-100"
           >
             <i className="fa-solid fa-right-from-bracket text-m pr-2 text-gray-600"></i>
-            <h2 className="text-m text-gray-600">Logout</h2>
+            <h2 className="text-m text-gray-600" onClick={handleLogout}>
+              Logout
+            </h2>
           </a>
         </div>
         {/* profile right */}
@@ -71,10 +90,7 @@ export default function Profile() {
             <div className="flex justify-end items-end">
               <button
                 className="flex justify-end items-end"
-                data-drawer-target="drawer-right-example"
-                data-drawer-show="drawer-right-example"
-                data-drawer-placement="right"
-                aria-controls="drawer-right-example"
+                onClick={toggleDrawer}
               >
                 <p className="text-md pr-1 text-gray-600">Edit</p>
                 <i className="fa-solid fa-pen-to-square text-xl text-gray-600" />
@@ -96,6 +112,7 @@ export default function Profile() {
                 <p className="">Email Address</p>
                 <p className="">Mobile</p>
                 <p className="">Address</p>
+                <p className="">Line Token</p>
               </div>
               <div className="mt-8 mx-5 space-y-3 text-md text-md">
                 <p className=""> {authenticatedUser.firstName || '-'}</p>
@@ -104,6 +121,7 @@ export default function Profile() {
                 <p className="">{authenticatedUser.email || '-'}</p>
                 <p className="">{authenticatedUser.mobilePhone || '-'}</p>
                 <p className="">{authenticatedUser.address || '-'}</p>
+                <p className="">{authenticatedUser.lineToken || '-'}</p>
               </div>
             </div>
           </div>

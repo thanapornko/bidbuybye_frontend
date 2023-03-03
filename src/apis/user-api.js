@@ -6,6 +6,10 @@ export const updateProfilePicture = (formData) => {
 };
 
 export const updateUserInfo = (input) => {
-  console.log('input----', input);
+  // console.log('input----', input);
   return axios.patch('/user/info', input);
+};
+
+export const userHistory = () => {
+  return axios.get('/user/history');
 };

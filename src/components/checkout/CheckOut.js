@@ -16,7 +16,9 @@ function CheckOut(props) {
           <div>
             <BiMap />
           </div>
-          <div className="p-1 text-[12px]">Shipping address</div>
+          <div className="p-1 text-[12px]">Shipping address : </div>
+
+          <div className="p-1 text-[12px]"></div>
         </div>
         <div className="p-1 text-[12px] font-semibold">Add address</div>
       </div>
@@ -96,7 +98,7 @@ function CheckOut(props) {
           </div>
         </div>
       </div>
-      <div className="flex flex-row justify-between ">
+      <div className="flex flex-row justify-center ">
         <div>
           <motion.div whileTap={{ scale: 0.75 }}>
             <button class="border border-gray-300  bg-gray-50 hover:bg-gray-500 text-black font-bold py-0.5 px-[70px]  rounded">
