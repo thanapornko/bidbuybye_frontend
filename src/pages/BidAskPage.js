@@ -97,7 +97,7 @@ export default function BidAskPage() {
                   </div>
                   <div className="flex justify-between">
                     <div>Equipment :</div>
-                    {e.isSold === true ? (
+                    {e.equipment === true ? (
                       <div>packaging</div>
                     ) : (
                       <div>None packaging</div>

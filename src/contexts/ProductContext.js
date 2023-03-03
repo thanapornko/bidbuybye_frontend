@@ -17,7 +17,7 @@ export default function ProductContextProvider({ children }) {
   //equipment to send to back
   const [selectEquipment, setSelectEquipment] = useState(null);
   //keep price from input
-  const [priceSeller, setPriceSeller] = useState();
+  const [priceSeller, setPriceSeller] = useState('');
   const [savedValue, setSavedValue] = useState('');
   //state keep product
   const [product, setProduct] = useState();
@@ -131,6 +131,10 @@ export default function ProductContextProvider({ children }) {
     setPriceSeller('');
   };
 
+  const resetSavedValue = () => {
+    setSavedValue('');
+  };
+
   const showPriceBySize = async () => {
     const showPrice = await bidApi.getPriceAsk(
       productDetail.products.id,
@@ -147,13 +151,25 @@ export default function ProductContextProvider({ children }) {
     setMaxPriceBySize(showPrice.data);
   };
 
+  //create ask
+
+  const createAsk = async () => {
+    const bid = await bidApi.postBid({
+      sizeId: selectSize.id,
+      productId: productDetail.products.id,
+      price: +savedValue,
+      type: typeUser,
+      equipment: selectEquipment
+    });
+  };
+
   //create bid
 
   const createBid = async () => {
     const bid = await bidApi.postBid({
       sizeId: selectSize.id,
       productId: productDetail.products.id,
-      price: +savedValue,
+      price: +priceSeller,
       type: typeUser,
       equipment: selectEquipment
     });
@@ -165,6 +181,15 @@ export default function ProductContextProvider({ children }) {
       // console.log('fetchAllBids', res);
       setAllbid(res.data);
     } catch (err) {}
+  };
+
+  const resetAllSelected = async () => {
+    setSelectSize('');
+    setSelectEquipment(null);
+    setPriceSeller('');
+    setSavedValue('');
+    setTypeUser('');
+    setStep(DEFAULT);
   };
 
   return (
@@ -207,7 +232,10 @@ export default function ProductContextProvider({ children }) {
         maxPriceBySize,
         showMaxPriceBySize,
         fetchAllBids,
-        allBid
+        allBid,
+        createAsk,
+        resetAllSelected,
+        resetSavedValue
       }}
     >
       {children}

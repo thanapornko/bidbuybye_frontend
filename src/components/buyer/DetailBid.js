@@ -7,15 +7,38 @@ import formattedValued from '../../utils/currency';
 import { Link } from 'react-router-dom';
 
 export default function DetailBid() {
-  const { onClickBackBuyer, onClickBack, bidPrice, selectSize, createBid } =
-    useProduct();
+  const {
+    onClickBackBuyer,
+    onClickBack,
+    bidPrice,
+    selectSize,
+    createBid,
+    resetPriceBid,
+    resetAllSelected,
+    resetSelectSize
+  } = useProduct();
+
+  const resetAndBack = () => {
+    resetPriceBid();
+    onClickBackBuyer();
+  };
+  const createdAndReset = () => {
+    createBid();
+    resetAllSelected();
+  };
+
+  const resetAndBackToBuyer = () => {
+    onClickBack();
+    resetPriceBid();
+    resetSelectSize();
+  };
   return (
     <div>
       <div className="p-10">
         <div className="flex items-center justify-center">
           <HiChevronLeft
             className="flex text-[20px] cursor-pointer"
-            onClick={onClickBackBuyer}
+            onClick={createdAndReset}
           />
 
           <div className="flex justify-center mx-auto">
@@ -23,7 +46,7 @@ export default function DetailBid() {
           </div>
           <HiXMark
             className="flex text-[20px] cursor-pointer"
-            onClick={onClickBack}
+            onClick={resetAndBackToBuyer}
           />
         </div>
         <div className="px-10">
@@ -64,14 +87,14 @@ export default function DetailBid() {
         </div>
         <div className="flex justify-evenly p-4">
           <ButtonProduct
-            onClick={onClickBackBuyer}
+            onClick={resetAndBack}
             className={'bg-gray-900 hover:bg-gray-600'}
           >
             Back
           </ButtonProduct>
           <Link to={'/bidask'}>
             <ButtonProduct
-              onClick={createBid}
+              onClick={createdAndReset}
               className={'bg-gray-300 hover hover:bg-gray-900'}
             >
               submit
