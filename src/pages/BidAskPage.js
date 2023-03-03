@@ -122,6 +122,9 @@ export default function BidAskPage() {
                     className="h-40 w-40 bg-gray-100"
                   />
                 </div>
+                <button className="text-white w-[80px] bg-red-500 hover:bg-red-700">
+                  <i className="fa-regular fa-trash-can text-lg" />
+                </button>
               </div>
             ))}
           </div>
