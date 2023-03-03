@@ -1,6 +1,5 @@
 import { Modal } from 'flowbite-react';
 import { BiSearch } from 'react-icons/bi';
-
 import Card from './Card';
 import * as productAPI from '../apis/product-api';
 import { useEffect, useState } from 'react';
@@ -20,6 +19,7 @@ const Search = ({ openSearch, setOpenSearch }) => {
     fetchProduct();
   }, []);
 
+  // console.log(products);
   const searchProduct = (products) => {
     return products.filter((el) => {
       return (

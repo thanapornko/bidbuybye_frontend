@@ -12,30 +12,14 @@ export const AuthContext = createContext();
 
 export default function AuthContextProvider({ children }) {
   const [authenticatedUser, setAuthenticatedUser] = useState(
-    getAccessToken() ? true : null
+    getAccessToken() ? jwtDecode(getAccessToken()) : null
   );
-
-  //?
-  // useEffect(() => {
-  //   const fetchAuthUser = async () => {
-  //     try {
-  //       const res = await authApi.getMe();
-  //       setAuthenticatedUser(res.data.user);
-  //       // console.log(res.data.user);
-  //     } catch (err) {
-  //       // removeAccessToken();
-  //     }
-  //   };
-  //   if (getAccessToken()) {
-  //     fetchAuthUser();
-  //   }
-  // }, []);
 
   useEffect(() => {
     const fetchAuthUser = async () => {
       try {
         const res = await authApi.getMe();
-        // console.log('ressssssssssss', res.data.user);
+        console.log('#1', res.data.user);
         setAuthenticatedUser(res.data.user);
       } catch (err) {
         if (err.response && err.response.status === 401) {
@@ -60,9 +44,10 @@ export default function AuthContextProvider({ children }) {
     });
     console.log('reslogin', res);
     setAccessToken(res.data.accessToken);
+
     setAuthenticatedUser(jwtDecode(res.data.accessToken));
-    // ได้มาเป็น payload
   };
+  // console.log('#2', jwtDecode(getAccessToken()));
 
   const logout = () => {
     removeAccessToken();
@@ -79,7 +64,6 @@ export default function AuthContextProvider({ children }) {
 
   const updateProfile = async (data) => {
     const res = await userApi.updateProfilePicture(data);
-    // res.data =  {"profilePicture": "https://res.cloudinary.com/dhgny94kc/image/upload/v1675919318/1675915242378428504823.jpg"}
     setAuthenticatedUser({
       ...authenticatedUser,
       ...res.data

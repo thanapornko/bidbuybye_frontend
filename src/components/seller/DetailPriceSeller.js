@@ -6,8 +6,14 @@ import ButtonProduct from '../product/ButtonProduct';
 import formattedValued from '../../utils/currency';
 
 export default function DetailPriceSeller({ onClickBack, onClickAsk }) {
-  const { resetSelectSize, resetSelectEquipment, savedValue, bidPrice } =
-    useProduct();
+  const {
+    resetSelectSize,
+    resetSelectEquipment,
+    savedValue,
+    bidPrice,
+    createBid,
+    maxPriceBySize
+  } = useProduct();
   const handleResetSelectSize = () => {
     onClickBack();
     resetSelectSize();
@@ -21,7 +27,7 @@ export default function DetailPriceSeller({ onClickBack, onClickAsk }) {
           <div className="text-[18px] text-gray-500">Ask Price</div>
           <div onClick={onClickAsk} className="flex items-center">
             <div className="flex justify-center text-xl text-gray-400 cursor-pointer">
-              {savedValue || 'Add price'}
+              {savedValue ? `฿ ${formattedValued(savedValue)}` : 'Add price'}
             </div>
 
             <HiPencilSquare className="ml-4 cursor-pointer" />
@@ -32,16 +38,13 @@ export default function DetailPriceSeller({ onClickBack, onClickAsk }) {
             Would you like to sell now to the highest bidder?
           </div>
           <div className="flex items-center ">
-            <div className="text-xl pr-2">
-              {' '}
-              {bidPrice?.maxPrice > 0
-                ? `฿ ${formattedValued(bidPrice?.maxPrice)}`
-                : '-'}
-            </div>
             <Link to={`/checkout`}>
-              <button>
+              <div className="flex items-center text-xl pr-2">
+                {maxPriceBySize?.maxPrice > 0
+                  ? `฿ ${formattedValued(maxPriceBySize?.maxPrice)}`
+                  : '-'}
                 <HiOutlineChevronRight />
-              </button>
+              </div>
             </Link>
           </div>
         </div>
@@ -52,9 +55,14 @@ export default function DetailPriceSeller({ onClickBack, onClickAsk }) {
           >
             Back
           </ButtonProduct>
-          <ButtonProduct className={'bg-gray-300 hover hover:bg-gray-900'}>
-            Next
-          </ButtonProduct>
+          <Link to={'/history'}>
+            <ButtonProduct
+              className={'bg-gray-300 hover hover:bg-gray-900'}
+              onClick={createBid}
+            >
+              submit
+            </ButtonProduct>
+          </Link>
         </div>
       </div>
     </div>

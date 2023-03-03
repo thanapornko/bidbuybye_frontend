@@ -18,6 +18,10 @@ export default function Header() {
     navigate('/');
   };
 
+  const handleProfile = () => {
+    navigate('/profile');
+  };
+
   return (
     <div className="flex flex-col border-b-2">
       <div className="flex justify-end bg-black">
@@ -54,7 +58,7 @@ export default function Header() {
               inline={true}
             >
               <Dropdown.Item>
-                <Link to={'/profile'}>Edit Profile</Link>
+                <button onClick={handleProfile}>Profile</button>
               </Dropdown.Item>
               <Dropdown.Item>
                 <button onClick={handleLogout}>Logout</button>
