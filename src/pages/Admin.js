@@ -1,8 +1,12 @@
 import { useEffect, useState } from 'react';
 import * as adminApi from '../apis/admin-api';
+import useAuth from '../hooks/useAuth';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 export default function Admin() {
   const [order, setOrder] = useState([]);
+  const navigate = useNavigate();
+  const { logout } = useAuth();
 
   const fetch = async () => {
     try {
@@ -12,6 +16,11 @@ export default function Admin() {
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
   };
 
   useEffect(() => {
@@ -33,13 +42,14 @@ export default function Admin() {
             <i className="fa-solid fa-truck-fast text-m pr-2 text-gray-600"></i>
             <h2 className="text-m text-gray-600">Order</h2>
           </a>
-          <a
+          <div
             href="#"
             className="flex items-center justify-center py-5 hover:bg-gray-100"
+            onClick={handleLogout}
           >
             <i className="fa-solid fa-right-from-bracket text-m pr-2 text-gray-600"></i>
             <h2 className="text-m text-gray-600">Logout</h2>
-          </a>
+          </div>
         </div>
         {/* profile right */}
         <div className="flex bg-gray-100 w-4/5 justify-center">
@@ -65,7 +75,7 @@ export default function Admin() {
                       <p className="">{`${el.User.firstName} ${el.User.lastName}`}</p>
                       <p className="">{el.id}</p>
                       <p className="w-full">{el.Product.title}</p>
-                      <p className="">38</p>
+                      <p className="">{el.Size.sizeProduct}</p>
                       <p className="">{el.Bid.equipment ? 'Yes' : 'No'}</p>
                       <p className="">{el.Bid.price}</p>
                       <p className="">{el.Bid.type}</p>
