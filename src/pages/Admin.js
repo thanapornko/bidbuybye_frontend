@@ -23,6 +23,36 @@ export default function Admin() {
     navigate('/');
   };
 
+  const handleConfirm = async (orderId) => {
+    try {
+      console.log('orderiddd', orderId);
+      await adminApi.updateConfirm({ orderId, action: 'confirmed' });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const handleArrived = async (orderId) => {
+    try {
+      await adminApi.updateArrived({ orderId, action: 'arrived' });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const handleVerified = async (orderId) => {
+    try {
+      await adminApi.updateVerified({ orderId, action: 'verified' });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const handleCompleted = async (orderId) => {
+    try {
+      await adminApi.updateCompleted({ orderId, action: 'completed' });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
     fetch();
   }, []);
@@ -91,24 +121,36 @@ export default function Admin() {
                 <div className="flex my-5 mx-5 space-x-2 text-sm text-gray-600">
                   <div className="grid content-between justify-items-center w-1/3 h-16 p-1 bg-gray-100">
                     <p className="text-[13px]">Item arrived at bidbuybye</p>
-                    <button className="bg-green-500 rounded-xl px-3 py-1">
+                    <button
+                      className="bg-green-500 rounded-xl px-3 py-1"
+                      onClick={() => handleConfirm(el.id)}
+                    >
                       approve
                     </button>
                   </div>
                   <div className="grid content-between justify-items-center w-1/3 h-16 p-1 bg-gray-100">
                     <p className="text-[13px]">Verification</p>
                     <div className="flex">
-                      <button className="bg-green-500 rounded-xl px-3 py-1 mr-1">
+                      <button
+                        className="bg-green-500 rounded-xl px-3 py-1 mr-1"
+                        onClick={() => handleArrived(el.id)}
+                      >
                         approve
                       </button>
-                      <button className="bg-red-500 rounded-xl px-3 py-1">
+                      <button
+                        className="bg-red-500 rounded-xl px-3 py-1"
+                        onClick={() => handleVerified(el.id)}
+                      >
                         decline
                       </button>
                     </div>
                   </div>
                   <div className="grid content-between justify-items-center w-1/3 h-16 p-1 bg-gray-100 ]">
                     <p className="text-[13px]">Item shipped from bidbuybye</p>
-                    <button className="bg-green-500 rounded-xl px-3 py-1">
+                    <button
+                      className="bg-green-500 rounded-xl px-3 py-1"
+                      onClick={() => handleCompleted(el.id)}
+                    >
                       approve
                     </button>
                   </div>
