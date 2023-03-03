@@ -49,7 +49,9 @@ export default function DetailPriceSeller({ onClickBack, onClickAsk }) {
       <div>
         <hr className=" bg-gray-200 " />
         <div className="flex p-4 justify-between">
-          <div className="text-[18px] text-gray-500">Ask Price</div>
+          <div className="text-[18px] text-gray-500">
+            Ask Price<span className="text-red-500">*</span>
+          </div>
           <div onClick={onClickAsk} className="flex items-center">
             <div className="flex justify-center text-xl text-gray-400 cursor-pointer">
               {savedValue ? `฿ ${formattedValued(savedValue)}` : 'Add price'}

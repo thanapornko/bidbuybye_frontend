@@ -58,7 +58,9 @@ export default function DetailSize() {
   return (
     <div>
       <div className="flex p-4 justify-between">
-        <div className="text-[18px] text-gray-500">Size</div>
+        <div className="text-[18px] text-gray-500">
+          Size<span className="text-red-500">*</span>
+        </div>
 
         <div className="flex justify-center">
           <div>
