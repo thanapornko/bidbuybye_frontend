@@ -1,6 +1,6 @@
 import { HiPencilSquare } from 'react-icons/hi2';
 import { HiOutlineChevronRight } from 'react-icons/hi2';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useProduct from '../../hooks/useProduct';
 import ButtonProduct from '../product/ButtonProduct';
 import formattedValued from '../../utils/currency';
@@ -13,8 +13,13 @@ export default function DetailPriceSeller({ onClickBack, onClickAsk }) {
     createAsk,
     maxPriceBySize,
     resetAllSelected,
-    resetSavedValue
+    resetSavedValue,
+    selectSize,
+    selectEquipment
   } = useProduct();
+
+  const navigate = useNavigate();
+
   const handleResetSelectSize = () => {
     onClickBack();
     resetSelectSize();
@@ -22,10 +27,23 @@ export default function DetailPriceSeller({ onClickBack, onClickAsk }) {
     resetSelectEquipment();
   };
 
-  const createdAndReset = () => {
-    createAsk();
+  const createdAndReset = async () => {
+    await createAsk();
     resetAllSelected();
+    navigate('/bidask');
   };
+  const validateValue = () => {
+    if (
+      selectSize === undefined ||
+      selectEquipment === null ||
+      savedValue === ''
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   return (
     <div>
       <div>
@@ -62,14 +80,16 @@ export default function DetailPriceSeller({ onClickBack, onClickAsk }) {
           >
             Back
           </ButtonProduct>
-          <Link to={'/bidask'}>
-            <ButtonProduct
-              className={'bg-gray-300 hover hover:bg-gray-900'}
-              onClick={createdAndReset}
-            >
-              submit
-            </ButtonProduct>
-          </Link>
+
+          <ButtonProduct
+            className={`bg-gray-300 hover ${
+              validateValue() === false ? 'hover:bg-gray-900' : ''
+            }`}
+            onClick={createdAndReset}
+            isDisabled={validateValue()}
+          >
+            submit
+          </ButtonProduct>
         </div>
       </div>
     </div>

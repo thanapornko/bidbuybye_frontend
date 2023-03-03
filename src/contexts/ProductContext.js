@@ -183,7 +183,7 @@ export default function ProductContextProvider({ children }) {
     } catch (err) {}
   };
 
-  const resetAllSelected = async () => {
+  const resetAllSelected = () => {
     setSelectSize('');
     setSelectEquipment(null);
     setPriceSeller('');

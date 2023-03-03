@@ -79,6 +79,7 @@ export default function DetailSize() {
                   <HiOutlineChevronDown />
                 </span>
               </button>
+
               <ul
                 className="absolute z-[1000] float-left m-0 hidden min-w-max list-none 
                   overflow-hidden rounded-lg border-none bg-white 
