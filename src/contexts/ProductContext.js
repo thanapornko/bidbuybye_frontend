@@ -192,6 +192,15 @@ export default function ProductContextProvider({ children }) {
     setStep(DEFAULT);
   };
 
+  const cancelBid = async (id) => {
+    try {
+      const bid = await bidApi.deleteBid({
+        id: id,
+        expiredDate: true
+      });
+    } catch (err) {}
+  };
+
   return (
     <ProductContext.Provider
       value={{
@@ -235,7 +244,8 @@ export default function ProductContextProvider({ children }) {
         allBid,
         createAsk,
         resetAllSelected,
-        resetSavedValue
+        resetSavedValue,
+        cancelBid
       }}
     >
       {children}

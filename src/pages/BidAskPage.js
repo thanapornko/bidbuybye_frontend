@@ -7,7 +7,7 @@ import formattedValued from '../utils/currency';
 
 export default function BidAskPage() {
   const { authenticatedUser } = useAuth();
-  const { allBid, fetchAllBids } = useProduct();
+  const { allBid, fetchAllBids, cancelBid } = useProduct();
   const [file, setFile] = useState(null);
 
   useEffect(() => {
@@ -17,6 +17,11 @@ export default function BidAskPage() {
       } catch (error) {}
     })();
   }, []);
+
+  const fetchBids = async (id) => {
+    await cancelBid(id);
+    await fetchAllBids();
+  };
 
   return (
     <>
@@ -122,8 +127,13 @@ export default function BidAskPage() {
                     className="h-40 w-40 bg-gray-100"
                   />
                 </div>
-                <button className="text-white w-[80px] bg-red-500 hover:bg-red-700">
-                  <i className="fa-regular fa-trash-can text-lg" />
+                <button
+                  onClick={() => {
+                    fetchBids(e.id);
+                  }}
+                  className="text-white w-[80px] bg-red-500 hover:bg-red-700"
+                >
+                  <i className="fa-regular fa-trash-can text-lg" on />
                 </button>
               </div>
             ))}
