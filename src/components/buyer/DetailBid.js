@@ -4,7 +4,7 @@ import InputPrice from '../seller/InputPrice';
 import ButtonProduct from '../product/ButtonProduct';
 import useProduct from '../../hooks/useProduct';
 import formattedValued from '../../utils/currency';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function DetailBid() {
   const {
@@ -15,8 +15,19 @@ export default function DetailBid() {
     createBid,
     resetPriceBid,
     resetAllSelected,
-    resetSelectSize
+    resetSelectSize,
+    priceSeller
   } = useProduct();
+
+  const navigate = useNavigate();
+
+  const validateValue = () => {
+    if (selectSize === undefined || priceSeller === '') {
+      return true;
+    } else {
+      return false;
+    }
+  };
 
   const resetAndBack = () => {
     resetPriceBid();
@@ -25,6 +36,7 @@ export default function DetailBid() {
   const createdAndReset = () => {
     createBid();
     resetAllSelected();
+    navigate('/bidask');
   };
 
   const resetAndBackToBuyer = () => {
@@ -95,7 +107,10 @@ export default function DetailBid() {
           <Link to={'/bidask'}>
             <ButtonProduct
               onClick={createdAndReset}
-              className={'bg-gray-300 hover hover:bg-gray-900'}
+              className={`bg-gray-300 hover ${
+                validateValue() === false ? 'hover:bg-gray-900' : ''
+              }`}
+              isDisabled={validateValue()}
             >
               submit
             </ButtonProduct>
