@@ -1,13 +1,15 @@
 import useAuth from '../hooks/useAuth';
 import profile from '../Images/profile.jpg';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import * as userApi from '../apis/user-api';
 
 export default function History() {
-  const { authenticatedUser } = useAuth();
+  const { authenticatedUser, logout } = useAuth();
   const [file, setFile] = useState(null);
   const [content, setContent] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUserHistory = async () => {
@@ -16,6 +18,11 @@ export default function History() {
     };
     fetchUserHistory();
   }, []);
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
 
   console.log('===========content', content);
 
@@ -65,7 +72,9 @@ export default function History() {
             className="flex items-center justify-center py-5 hover:bg-gray-100"
           >
             <i className="fa-solid fa-right-from-bracket text-m pr-2 text-gray-600"></i>
-            <h2 className="text-m text-gray-600">Logout</h2>
+            <h2 className="text-m text-gray-600" onClick={handleLogout}>
+              Logout
+            </h2>
           </a>
         </div>
         {/* profile right */}

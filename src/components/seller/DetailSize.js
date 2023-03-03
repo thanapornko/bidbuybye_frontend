@@ -1,14 +1,23 @@
 import { HiOutlineChevronDown } from 'react-icons/hi2';
 import useProduct from '../../hooks/useProduct';
+import { useEffect } from 'react';
 
 export default function DetailSize() {
-  const { size, productDetail, handleSelectSize, selectSize } = useProduct();
+  const {
+    size,
+    productDetail,
+    handleSelectSize,
+    selectSize,
+    showMaxPriceBySize,
+    maxPriceBySize
+  } = useProduct();
   const sizeProduct = () => {
     if (productDetail.products.Category.typeProduct === 'Shoes') {
       return size.getAllSizeShoes.map((el) => (
         <li
           onClick={() => {
             handleSelectSize(el);
+            console.log(el);
           }}
         >
           <a
@@ -43,6 +52,10 @@ export default function DetailSize() {
     }
   };
 
+  useEffect(() => {
+    showMaxPriceBySize();
+  }, [selectSize]);
+
   return (
     <div>
       <div className="flex p-4 justify-between">
@@ -60,7 +73,9 @@ export default function DetailSize() {
                 data-te-ripple-init
                 data-te-ripple-color="light"
               >
-                {selectSize?.sizeProduct || 'Select Size'}
+                {selectSize?.sizeProduct
+                  ? `Size: ${selectSize?.sizeProduct}`
+                  : 'Select Size'}
                 <span className="ml-2">
                   <HiOutlineChevronDown />
                 </span>

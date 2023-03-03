@@ -1,4 +1,3 @@
-// import 'flowbite';
 import React from 'react';
 import Drawer from 'react-modern-drawer';
 import 'react-modern-drawer/dist/index.css';
@@ -10,7 +9,7 @@ import profile from '../Images/profile.jpg';
 import * as userApi from '../apis/user-api';
 import validateProfile from '../validate/validate-profile';
 
-export default function EditProfile({ open, toggleDrawer }) {
+export default function EditProfile({ open, setOpen, toggleDrawer }) {
   const { authenticatedUser, updateProfile } = useAuth();
   const [error, setError] = useState({});
   const [file, setFile] = useState(null);
@@ -28,7 +27,8 @@ export default function EditProfile({ open, toggleDrawer }) {
     birthDate: birthdate,
     email: email,
     address: address,
-    mobilePhone: mobile
+    mobilePhone: mobile,
+    lineToken: lineToken
   };
 
   const handleClickSave = async () => {
@@ -45,10 +45,11 @@ export default function EditProfile({ open, toggleDrawer }) {
         setError({});
         await userApi.updateUserInfo(input);
         toast.success('successfully updated!');
+        setOpen(!open);
       }
     } catch (err) {
       console.log(err.response?.data.message);
-      // toast.error(err.response?.data.message || 'Failed to update');
+      toast.error('Failed to update');
     }
   };
 
@@ -215,6 +216,7 @@ export default function EditProfile({ open, toggleDrawer }) {
           />
           <p className="text-red-500 text-xs">{error?.lineToken}</p>
         </div>
+
         <div className="flex justify-center">
           <button
             onClick={handleClickSave}

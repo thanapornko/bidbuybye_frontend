@@ -1,16 +1,23 @@
 import useAuth from '../hooks/useAuth';
 import profile from '../Images/profile.jpg';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import OrderStatusModal from '../components/OrderStatusModal';
 
 export default function OrderStatus() {
   const [open, setOpen] = useState(false);
-  const { authenticatedUser } = useAuth();
+  const { authenticatedUser, logout } = useAuth();
   const [file, setFile] = useState(null);
+  const navigate = useNavigate();
 
   const toggleDrawer = () => {
     setOpen(!open);
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
   };
   return (
     <>
@@ -64,7 +71,9 @@ export default function OrderStatus() {
             className="flex items-center justify-center py-5 hover:bg-gray-100"
           >
             <i className="fa-solid fa-right-from-bracket text-m pr-2 text-gray-600"></i>
-            <h2 className="text-m text-gray-600">Logout</h2>
+            <h2 className="text-m text-gray-600" onClick={handleLogout}>
+              Logout
+            </h2>
           </a>
         </div>
 

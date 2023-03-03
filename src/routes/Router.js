@@ -14,6 +14,7 @@ import OrderStatusPage from '../pages/OrderStatus';
 
 import ProductDetailPage from '../pages/ProductDetailPage';
 import RedirectAuth from '../auth/RedirectAuth';
+import ProtectedRoute from '../auth/ProtectedRoute';
 
 import Checkout from '../pages/Checkout';
 import Payment from '../pages/Payment';
@@ -46,11 +47,19 @@ const router = createBrowserRouter([
       },
       {
         path: '/profile',
-        element: <ProfilePage />
+        element: (
+          <ProtectedRoute>
+            <ProfilePage />
+          </ProtectedRoute>
+        )
       },
       {
         path: '/history',
-        element: <HistoryPage />
+        element: (
+          <ProtectedRoute>
+            <HistoryPage />
+          </ProtectedRoute>
+        )
       },
       {
         path: '/admin',

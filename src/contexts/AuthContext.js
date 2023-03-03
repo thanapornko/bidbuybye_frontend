@@ -15,27 +15,10 @@ export default function AuthContextProvider({ children }) {
     getAccessToken() ? true : null
   );
 
-  //?
-  // useEffect(() => {
-  //   const fetchAuthUser = async () => {
-  //     try {
-  //       const res = await authApi.getMe();
-  //       setAuthenticatedUser(res.data.user);
-  //       // console.log(res.data.user);
-  //     } catch (err) {
-  //       // removeAccessToken();
-  //     }
-  //   };
-  //   if (getAccessToken()) {
-  //     fetchAuthUser();
-  //   }
-  // }, []);
-
   useEffect(() => {
     const fetchAuthUser = async () => {
       try {
         const res = await authApi.getMe();
-        // console.log('ressssssssssss', res.data.user);
         setAuthenticatedUser(res.data.user);
       } catch (err) {
         if (err.response && err.response.status === 401) {
@@ -61,7 +44,6 @@ export default function AuthContextProvider({ children }) {
     console.log('reslogin', res);
     setAccessToken(res.data.accessToken);
     setAuthenticatedUser(jwtDecode(res.data.accessToken));
-    // ได้มาเป็น payload
   };
 
   const logout = () => {
@@ -79,7 +61,6 @@ export default function AuthContextProvider({ children }) {
 
   const updateProfile = async (data) => {
     const res = await userApi.updateProfilePicture(data);
-    // res.data =  {"profilePicture": "https://res.cloudinary.com/dhgny94kc/image/upload/v1675919318/1675915242378428504823.jpg"}
     setAuthenticatedUser({
       ...authenticatedUser,
       ...res.data
