@@ -1,14 +1,47 @@
-import { React, useState } from 'react';
-// import Script from 'react-load-script';
-
+import { React, useState, useEffect } from 'react';
 import CreditCard from '../components/payment/CreditCard';
-
 import axios from 'axios';
-// import axios from '../config/axios';
 import useOrder from '../hooks/useOrder';
+import useAuth from '../hooks/useAuth';
+import useProduct from '../hooks/useProduct';
+import * as createOrderApi from '../apis/order-api';
+
+const initialInput = {
+  transactionId: '',
+  bidId: '',
+  userId: '',
+  productId: ''
+};
 
 function BuyPayment() {
   const { order, charge, setCharge } = useOrder();
+  const [getToken, setGetToken] = useState('');
+  const [input, setInput] = useState(initialInput);
+  const [minPrice, setMinPrice] = useState(
+    JSON.parse(localStorage.getItem('minPrice')) || {}
+  );
+
+  const { productDetail } = useProduct();
+
+  const { authenticatedUser } = useAuth('');
+
+  useEffect(() => {
+    setGetToken(getToken);
+    setInput({
+      ...input,
+      transactionId: getToken,
+      bidId: minPrice.bidId,
+
+      userId: authenticatedUser.id,
+
+      productId: productDetail?.products.id
+    });
+  }, [getToken]);
+
+  const createSummaryOrder = async () => {
+    await createOrderApi.createOrder(input);
+    await localStorage.removeItem('minPrice');
+  };
 
   const createCreditCardCharge = async (email, name, amount, token) => {
     try {
@@ -34,7 +67,6 @@ function BuyPayment() {
     }
   };
 
-  console.log(charge);
   return (
     <div className="ml-40 h-full">
       <div className="flex flex-row justify-center mt-[200px] mb-[500px] ">
@@ -43,6 +75,10 @@ function BuyPayment() {
           <CreditCard
             createCreditCardCharge={createCreditCardCharge}
             order={order}
+            setGetToken={setGetToken}
+            setInput={setInput}
+            setMinPrice={setMinPrice}
+            createSummaryOrder={createSummaryOrder}
           />
         </div>
       </div>

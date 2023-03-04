@@ -1,28 +1,28 @@
 import { React, useState, useEffect } from 'react';
 import { SiMastercard } from 'react-icons/si';
-// import { BsTruck } from 'react-icons/bs';
-// import { MdPayment, MdOutlineCropSquare } from 'react-icons/md';
+
 import { AiFillCheckCircle } from 'react-icons/ai';
 import Script from 'react-load-script';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import useProduct from '../../hooks/useProduct';
+import useAuth from '../../hooks/useAuth';
 
 let OmiseCard;
 
 function CreditCard(props) {
   const navigate = useNavigate();
-  const { createCreditCardCharge } = props;
+  const { setMinPrice, createSummaryOrder } = props;
+
   const {
     fetchProductDetail,
     productDetail,
 
     NewMinPriceBySize
   } = useProduct();
-  const { productId } = useParams();
 
-  console.log(props.order);
-  // const [state, setState] = useState({ charge: undefined });
+  const { authenticatedUser } = useAuth();
+  const { productId } = useParams();
 
   const handleLoadScript = () => {
     OmiseCard = window.OmiseCard;
@@ -48,7 +48,8 @@ function CreditCard(props) {
   let name;
   let email;
   const omiseCardHandle = () => {
-    const { createCreditCardCharge } = props;
+    const { createCreditCardCharge, setGetToken } = props;
+
     totalPrice = (
       (parseFloat(NewMinPriceBySize?.minPrice) +
         parseFloat(NewMinPriceBySize?.minPrice) * 0.049 * 1.07 +
@@ -56,17 +57,24 @@ function CreditCard(props) {
       100
     ).toFixed(2);
 
-    name = props.order[props.order.length - 1]?.User.firstName;
+    name = authenticatedUser.firstName;
 
-    email = props.order[props.order.length - 1]?.User.email;
+    email = authenticatedUser.email;
 
     OmiseCard.open({
       amount: totalPrice,
-      onCreateTokenSuccess: function async(token) {
-        createCreditCardCharge(email, name, totalPrice, token);
-        navigate('/completed');
+      onCreateTokenSuccess: async function (token) {
+        try {
+          await createCreditCardCharge(email, name, totalPrice, token);
+          await setGetToken(token);
+          await createSummaryOrder();
 
-        localStorage.removeItem('minPrice');
+          await navigate('/completed');
+
+          // await localStorage.removeItem('minPrice');
+        } catch (error) {
+          // handle error
+        }
       },
       onFormClosed: function () {
         // Redirect to the next page after the modal is closed
@@ -85,6 +93,10 @@ function CreditCard(props) {
       try {
         await fetchProductDetail(productId);
       } catch (error) {}
+      if (NewMinPriceBySize) {
+        localStorage.setItem('minPrice', JSON.stringify(NewMinPriceBySize));
+        setMinPrice(NewMinPriceBySize);
+      }
     })();
   }, [productId]);
 
@@ -96,7 +108,7 @@ function CreditCard(props) {
           {/* left */}
           <div>
             <img
-              src={productDetail?.products.ProductImage}
+              src={NewMinPriceBySize?.product}
               alt="nikeDunkLow"
               className="w-[100px] h-[100px]"
             />
@@ -142,19 +154,19 @@ function CreditCard(props) {
               <p>
                 <div className="flex">
                   <img
-                    src={productDetail?.products.ProductImage}
+                    src={NewMinPriceBySize?.product}
                     alt="nikeDunkLow"
                     className="w-[48px] h-[48px]"
                   />
 
                   <img
-                    src={productDetail?.products.ProductImage}
+                    src={NewMinPriceBySize?.product}
                     alt="nikeDunkLow"
                     className="w-[48px] h-[48px]"
                   />
 
                   <img
-                    src={productDetail?.products.ProductImage}
+                    src={NewMinPriceBySize?.product}
                     alt="nikeDunkLow"
                     className="w-[48px] h-[48px]"
                   />

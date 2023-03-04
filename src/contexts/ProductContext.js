@@ -177,8 +177,6 @@ export default function ProductContextProvider({ children }) {
     // });
   };
 
-  console.log(minPriceBySize);
-
   return (
     <ProductContext.Provider
       value={{

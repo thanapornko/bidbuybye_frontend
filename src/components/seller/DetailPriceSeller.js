@@ -21,6 +21,7 @@ export default function DetailPriceSeller({ onClickBack, onClickAsk }) {
     resetSelectSize();
     resetSelectEquipment();
   };
+  console.log(maxPriceBySize?.maxPrice);
   return (
     <div>
       <div>

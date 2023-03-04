@@ -5,17 +5,41 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 import React, { useEffect, useState } from 'react';
-import EditMethod from './EditMethod';
+import EditMethods from '../checkout/EditMethods';
 import useProduct from '../../hooks/useProduct';
 import useAuth from '../../hooks/useAuth';
 import { useParams } from 'react-router-dom';
 import EditProfile from '../EditProfile';
+import styled from 'styled-components';
+
+const MirrorImage10 = styled.img`
+  width: 48px;
+  height: 48px;
+  transform: scaleX(1) rotate(5deg);
+`;
+
+const MirrorImage = styled.img`
+  width: 48px;
+  height: 48px;
+  transform: scaleX(-1) rotate(0deg);
+`;
+
+const MirrorImage30 = styled.img`
+  width: 48px;
+  height: 48px;
+  transform: scalex(1) rotate(-5deg);
+`;
 
 function SellOrderSummary(props) {
   // const { NewmaxPriceBySize, productDetail } = useProduct();
   const [open, setOpen] = useState(false);
+  const [newOpen, setNewOpen] = useState(false);
   const toggleDrawer = () => {
     setOpen(!open);
+  };
+
+  const newToggleDrawer = () => {
+    setNewOpen(!newOpen);
   };
   const { authenticatedUser } = useAuth();
   const {
@@ -47,7 +71,11 @@ function SellOrderSummary(props) {
     // container all
     <div className="flex gap-4">
       <EditProfile open={open} setOpen={setOpen} toggleDrawer={toggleDrawer} />
-      <EditMethod />
+      <EditMethods
+        open={newOpen}
+        setOpen={setNewOpen}
+        toggleDrawer={newToggleDrawer}
+      />
       {/* box-left */}
       <div className="w-[533px] h-[562px] border-2">
         {/* top */}
@@ -55,7 +83,7 @@ function SellOrderSummary(props) {
           {/* left */}
           <div>
             <img
-              src={productDetail?.products.ProductImage}
+              src={NewmaxPriceBySize.product}
               alt="nikeDunkLow"
               className="w-[100px] h-[100px]"
             />
@@ -100,22 +128,22 @@ function SellOrderSummary(props) {
               <p className="text-sm">Product Images</p>
               <p>
                 <div className="flex">
-                  <img
-                    src={productDetail?.products.ProductImage}
+                  <MirrorImage10
+                    src={NewmaxPriceBySize.product}
                     alt="nikeDunkLow"
                     className="w-[48px] h-[48px]"
                   />
 
-                  <img
-                    src={productDetail?.products.ProductImage}
+                  <MirrorImage
+                    src={NewmaxPriceBySize.product}
                     alt="nikeDunkLow"
                     className="w-[48px] h-[48px]"
                   />
 
-                  <img
-                    src={productDetail?.products.ProductImage}
+                  <MirrorImage30
+                    src={NewmaxPriceBySize.product}
                     alt="nikeDunkLow"
-                    className="w-[48px] h-[48px]"
+                    className="w-[48px] h-[48px] ml-[4px]"
                   />
                 </div>
               </p>
@@ -162,15 +190,7 @@ function SellOrderSummary(props) {
               <MdPayment />
               Payment method
             </div>
-            <button
-              className="hover:underline"
-              data-drawer-target="drawer-right"
-              data-drawer-show="drawer-right"
-              data-drawer-placement="right"
-              aria-controls="drawer-right"
-            >
-              Bank transfer &gt;
-            </button>
+            <button onClick={newToggleDrawer}>Bank transfer &gt;</button>
           </div>
 
           <div className="flex p-[16px] flex-col  border-t-2">
@@ -248,7 +268,7 @@ function SellOrderSummary(props) {
                 <div>
                   <motion.div whileTap={{ scale: 0.75 }}>
                     <nav>
-                      <Link to="/payment">
+                      <Link to="/sell-completed">
                         <button class="text-[12px] text-[#5A5A5A] px-[15px] py-[5px] bg-[#D9D9D9] font-medium	text-center w-[273px] h-[36px] rounded	">
                           Submit
                         </button>

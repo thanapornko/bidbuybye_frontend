@@ -5,11 +5,30 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 import React, { useEffect, useState } from 'react';
-import EditMethod from './EditMethod';
+
 import useProduct from '../../hooks/useProduct';
 import useAuth from '../../hooks/useAuth';
 import { useParams } from 'react-router-dom';
 import EditProfile from '../EditProfile';
+import styled from 'styled-components';
+
+const MirrorImage10 = styled.img`
+  width: 48px;
+  height: 48px;
+  transform: scaleX(1) rotate(5deg);
+`;
+
+const MirrorImage = styled.img`
+  width: 48px;
+  height: 48px;
+  transform: scaleX(-1) rotate(0deg);
+`;
+
+const MirrorImage30 = styled.img`
+  width: 48px;
+  height: 48px;
+  transform: scalex(1) rotate(-5deg);
+`;
 
 function BuyOrderSummary(props) {
   // const { NewMinPriceBySize, productDetail } = useProduct();
@@ -48,7 +67,7 @@ function BuyOrderSummary(props) {
     // container all
     <div className="flex gap-4">
       <EditProfile open={open} setOpen={setOpen} toggleDrawer={toggleDrawer} />
-      <EditMethod />
+
       {/* box-left */}
       <div className="w-[533px] h-[562px] border-2">
         {/* top */}
@@ -56,7 +75,7 @@ function BuyOrderSummary(props) {
           {/* left */}
           <div>
             <img
-              src={productDetail?.products.ProductImage}
+              src={NewMinPriceBySize?.product}
               alt="nikeDunkLow"
               className="w-[100px] h-[100px]"
             />
@@ -101,22 +120,22 @@ function BuyOrderSummary(props) {
               <p className="text-sm">Product Images</p>
               <p>
                 <div className="flex">
-                  <img
-                    src={productDetail?.products.ProductImage}
+                  <MirrorImage10
+                    src={NewMinPriceBySize?.product}
                     alt="nikeDunkLow"
                     className="w-[48px] h-[48px]"
                   />
 
-                  <img
-                    src={productDetail?.products.ProductImage}
+                  <MirrorImage
+                    src={NewMinPriceBySize?.product}
                     alt="nikeDunkLow"
                     className="w-[48px] h-[48px]"
                   />
 
-                  <img
-                    src={productDetail?.products.ProductImage}
+                  <MirrorImage30
+                    src={NewMinPriceBySize?.product}
                     alt="nikeDunkLow"
-                    className="w-[48px] h-[48px]"
+                    className="w-[48px] h-[48px] ml-[3px]"
                   />
                 </div>
               </p>

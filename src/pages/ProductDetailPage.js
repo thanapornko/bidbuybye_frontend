@@ -34,8 +34,6 @@ export default function ProductDetailPage() {
       } catch (error) {}
     })();
   }, [productId]);
-  console.log(productDetail);
-  console.log(fetchPriceBid);
 
   return (
     <div>

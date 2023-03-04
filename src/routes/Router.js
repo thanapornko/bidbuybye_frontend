@@ -20,6 +20,7 @@ import Completed from '../pages/Completed';
 import SellCheckout from '../pages/SellCheckout';
 import BuyCheckout from '../pages/BuyCheckout';
 import BuyPayment from '../pages/BuyPayment';
+import SellCompleted from '../pages/SellCompleted';
 
 const router = createBrowserRouter([
   // {
@@ -86,6 +87,11 @@ const router = createBrowserRouter([
       {
         path: '/completed',
         element: <Completed />
+      },
+
+      {
+        path: '/sell-completed',
+        element: <SellCompleted />
       },
       {
         path: '/product/detail/:productId',
