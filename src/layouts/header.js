@@ -1,14 +1,26 @@
 import { useState } from 'react';
 import { BiSearch } from 'react-icons/bi';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import Search from '../components/Search';
 import useAuth from '../hooks/useAuth';
 import logo from '../assets/logo.png';
+import { Dropdown } from 'flowbite-react';
+import { Navigate } from 'react-router-dom';
 
 export default function Header() {
   const { authenticatedUser, logout } = useAuth();
   const [openSearch, setOpenSearch] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
+
+  const handleProfile = () => {
+    navigate('/profile');
+  };
 
   return (
     <div className="flex flex-col border-b-2">
@@ -39,13 +51,19 @@ export default function Header() {
           </form>
           <Search openSearch={openSearch} setOpenSearch={setOpenSearch} />
           {authenticatedUser ? (
-            <Link
-              to="/login"
-              onClick={logout}
-              className="border-2 text-[#5a5a5a] py-[5px] px-[15px] rounded"
+            <Dropdown
+              arrowIcon={false}
+              label={<i className="fa-solid fa-bars px-6" />}
+              dismissOnClick={false}
+              inline={true}
             >
-              Logout
-            </Link>
+              <Dropdown.Item>
+                <button onClick={handleProfile}>Profile</button>
+              </Dropdown.Item>
+              <Dropdown.Item>
+                <button onClick={handleLogout}>Logout</button>
+              </Dropdown.Item>
+            </Dropdown>
           ) : (
             <Link
               to="/login"

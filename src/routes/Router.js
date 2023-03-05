@@ -14,11 +14,13 @@ import OrderStatusPage from '../pages/OrderStatus';
 
 import ProductDetailPage from '../pages/ProductDetailPage';
 import RedirectAuth from '../auth/RedirectAuth';
+import ProtectedRoute from '../auth/ProtectedRoute';
 
 import Checkout from '../pages/Checkout';
 import Payment from '../pages/Payment';
 import Completed from '../pages/Completed';
 import BidAskPage from '../pages/BidAskPage';
+import AdminProtectedRoute from '../auth/AdminProtectedRoute';
 
 const router = createBrowserRouter([
   // {
@@ -47,16 +49,28 @@ const router = createBrowserRouter([
       },
       {
         path: '/profile',
-        element: <ProfilePage />
+        element: (
+          <ProtectedRoute>
+            <ProfilePage />
+          </ProtectedRoute>
+        )
       },
       { path: '/bidask', element: <BidAskPage /> },
       {
         path: '/history',
-        element: <HistoryPage />
+        element: (
+          <ProtectedRoute>
+            <HistoryPage />
+          </ProtectedRoute>
+        )
       },
       {
         path: '/admin',
-        element: <AdminPage />
+        element: (
+          <AdminProtectedRoute>
+            <AdminPage />
+          </AdminProtectedRoute>
+        )
       },
       {
         path: '/product',

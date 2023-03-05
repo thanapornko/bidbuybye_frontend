@@ -201,6 +201,8 @@ export default function ProductContextProvider({ children }) {
     } catch (err) {}
   };
 
+  console.log(step);
+
   return (
     <ProductContext.Provider
       value={{
