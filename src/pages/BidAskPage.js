@@ -113,12 +113,16 @@ export default function BidAskPage() {
                     <div>฿ {formattedValued(e.price)}</div>
                   </div>
                   <div className="flex justify-between">
-                    <div>Status :</div>
+                    <div>Type :</div>
                     {e.type === 'SELLER' ? (
                       <div>Asking</div>
                     ) : (
                       <div>Biding</div>
                     )}
+                  </div>
+                  <div className="flex justify-between">
+                    <div>Status :</div>
+                    <div>{e.expiredDate}</div>
                   </div>
                 </div>
                 <div className="flex items-center px-2">
@@ -127,14 +131,18 @@ export default function BidAskPage() {
                     className="h-40 w-40 bg-gray-100"
                   />
                 </div>
-                <button
-                  onClick={() => {
-                    fetchBids(e.id);
-                  }}
-                  className="text-white w-[80px] bg-red-500 hover:bg-red-700"
-                >
-                  <i className="fa-regular fa-trash-can text-lg" on />
-                </button>
+                {e.expiredDate !== 'CANCEL' ? (
+                  <button
+                    onClick={() => {
+                      fetchBids(e.id);
+                    }}
+                    className="text-white w-[80px] bg-red-500 hover:bg-red-700"
+                  >
+                    <i className="fa-regular fa-trash-can text-lg" on />
+                  </button>
+                ) : (
+                  ''
+                )}
               </div>
             ))}
           </div>

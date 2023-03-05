@@ -195,8 +195,7 @@ export default function ProductContextProvider({ children }) {
   const cancelBid = async (id) => {
     try {
       const bid = await bidApi.deleteBid({
-        id: id,
-        expiredDate: true
+        id: id
       });
     } catch (err) {}
   };
