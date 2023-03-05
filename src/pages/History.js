@@ -98,7 +98,7 @@ export default function History() {
                         <p>Price :</p>
                         <p>Status :</p>
                       </div>
-                      <div className="my-5 mx-5 space-y-2 text-sm w-3/5 text-gray-600 ">
+                      <div className="my-5 mx-5 space-y-2 text-sm w-4/5 text-gray-600 ">
                         <p>{order && order.Product.title}</p>
                         <p>{order && order.Size.size_product}</p>
                         <p>{order && (order.Bid.equipment ? 'Yes' : 'No')}</p>

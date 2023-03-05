@@ -37,7 +37,6 @@ const Search = ({ openSearch, setOpenSearch }) => {
     <>
       <Modal
         show={openSearch}
-        onScroll={false}
         size="100-vw"
         onClose={() => {
           setOpenSearch(false);
