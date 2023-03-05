@@ -4,18 +4,53 @@ import InputPrice from '../seller/InputPrice';
 import ButtonProduct from '../product/ButtonProduct';
 import useProduct from '../../hooks/useProduct';
 import formattedValued from '../../utils/currency';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function DetailBid() {
-  const { onClickBackBuyer, onClickBack, bidPrice, selectSize, createBid } =
-    useProduct();
+  const {
+    onClickBackBuyer,
+    onClickBack,
+    bidPrice,
+    selectSize,
+    createBid,
+    resetPriceBid,
+    resetAllSelected,
+    resetSelectSize,
+    priceSeller
+  } = useProduct();
+
+  const navigate = useNavigate();
+
+  const validateValue = () => {
+    if (selectSize === undefined || priceSeller === '') {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const resetAndBack = () => {
+    resetPriceBid();
+    onClickBackBuyer();
+  };
+  const createdAndReset = () => {
+    createBid();
+    resetAllSelected();
+    navigate('/bidask');
+  };
+
+  const resetAndBackToBuyer = () => {
+    onClickBack();
+    resetPriceBid();
+    resetSelectSize();
+  };
   return (
     <div>
       <div className="p-10">
         <div className="flex items-center justify-center">
           <HiChevronLeft
             className="flex text-[20px] cursor-pointer"
-            onClick={onClickBackBuyer}
+            onClick={createdAndReset}
           />
 
           <div className="flex justify-center mx-auto">
@@ -23,7 +58,7 @@ export default function DetailBid() {
           </div>
           <HiXMark
             className="flex text-[20px] cursor-pointer"
-            onClick={onClickBack}
+            onClick={resetAndBackToBuyer}
           />
         </div>
         <div className="px-10">
@@ -64,15 +99,18 @@ export default function DetailBid() {
         </div>
         <div className="flex justify-evenly p-4">
           <ButtonProduct
-            onClick={onClickBackBuyer}
+            onClick={resetAndBack}
             className={'bg-gray-900 hover:bg-gray-600'}
           >
             Back
           </ButtonProduct>
-          <Link to={'/history'}>
+          <Link to={'/bidask'}>
             <ButtonProduct
-              onClick={createBid}
-              className={'bg-gray-300 hover hover:bg-gray-900'}
+              onClick={createdAndReset}
+              className={`bg-gray-300 hover ${
+                validateValue() === false ? 'hover:bg-gray-900' : ''
+              }`}
+              isDisabled={validateValue()}
             >
               submit
             </ButtonProduct>

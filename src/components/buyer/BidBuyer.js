@@ -2,7 +2,16 @@ import useProduct from '../../hooks/useProduct';
 import ButtonProduct from '../product/ButtonProduct';
 
 export default function BidBuyer() {
-  const { onClickBid } = useProduct();
+  const { onClickBid, selectSize } = useProduct();
+
+  const validateValue = () => {
+    if (selectSize === undefined) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   return (
     <div>
       <div className=" flex justify-between items-center h-[100px] w-auto bg-slate-900 m-10 rounded-lg">
@@ -11,10 +20,11 @@ export default function BidBuyer() {
           your preferred price
         </div>
         <ButtonProduct
+          isDisabled={validateValue()}
           onClick={onClickBid}
-          className={
-            'bg-slate-900 border-white hover:bg-gray-500 w-[100px] h-[40px] mx-4'
-          }
+          className={`bg-slate-900 border-white ${
+            validateValue() === false ? 'hover:bg-gray-200' : ''
+          } w-[100px] h-[40px] mx-4`}
         >
           Bid
         </ButtonProduct>
