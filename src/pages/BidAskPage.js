@@ -4,6 +4,7 @@ import profile from '../Images/profile.jpg';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import formattedValued from '../utils/currency';
+import ModalBid from '../components/ModalBid';
 
 export default function BidAskPage() {
   const { authenticatedUser } = useAuth();
@@ -131,18 +132,17 @@ export default function BidAskPage() {
                     className="h-40 w-40 bg-gray-100"
                   />
                 </div>
-                {e.expiredDate !== 'CANCEL' ? (
-                  <button
-                    onClick={() => {
-                      fetchBids(e.id);
-                    }}
-                    className="text-white w-[80px] bg-red-500 hover:bg-red-700"
-                  >
-                    <i className="fa-regular fa-trash-can text-lg" on />
-                  </button>
-                ) : (
-                  ''
-                )}
+                <div className="flex items-end ">
+                  {e.expiredDate !== 'CANCEL' ? (
+                    <ModalBid
+                      onClick={() => {
+                        fetchBids(e.id);
+                      }}
+                    />
+                  ) : (
+                    <div className="w-[135px]"></div>
+                  )}
+                </div>
               </div>
             ))}
           </div>
