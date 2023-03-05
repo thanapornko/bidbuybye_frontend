@@ -133,7 +133,7 @@ export default function BidAskPage() {
                   />
                 </div>
                 <div className="flex items-end ">
-                  {e.expiredDate !== 'CANCEL' ? (
+                  {e.expiredDate !== 'CANCEL' && e.expiredDate !== 'EXPIRED' ? (
                     <ModalBid
                       onClick={() => {
                         fetchBids(e.id);
