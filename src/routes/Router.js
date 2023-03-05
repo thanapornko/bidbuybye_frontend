@@ -19,6 +19,7 @@ import ProtectedRoute from '../auth/ProtectedRoute';
 import Checkout from '../pages/Checkout';
 import Payment from '../pages/Payment';
 import Completed from '../pages/Completed';
+import AdminProtectedRoute from '../auth/AdminProtectedRoute';
 
 const router = createBrowserRouter([
   // {
@@ -63,7 +64,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/admin',
-        element: <AdminPage />
+        element: (
+          <AdminProtectedRoute>
+            <AdminPage />
+          </AdminProtectedRoute>
+        )
       },
       {
         path: '/product',
