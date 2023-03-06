@@ -19,6 +19,7 @@ import ProtectedRoute from '../auth/ProtectedRoute';
 import Checkout from '../pages/Checkout';
 import Payment from '../pages/Payment';
 import Completed from '../pages/Completed';
+import BidAskPage from '../pages/BidAskPage';
 import AdminProtectedRoute from '../auth/AdminProtectedRoute';
 
 const router = createBrowserRouter([
@@ -54,6 +55,7 @@ const router = createBrowserRouter([
           </ProtectedRoute>
         )
       },
+      { path: '/bidask', element: <BidAskPage /> },
       {
         path: '/history',
         element: (

@@ -4,10 +4,18 @@ import DetailEquipment from './DetailEquipment';
 import DetailSize from './DetailSize';
 
 export default function DetailProductSeller() {
-  const { onClickBack, resetSelectSize, resetSelectEquipment } = useProduct();
+  const {
+    onClickBack,
+    resetSelectSize,
+    resetSelectEquipment,
+    resetPriceBid,
+    resetSavedValue
+  } = useProduct();
   const handleResetSelect = () => {
     onClickBack();
     resetSelectSize();
+    resetPriceBid();
+    resetSavedValue();
     resetSelectEquipment();
   };
   return (

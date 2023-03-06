@@ -8,8 +8,7 @@ export default function DetailSize() {
     productDetail,
     handleSelectSize,
     selectSize,
-    showMaxPriceBySize,
-    maxPriceBySize
+    showMaxPriceBySize
   } = useProduct();
   const sizeProduct = () => {
     if (productDetail.products.Category.typeProduct === 'Shoes') {
@@ -59,7 +58,9 @@ export default function DetailSize() {
   return (
     <div>
       <div className="flex p-4 justify-between">
-        <div className="text-[18px] text-gray-500">Size</div>
+        <div className="text-[18px] text-gray-500">
+          Size<span className="text-red-500">*</span>
+        </div>
 
         <div className="flex justify-center">
           <div>
@@ -80,6 +81,7 @@ export default function DetailSize() {
                   <HiOutlineChevronDown />
                 </span>
               </button>
+
               <ul
                 className="absolute z-[1000] float-left m-0 hidden min-w-max list-none 
                   overflow-hidden rounded-lg border-none bg-white 
