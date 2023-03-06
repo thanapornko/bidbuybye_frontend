@@ -123,7 +123,20 @@ export default function BidAskPage() {
                   </div>
                   <div className="flex justify-between">
                     <div>Status :</div>
-                    <div>{e.expiredDate}</div>
+                    {e.expiredDate === 'NONE' ? (
+                      'On Process'
+                    ) : (
+                      <div>{e.expiredDate}</div>
+                    )}
+                  </div>
+                  <div className="flex justify-between">
+                    <div>Order Status :</div>
+
+                    {e.Order !== null && e.Order.OrderStatuses.length > 0
+                      ? e.Order.OrderStatuses.map((el) => (
+                          <div>{el.status}</div>
+                        ))
+                      : '-'}
                   </div>
                 </div>
                 <div className="flex items-center px-2">
