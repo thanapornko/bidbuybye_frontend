@@ -9,10 +9,10 @@ export default function Card({
 }) {
   return (
     <>
-      <div className=" mt-3 p-2 cursor-pointer" onClick={onClick}>
+      <div className="mt-3 p-2 cursor-pointer" onClick={onClick}>
         {/* // container card All */}
         {/* // Card  */}
-        <div className="flex flex-col cursor-pointer">
+        <div className="flex flex-col cursor-pointer  transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 duration-100 ">
           {/* Box-top */}
           <div className="bg-[white] border border-gray-200">
             <img src={image} alt="#" className="w-[200px] h-[200px]" />

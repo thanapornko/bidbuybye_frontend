@@ -1,6 +1,5 @@
 import { Modal } from 'flowbite-react';
 import { BiSearch } from 'react-icons/bi';
-
 import Card from './Card';
 import * as productAPI from '../apis/product-api';
 import { useEffect, useState } from 'react';
@@ -38,7 +37,6 @@ const Search = ({ openSearch, setOpenSearch }) => {
     <>
       <Modal
         show={openSearch}
-        onScroll={false}
         size="100-vw"
         onClose={() => {
           setOpenSearch(false);

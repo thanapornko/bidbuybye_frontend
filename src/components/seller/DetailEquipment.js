@@ -15,7 +15,9 @@ export default function DetailEquipment() {
   return (
     <div>
       <div className="flex p-4 justify-between">
-        <div className="text-[18px] text-gray-500">Equipment</div>
+        <div className="text-[18px] text-gray-500">
+          Equipment<span className="text-red-500">*</span>
+        </div>
 
         <div className="flex justify-center">
           <div>

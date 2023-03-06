@@ -1,17 +1,16 @@
-// import 'flowbite';
 import React from 'react';
 import Drawer from 'react-modern-drawer';
 import 'react-modern-drawer/dist/index.css';
-
 import { toast } from 'react-toastify';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import useAuth from '../hooks/useAuth';
 import profile from '../Images/profile.jpg';
 import * as userApi from '../apis/user-api';
+import * as authApi from '../apis/auth-api';
 import validateProfile from '../validate/validate-profile';
 
-export default function EditProfile({ open, toggleDrawer }) {
-  const { authenticatedUser, updateProfile } = useAuth();
+export default function EditProfile({ open, setOpen, toggleDrawer }) {
+  const { authenticatedUser, setAuthenticatedUser, updateProfile } = useAuth();
   const [error, setError] = useState({});
   const [file, setFile] = useState(null);
   const [fname, setFname] = useState('');
@@ -28,14 +27,37 @@ export default function EditProfile({ open, toggleDrawer }) {
     birthDate: birthdate,
     email: email,
     address: address,
-    mobilePhone: mobile
+    mobilePhone: mobile,
+    lineToken: lineToken
   };
+
+  // handleClickSave;
+  // const handleClickSave = async () => {
+  //   try {
+  //     const result = validateProfile(input);
+  //     console.log(result, '---validate-result----');
+  //     if (result) {
+  //       setError(result);
+  //     } else {
+  //       console.log('no error');
+  //       setError({});
+  //       const formData = new FormData();
+  //       formData.append('profilePicture', file);
+  //       await updateProfile(formData);
+  //       await userApi.updateUserInfo(input);
+  //       toast.success('successfully updated!');
+  //       setOpen(!open);
+  //       setAuthenticatedUser({ ...authenticatedUser, ...input });
+  //       console.log(authenticatedUser, '----after click save----');
+  //     }
+  //   } catch (err) {
+  //     console.log(err.response?.data.message);
+  //     toast.error('Failed to update');
+  //   }
+  // };
 
   const handleClickSave = async () => {
     try {
-      const formData = new FormData();
-      formData.append('profilePicture', file);
-      await updateProfile(formData);
       const result = validateProfile(input);
       console.log(result, '---validate-result----');
       if (result) {
@@ -43,16 +65,69 @@ export default function EditProfile({ open, toggleDrawer }) {
       } else {
         console.log('no error');
         setError({});
-        await userApi.updateUserInfo(input);
+
+        const formData = new FormData();
+        formData.append('profilePicture', file);
+
+        // Update profile picture on Cloudinary and get the URL
+        let profilePictureUrl = authenticatedUser.profilePicture;
+        if (file) {
+          profilePictureUrl = await updateProfile(formData);
+        }
+
+        // Update user info on the server with the new or old profile picture URL
+        const updatedUserInfo = { ...input, profilePicture: profilePictureUrl };
+        const updatedAuthenticatedUser = {
+          ...authenticatedUser,
+          ...updatedUserInfo
+        };
+        setAuthenticatedUser(updatedAuthenticatedUser);
+        await userApi.updateUserInfo(updatedUserInfo);
+
         toast.success('successfully updated!');
+        setOpen(!open);
+        console.log(authenticatedUser, '----after click save----');
       }
     } catch (err) {
       console.log(err.response?.data.message);
-      // toast.error(err.response?.data.message || 'Failed to update');
+      toast.error('Failed to update');
     }
   };
 
-  console.log(error, '************error******');
+  //////////
+  useEffect(() => {
+    setFname(authenticatedUser.firstName);
+  }, [authenticatedUser.firstName]);
+
+  useEffect(() => {
+    setLname(authenticatedUser.lastName);
+  }, [authenticatedUser.lastName]);
+
+  ///convert date
+  const bd = authenticatedUser.birthDate
+    ? String(authenticatedUser.birthDate)
+    : '';
+  const newDate = bd.slice(0, 10) || '-';
+
+  useEffect(() => {
+    setBirthdate(newDate);
+  }, [authenticatedUser.birthDate]);
+
+  useEffect(() => {
+    setEmail(authenticatedUser.email);
+  }, [authenticatedUser.email]);
+
+  useEffect(() => {
+    setMobile(authenticatedUser.mobilePhone);
+  }, [authenticatedUser.mobilePhone]);
+
+  useEffect(() => {
+    setAddress(authenticatedUser.address);
+  }, [authenticatedUser.address]);
+
+  useEffect(() => {
+    setLineToken(authenticatedUser.lineToken);
+  }, [authenticatedUser.lineToken]);
 
   const handleChangeFname = async (e) => {
     setFname(e.target.value);
@@ -75,16 +150,6 @@ export default function EditProfile({ open, toggleDrawer }) {
   const handleChangeLineToken = async (e) => {
     setLineToken(e.target.value);
   };
-
-  console.log(
-    authenticatedUser.profilePicture,
-    '-------------------------------au'
-  );
-  console.log(file, '----------file');
-
-  ///convert date
-  const bd = String(authenticatedUser.birthDate);
-  const newDate = bd.slice(0, 10);
 
   return (
     <>
@@ -136,7 +201,7 @@ export default function EditProfile({ open, toggleDrawer }) {
             className="block w-full bg-gray-100 text-gray-900 text-xs border-none"
             value={fname}
             onChange={(e) => handleChangeFname(e)}
-            placeholder={authenticatedUser.firstName || 'firstName'}
+            placeholder={authenticatedUser.firstName || '-'}
           />
           <p className="text-red-500 text-xs">{error?.firstName}</p>
           <label htmlFor="lname" className="block text-xs text-gray-900 mt-2">
@@ -148,7 +213,7 @@ export default function EditProfile({ open, toggleDrawer }) {
             className="block w-full bg-gray-100 text-gray-900 text-xs border-none"
             value={lname}
             onChange={(e) => handleChangeLname(e)}
-            placeholder={authenticatedUser.lastName || 'lastName'}
+            placeholder={authenticatedUser.lastName || '-'}
           />
           <p className="text-red-500 text-xs">{error?.lastName}</p>
           <label htmlFor="bday" className="block text-xs text-gray-900 mt-2">
@@ -182,7 +247,7 @@ export default function EditProfile({ open, toggleDrawer }) {
             type="text"
             name="mobile"
             className="block w-full bg-gray-100 text-gray-900 text-xs border-none"
-            value={mobile}
+            value={mobile || authenticatedUser.mobilePhone}
             onChange={(e) => handleChangeMobile(e)}
             placeholder={authenticatedUser.mobilePhone || '-'}
           />
@@ -215,6 +280,7 @@ export default function EditProfile({ open, toggleDrawer }) {
           />
           <p className="text-red-500 text-xs">{error?.lineToken}</p>
         </div>
+
         <div className="flex justify-center">
           <button
             onClick={handleClickSave}

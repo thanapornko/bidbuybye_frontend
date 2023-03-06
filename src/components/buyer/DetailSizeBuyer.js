@@ -63,9 +63,14 @@ export default function DetailSizeBuyer() {
               data-te-ripple-init
               data-te-ripple-color="light"
             >
-              {selectSize?.sizeProduct
-                ? `Size: ${selectSize?.sizeProduct}`
-                : 'Select Size'}
+              {selectSize?.sizeProduct ? (
+                `Size: ${selectSize?.sizeProduct}`
+              ) : (
+                <div>
+                  Select Size <span className="text-red-500">*</span>{' '}
+                </div>
+              )}
+
               <span className="ml-2">
                 <HiOutlineChevronDown />
               </span>

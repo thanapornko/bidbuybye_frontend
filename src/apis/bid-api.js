@@ -7,3 +7,7 @@ export const postBid = (body) => axios.post('/bid', body);
 
 export const getPriceBid = (productId, sizeId) =>
   axios.get(`/bid/priceMaxBySize/${productId}/${sizeId}`);
+
+export const getBids = () => axios.get('/bid/bidask');
+
+export const deleteBid = (id) => axios.put('/bid/deleteBid', id);

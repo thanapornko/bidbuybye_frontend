@@ -1,17 +1,33 @@
 import useAuth from '../hooks/useAuth';
 import profile from '../Images/profile.jpg';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import OrderStatusModal from '../components/OrderStatusModal';
 
 export default function OrderStatus() {
-  const { authenticatedUser } = useAuth();
+  const [open, setOpen] = useState(false);
+  const { authenticatedUser, logout } = useAuth();
   const [file, setFile] = useState(null);
+  const navigate = useNavigate();
+
+  const toggleDrawer = () => {
+    setOpen(!open);
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
   return (
     <>
       {/* nav left */}
       <div className="flex">
-        <OrderStatusModal />
+        <OrderStatusModal
+          open={open}
+          setOpen={setOpen}
+          toggleDrawer={toggleDrawer}
+        />
         <div className="flex-col bg-white h-screen w-1/5 ">
           <div className="flex items-center justify-around pt-3 pb-2 px-5 shadow">
             <img
@@ -35,6 +51,13 @@ export default function OrderStatus() {
             <h2 className="text-m text-gray-600">Profile</h2>
           </Link>
           <Link
+            to="/bidask"
+            className="flex items-center justify-center py-5 shadow-sm hover:bg-gray-100"
+          >
+            <i className="fa-solid fa-tag text-m pr-2 text-gray-600" />
+            <h2 className="text-m text-gray-600">Bid/Ask status</h2>
+          </Link>
+          <Link
             to="/orderstatus"
             href="#"
             className="flex items-center justify-center py-5 shadow-sm hover:bg-gray-100"
@@ -55,7 +78,9 @@ export default function OrderStatus() {
             className="flex items-center justify-center py-5 hover:bg-gray-100"
           >
             <i className="fa-solid fa-right-from-bracket text-m pr-2 text-gray-600"></i>
-            <h2 className="text-m text-gray-600">Logout</h2>
+            <h2 className="text-m text-gray-600" onClick={handleLogout}>
+              Logout
+            </h2>
           </a>
         </div>
 
@@ -75,10 +100,7 @@ export default function OrderStatus() {
                 </div>
                 <button
                   className="fa-solid fa-greater-than text-md text-gray-500 flex items-end pb-1"
-                  data-drawer-target="drawer-right-example"
-                  data-drawer-show="drawer-right-example"
-                  data-drawer-placement="right"
-                  aria-controls="drawer-right-example"
+                  onClick={toggleDrawer}
                 ></button>
               </div>
             </div>
