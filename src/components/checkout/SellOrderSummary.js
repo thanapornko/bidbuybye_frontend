@@ -15,23 +15,23 @@ import styled from 'styled-components';
 const MirrorImage10 = styled.img`
   width: 48px;
   height: 48px;
-  transform: scaleX(1) rotate(5deg);
+  transform: scaleX(-1) rotate(-5deg);
 `;
 
 const MirrorImage = styled.img`
   width: 48px;
   height: 48px;
-  transform: scaleX(-1) rotate(0deg);
+  transform: scaleX(1) rotate(0deg);
 `;
 
 const MirrorImage30 = styled.img`
   width: 48px;
   height: 48px;
-  transform: scalex(1) rotate(-5deg);
+  transform: scalex(-1) rotate(3deg);
 `;
 
 function SellOrderSummary(props) {
-  // const { NewmaxPriceBySize, productDetail } = useProduct();
+  const [isChecked, setIsChecked] = useState(false);
   const [open, setOpen] = useState(false);
   const [newOpen, setNewOpen] = useState(false);
   const toggleDrawer = () => {
@@ -63,10 +63,20 @@ function SellOrderSummary(props) {
   function deleteMaxPrice() {
     localStorage.removeItem('maxPrice');
   }
+  const handleCheckboxChange = (event) => {
+    setIsChecked(event.target.checked);
+  };
 
-  console.log(NewmaxPriceBySize);
-  console.log(productDetail);
-  console.log(authenticatedUser);
+  const handleSubmit = () => {
+    // Perform the submit action only if the checkbox is checked
+    if (isChecked) {
+      // Perform the submit action here
+      console.log('Submitting form');
+    } else {
+      // Show an error message here
+      console.log('Checkbox not checked');
+    }
+  };
   return (
     // container all
     <div className="flex gap-4">
@@ -182,7 +192,7 @@ function SellOrderSummary(props) {
               <BsTruck />
               Shipping method
             </div>
-            <button className="hover:underline">Kerry Express</button>
+            <div className="hover:underline">Kerry Express</div>
           </div>
 
           <div className="flex p-[16px] items-center justify-between border-t-2">
@@ -228,18 +238,19 @@ function SellOrderSummary(props) {
             </div>
 
             <div>
-              {/* top */}
               <div className="flex gap-5">
-                <span className="mt-2">
+                <span>
                   <input
                     type={'checkbox'}
-                    className="outline-none border-none"
+                    className="border border-gray-400 rounded p-2 focus:outline-none"
+                    checked={isChecked}
+                    onChange={handleCheckboxChange}
                   />
                 </span>
                 <div>
                   <p className="text-[14px] font-bold">
                     I've read and agree to{' '}
-                    <span className="underline">terms & conditions</span>
+                    <span className="underline">terms &amp; conditions</span>
                   </p>
                   <p className="text-[12px]">
                     {' '}
@@ -248,6 +259,7 @@ function SellOrderSummary(props) {
                   </p>
                 </div>
               </div>
+
               {/* bottom */}
               <div className="flex flex-row justify-between  mt-7 gap-5">
                 <div>
@@ -269,7 +281,13 @@ function SellOrderSummary(props) {
                   <motion.div whileTap={{ scale: 0.75 }}>
                     <nav>
                       <Link to="/sell-completed">
-                        <button class="text-[12px] text-[#5A5A5A] px-[15px] py-[5px] bg-[#D9D9D9] font-medium	text-center w-[273px] h-[36px] rounded	">
+                        <button
+                          class="text-[12px]
+                         text-[#5A5A5A] px-[15px] py-[5px] 
+                         bg-[#D9D9D9] font-medium	text-center w-[273px] h-[36px] rounded	"
+                          onClick={handleSubmit}
+                          disabled={!isChecked} // Disable the button if the checkbox is not checked
+                        >
                           Submit
                         </button>
                       </Link>

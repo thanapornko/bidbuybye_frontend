@@ -31,7 +31,7 @@ const MirrorImage30 = styled.img`
 `;
 
 function BuyOrderSummary(props) {
-  // const { NewMinPriceBySize, productDetail } = useProduct();
+  const [isChecked, setIsChecked] = useState(false);
   const [open, setOpen] = useState(false);
   const toggleDrawer = () => {
     setOpen(!open);
@@ -60,9 +60,20 @@ function BuyOrderSummary(props) {
     localStorage.removeItem('minPrice');
   }
 
-  console.log(NewMinPriceBySize);
-  console.log(productDetail);
-  console.log(authenticatedUser);
+  const handleCheckboxChange = (event) => {
+    setIsChecked(event.target.checked);
+  };
+
+  const handleSubmit = () => {
+    // Perform the submit action only if the checkbox is checked
+    if (isChecked) {
+      // Perform the submit action here
+      console.log('Submitting form');
+    } else {
+      // Show an error message here
+      console.log('Checkbox not checked');
+    }
+  };
   return (
     // container all
     <div className="flex gap-4">
@@ -182,7 +193,7 @@ function BuyOrderSummary(props) {
               <BsTruck />
               Shipping method
             </div>
-            <div>Standard delivery </div>
+            <div>Kerry Express </div>
           </div>
 
           <div className="flex p-[16px] items-center justify-between border-t-2">
@@ -230,10 +241,12 @@ function BuyOrderSummary(props) {
             <div>
               {/* top */}
               <div className="flex gap-5">
-                <span className="mt-2">
+                <span>
                   <input
-                    type={'checkbox'}
-                    className="outline-none border-none"
+                    type="checkbox"
+                    className="border border-gray-400 rounded px-2 focus:outline-none"
+                    checked={isChecked}
+                    onChange={handleCheckboxChange}
                   />
                 </span>
                 <div>
@@ -269,7 +282,13 @@ function BuyOrderSummary(props) {
                   <motion.div whileTap={{ scale: 0.75 }}>
                     <nav>
                       <Link to={`/buy-payment/${productId}`}>
-                        <button class="text-[12px] text-[#5A5A5A] px-[15px] py-[5px] bg-[#D9D9D9] font-medium	text-center w-[273px] h-[36px] rounded	">
+                        <button
+                          class="text-[12px] text-[#5A5A5A] 
+                        px-[15px] py-[5px] bg-[#D9D9D9] font-medium
+                        	text-center w-[273px] h-[36px] rounded	"
+                          onClick={handleSubmit}
+                          disabled={!isChecked} // Disable the button if the checkbox is not checked
+                        >
                           Submit
                         </button>
                       </Link>

@@ -7,8 +7,27 @@ import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import useProduct from '../../hooks/useProduct';
 import useAuth from '../../hooks/useAuth';
+import styled from 'styled-components';
 
 let OmiseCard;
+
+const MirrorImage10 = styled.img`
+  width: 48px;
+  height: 48px;
+  transform: scaleX(1) rotate(5deg);
+`;
+
+const MirrorImage = styled.img`
+  width: 48px;
+  height: 48px;
+  transform: scaleX(-1) rotate(0deg);
+`;
+
+const MirrorImage30 = styled.img`
+  width: 48px;
+  height: 48px;
+  transform: scalex(1) rotate(-5deg);
+`;
 
 function CreditCard(props) {
   const navigate = useNavigate();
@@ -153,22 +172,22 @@ function CreditCard(props) {
               <p className="text-sm">Product Images</p>
               <p>
                 <div className="flex">
-                  <img
+                  <MirrorImage10
                     src={NewMinPriceBySize?.product}
                     alt="nikeDunkLow"
                     className="w-[48px] h-[48px]"
                   />
 
-                  <img
+                  <MirrorImage
                     src={NewMinPriceBySize?.product}
                     alt="nikeDunkLow"
                     className="w-[48px] h-[48px]"
                   />
 
-                  <img
+                  <MirrorImage30
                     src={NewMinPriceBySize?.product}
                     alt="nikeDunkLow"
-                    className="w-[48px] h-[48px]"
+                    className="w-[48px] h-[48px] ml-[3px]"
                   />
                 </div>
               </p>
@@ -215,12 +234,6 @@ function CreditCard(props) {
 
         <div className="flex flex-row justify-center ml-[5px] ">
           <div className="p-1 text-[10px] mt-5 "> Add new card </div>
-        </div>
-        <div className="flex flex-row justify-center  ">
-          <div className="p-1 text-[10px] mt-5 text-gray-400 ml-[5px] ">
-            {' '}
-            You can add to 5 cards to 1 SASOM account{' '}
-          </div>
         </div>
 
         <div className="flex flex-row justify-center items-end h-[100%] ">

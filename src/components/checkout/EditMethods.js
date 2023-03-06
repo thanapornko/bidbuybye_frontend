@@ -23,17 +23,25 @@ export default function EditProfile({ open, toggleDrawer }) {
       [e.target.name]: e.target.value
     });
   };
-  // const handleChangeOutput = (event) => {
-  //   setSelectedBank(event.target.value);
-  // };
+
   const handleClickSubmit = (e) => {
     e.preventDefault();
 
     setBankTransfer(input);
+
+    // close the modal
+    toggleDrawer();
+  };
+
+  const handleClickCancel = () => {
+    // reset the form
+    setInput(initialInput);
+    setSelectedBank('');
+    // close the modal
+    toggleDrawer();
   };
 
   console.log(input, '5555588888888888888888888888');
-  // console.log(selectedBank);
 
   return (
     <>
@@ -139,7 +147,13 @@ export default function EditProfile({ open, toggleDrawer }) {
           </div>
           <div className="h-[85px] w-[100%] mt-[24px] absolute bottom-0 flex flex-row justify-center gap-[35px] ">
             <div>
-              <button class="text-[12px] text-[#5A5A5A] px-[15px] py-[5px] border-2 font-medium	text-center w-[12vw] h-[36px] rounded	hover:border-gray-900 cursor-pointer">
+              <button
+                class="text-[12px] 
+              text-[#5A5A5A] px-[15px] py-[5px]
+               border-2 font-medium	text-center w-[12vw] h-[36px] 
+               rounded	hover:border-gray-900 cursor-pointer"
+                onClick={handleClickCancel}
+              >
                 Cancel
               </button>
             </div>
