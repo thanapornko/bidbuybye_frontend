@@ -16,8 +16,10 @@ export default function Profile() {
     console.log(authenticatedUser);
   }, [authenticatedUser]);
 
-  const bd = String(authenticatedUser.birthDate);
-  const newDate = bd.slice(0, 10);
+  const bd = authenticatedUser.birthDate
+    ? String(authenticatedUser.birthDate)
+    : '';
+  const newDate = bd.slice(0, 10) || '-';
 
   const toggleDrawer = () => {
     setOpen(!open);
