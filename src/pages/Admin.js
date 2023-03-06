@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import * as adminApi from '../apis/admin-api';
 import useAuth from '../hooks/useAuth';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function Admin() {
   const [order, setOrder] = useState([]);

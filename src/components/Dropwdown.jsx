@@ -12,6 +12,7 @@ export default function Dropdown({
   const [categoryDropdown, setCategoryDropdown] = useState(false);
   const [brandDropdown, setBrandDropdown] = useState(false);
   const [priceDropdown, setPriceDropdown] = useState(false);
+  const [listingType, setListingType] = useState(false);
 
   const [categorys, setCategorys] = useState('');
 
@@ -46,7 +47,6 @@ export default function Dropdown({
           <AiOutlineCaretUp className="h-8" />
         )}
       </button>
-
       {categoryDropdown && (
         <div className="flex flex-col items-start  gap-2  mb-3 mt-3">
           {categorys && (
@@ -89,7 +89,6 @@ export default function Dropdown({
           <AiOutlineCaretUp className="h-8 " />
         )}
       </button>
-
       {brandDropdown && (
         <div className=" flex flex-col items-start  gap-2  mb-3 mt-3">
           {brands?.map((el) => (
@@ -113,10 +112,43 @@ export default function Dropdown({
           ))}
         </div>
       )}
+      {/* ----------------------------------------------------------------------- */}
+      {/* ListingType */}
+      <button
+        onClick={() => setListingType((prev) => !prev)}
+        className="border-b-[1px] w-full flex items-center justify-between gap-10  text-lg text-[0.85rem] tracking-wider rounde-lg"
+      >
+        ListingType
+        {!listingType ? (
+          <AiOutlineCaretDown className="h-8 " />
+        ) : (
+          <AiOutlineCaretUp className="h-8 " />
+        )}
+      </button>
+      {listingType && (
+        <div className=" flex flex-col items-start  gap-2  mb-3 mt-3">
+          <div className="w-full hover:bg-gray-100 cursor-pointer p-2">
+            <button>
+              <p className="text-[16px] text-[#1B1B1B]">Ask</p>
+            </button>
+            <p className="text-[12px] text-[#969696]">
+              View all ask placed by sellers
+            </p>
+          </div>
 
+          <div className="w-full hover:bg-gray-100 cursor-pointer p-2">
+            <button>
+              <p className="text-[16px] text-[#1B1B1B]">Bid</p>
+            </button>
+            <p className="text-[12px] text-[#969696]">
+              View all ask placed by buyers
+            </p>
+          </div>
+        </div>
+      )}
       {/* ----------------------------------------------------------------------- */}
       {/* Price */}
-      <button
+      {/* <button
         onClick={() => setPriceDropdown((prev) => !prev)}
         className="border-b-[1px] w-full flex items-center justify-between gap-10 text-[0.85rem]  text-lg tracking-wider rounde-lg"
       >
@@ -127,7 +159,6 @@ export default function Dropdown({
           <AiOutlineCaretUp className="h-8" />
         )}
       </button>
-
       {priceDropdown && (
         <div className=" flex flex-col items-start  gap-2  mb-3 mt-3 p-2">
           <form className="flex flex-col gap-2">
@@ -181,8 +212,7 @@ export default function Dropdown({
             </div>
           </form>
         </div>
-      )}
-      {/* ----------------------------------------------------------------------- */}
+      )} */}
     </div>
   );
 }

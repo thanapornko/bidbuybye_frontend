@@ -55,7 +55,7 @@ export default function ProductPage() {
   }
   // -------------------------------------------------
 
-  console.log(products);
+  // console.log(products);
 
   return (
     <div className="flex w-[100%] ">
@@ -96,7 +96,7 @@ export default function ProductPage() {
                   key={item.id}
                   image={item.ProductImage}
                   productname={item.title}
-                  brand={item.Brand.title}
+                  // brand={item.Brand.title}
                   title={item.Category?.typeProduct}
                   // price={item.price}
                 />

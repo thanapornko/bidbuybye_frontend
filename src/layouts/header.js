@@ -23,7 +23,7 @@ export default function Header() {
   };
 
   return (
-    <div className="flex flex-col border-b-2">
+    <div className="flex flex-col border-b-2 ">
       <div className="flex justify-end bg-black">
         <h1 className="flex justify-center items-center text-white text-xs h-[32px] p-3 cursor-pointer">
           HELP

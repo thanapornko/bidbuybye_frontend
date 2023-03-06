@@ -1,23 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BsChevronCompactLeft, BsChevronCompactRight } from 'react-icons/bs';
 import ProductClote from '../features/products/CloteNike/ProductClote';
-import NewBalance from '../assets/5a1ed88b4ac6b00ff574e2fa.png';
+import { Link } from 'react-router-dom';
+import * as brandAPI from '../apis/brand-api';
+import { slides } from '../mocks/DataImageSlides';
 
 export default function HomePage() {
-  const slides = [
-    {
-      url: 'https://sasom.co.th/_next/image?url=https%3A%2F%2Fd2cva83hdk3bwc.cloudfront.net%2FHero_Banner_1_en.webp&w=1920&q=75'
-    },
-    {
-      url: 'https://sasom.co.th/_next/image?url=https%3A%2F%2Fd2cva83hdk3bwc.cloudfront.net%2FHero_Banner_2_en.webp&w=1920&q=75'
-    },
-    {
-      url: 'https://sasom.co.th/_next/image?url=https%3A%2F%2Fd2cva83hdk3bwc.cloudfront.net%2FHero_Banner_3_en.webp&w=1920&q=75'
-    },
-    {
-      url: 'https://sasom.co.th/_next/image?url=https%3A%2F%2Fd2cva83hdk3bwc.cloudfront.net%2FHero_Banner_4_en.webp&w=1920&q=75'
-    }
-  ];
+  const [brands, setBrands] = useState([]);
+  useEffect(() => {
+    const fetchBrand = async () => {
+      const res = await brandAPI.getBrand();
+      setBrands(res.data.brand);
+    };
+    fetchBrand();
+  }, []);
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -56,52 +52,22 @@ export default function HomePage() {
       <div className="flex flex-col m-auto  w-[80%]">
         {/* Container icon */}
         <div className="flex justify-center items-center gap-20">
-          <div className="flex flex-col justify-center items-center cursor-pointer gap-2">
-            <img
-              alt="img"
-              src="https://img.icons8.com/ios-filled/256/nike.png"
-              className="w-[56px] bg-gray-200 p-2 rounded-full  text-black"
-            ></img>
-            <p className="text-xs">Nike</p>
-          </div>
-
-          <div className="flex flex-col justify-center items-center cursor-pointer gap-2">
-            <img
-              alt="img"
-              src="https://img.icons8.com/ios/256/adidas-trefoil.png"
-              className="w-[56px] bg-gray-200 p-2 rounded-full  text-black"
-            ></img>
-            <p className="text-xs">Adidas</p>
-          </div>
-
-          <div className="flex flex-col justify-center items-center cursor-pointer gap-2">
-            <img
-              alt="img"
-              src="https://img.icons8.com/ios/256/air-jordan.png"
-              className="w-[56px] bg-gray-200 p-2 rounded-full  text-black"
-            ></img>
-            <p className="text-xs">Jodan</p>
-          </div>
-
-          <div className="flex flex-col justify-center items-center cursor-pointer gap-2">
-            <img
-              alt="img"
-              src={NewBalance}
-              className="w-[56px] bg-gray-200 p-2 rounded-full  text-black"
-            ></img>
-            <p className="text-xs">New Balance</p>
-          </div>
+          {brands.map((el) => (
+            <Link to="/product" state={{ id: el.id }}>
+              <div className="flex flex-col justify-center items-center cursor-pointer gap-2">
+                <img
+                  alt="img"
+                  src="https://img.icons8.com/ios-filled/256/nike.png"
+                  className="w-[56px] bg-gray-200 p-2 rounded-full  text-black"
+                ></img>
+                <p className="text-xs">{el.title}</p>
+              </div>
+            </Link>
+          ))}
         </div>
-        {/* --------------------------------------------------------- */}
 
         {/* Container shoe Brand*/}
         <ProductClote />
-
-        {/* --------------------------------------------------------- */}
-
-        {/* Container clothes */}
-
-        {/* --------------------------------------------------------- */}
       </div>
     </div>
   );
