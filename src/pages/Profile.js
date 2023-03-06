@@ -10,11 +10,16 @@ export default function Profile() {
   const [open, setOpen] = useState(false);
   const { authenticatedUser, logout } = useAuth();
   const [file, setFile] = useState(null);
-  // const [user, setUser] = useState(authenticatedUser);
   const navigate = useNavigate();
 
-  const bd = String(authenticatedUser.birthDate);
-  const newDate = bd.slice(0, 10);
+  useEffect(() => {
+    console.log(authenticatedUser);
+  }, [authenticatedUser]);
+
+  const bd = authenticatedUser.birthDate
+    ? String(authenticatedUser.birthDate)
+    : '';
+  const newDate = bd.slice(0, 10) || '-';
 
   const toggleDrawer = () => {
     setOpen(!open);
@@ -25,7 +30,6 @@ export default function Profile() {
     navigate('/');
   };
 
-  console.log(authenticatedUser, '-------------------AU');
   return (
     <>
       {/* nav left */}
@@ -47,8 +51,8 @@ export default function Profile() {
               className="h-16 w-16 rounded-full border-2 text-gray-600"
             />
             <h2 className="text-m text-gray-600 font-bold">
-              {authenticatedUser.firstName || 'firstName'}{' '}
-              {authenticatedUser.lastName || 'lastName'}
+              {authenticatedUser.firstName || authenticatedUser.email}{' '}
+              {authenticatedUser.lastName || ''}
             </h2>
           </div>
           <a
@@ -113,22 +117,22 @@ export default function Profile() {
             />
             <div className="flex">
               <div className="mt-8 mx-5 space-y-3 text-md font-bold w-1/5 text-gray-600">
-                <p className="">First Name</p>
-                <p className="">Last Name</p>
-                <p className="">Birthday</p>
-                <p className="">Email Address</p>
-                <p className="">Mobile</p>
-                <p className="">Address</p>
-                <p className="">Line Token</p>
+                <p>First Name</p>
+                <p>Last Name</p>
+                <p>Birthday</p>
+                <p>Email Address</p>
+                <p>Mobile</p>
+                <p>Address</p>
+                <p>Line Token</p>
               </div>
               <div className="mt-8 mx-5 space-y-3 text-md text-md">
-                <p className=""> {authenticatedUser.firstName || '-'}</p>
-                <p className="">{authenticatedUser.lastName || '-'}</p>
-                <p className="">{newDate || '-'}</p>
-                <p className="">{authenticatedUser.email || '-'}</p>
-                <p className="">{authenticatedUser.mobilePhone || '-'}</p>
-                <p className="">{authenticatedUser.address || '-'}</p>
-                <p className="">{authenticatedUser.lineToken || '-'}</p>
+                <p> {authenticatedUser.firstName || '-'}</p>
+                <p>{authenticatedUser.lastName || '-'}</p>
+                <p>{newDate && newDate !== 'null' ? newDate : '-'}</p>
+                <p>{authenticatedUser.email || '-'}</p>
+                <p>{authenticatedUser.mobilePhone || '-'}</p>
+                <p>{authenticatedUser.address || '-'}</p>
+                <p>{authenticatedUser.lineToken || '-'}</p>
               </div>
             </div>
           </div>

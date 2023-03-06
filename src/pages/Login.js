@@ -9,6 +9,13 @@ export default function Login() {
   const { login, googleLogin } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+
+  const toggleShowPassword = (e) => {
+    e.preventDefault();
+    setShowPassword(!showPassword);
+  };
+
   const navigate = useNavigate();
 
   const handleSubmitForm = async (e) => {
@@ -26,12 +33,6 @@ export default function Login() {
   };
 
   const handleCallbackResponse = async (response) => {
-    // console.log('Encoded JWT ID token: ' + response.credential);
-    // let userObject = jwt_decoded(response.credential);
-    // let email = userObject.email;
-    // let fname = userObject.given_name;
-    // let lname = userObject.family_name;
-    // console.log('---------userobj', email, fname, lname);
     try {
       await googleLogin({ token: response.credential });
       toast.success('Welcome');
@@ -102,17 +103,20 @@ export default function Login() {
               >
                 Password
                 <input
-                  type="password"
+                  type={showPassword ? 'text' : 'password'}
                   name="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Password"
                   className="form-input block w-full p-2.5 bg-white border-b text-gray-900 focus:outline-none focus:border-b-black"
                 />
-                <button className="fa-solid fa-eye pr-1 absolute right-5 bottom-3" />
-                {/* <i className="fa-solid fa-eye-slash"/> */}
+                <button
+                  className={`fa-solid ${
+                    showPassword ? 'fa-eye-slash' : 'fa-eye'
+                  } pr-1 absolute right-5 bottom-3`}
+                  onClick={toggleShowPassword}
+                />{' '}
               </label>
-              {/* <div className="text-red-500 text-sm pt-1">error</div> */}
             </div>
             <div className="flex justify-end">
               <a className="text-sm" href="#">
