@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import useProduct from '../../hooks/useProduct';
 import ButtonProduct from '../product/ButtonProduct';
 import formattedValued from '../../utils/currency';
+import { useParams } from 'react-router-dom';
 
 export default function DetailPriceSeller({ onClickBack, onClickAsk }) {
   const {
@@ -17,6 +18,7 @@ export default function DetailPriceSeller({ onClickBack, onClickAsk }) {
     selectSize,
     selectEquipment
   } = useProduct();
+  const { productId } = useParams();
 
   const navigate = useNavigate();
 
@@ -26,6 +28,7 @@ export default function DetailPriceSeller({ onClickBack, onClickAsk }) {
     resetSavedValue();
     resetSelectEquipment();
   };
+  console.log(maxPriceBySize?.maxPrice);
 
   const createdAndReset = async () => {
     await createAsk();
@@ -65,7 +68,7 @@ export default function DetailPriceSeller({ onClickBack, onClickAsk }) {
             Would you like to sell now to the highest bidder?
           </div>
           <div className="flex items-center ">
-            <Link to={`/checkout`}>
+            <Link to={`/sell-checkout/${productId}`}>
               <div className="flex items-center text-xl pr-2">
                 {maxPriceBySize?.maxPrice > 0
                   ? `฿ ${formattedValued(maxPriceBySize?.maxPrice)}`

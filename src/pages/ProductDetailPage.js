@@ -34,7 +34,6 @@ export default function ProductDetailPage() {
       } catch (error) {}
     })();
   }, [productId]);
-  // console.log(productDetail);
 
   return (
     <div>
