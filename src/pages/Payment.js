@@ -1,8 +1,8 @@
 import { React, useState } from 'react';
 // import Script from 'react-load-script';
-import OrderSummary from '../components/checkout/OrderSummary';
+
 import CreditCard from '../components/payment/CreditCard';
-import TotalPrices from '../components/payment/TotalPrices';
+
 import axios from 'axios';
 // import axios from '../config/axios';
 import useOrder from '../hooks/useOrder';
@@ -37,16 +37,7 @@ function Payment() {
   console.log(charge);
   return (
     <div className="ml-40 h-full">
-      <div className="flex flex-row justify-center mt-20 ">
-        <div>
-          {/* <div>
-            <OrderSummary order={order} />
-          </div> */}
-
-          {/* <div>
-            <TotalPrices order={order} />
-          </div> */}
-        </div>
+      <div className="flex flex-row justify-center mt-[200px] mb-[500px] ">
         <div className="px-3"></div>
         <div>
           <CreditCard

@@ -16,9 +16,13 @@ import ProductDetailPage from '../pages/ProductDetailPage';
 import RedirectAuth from '../auth/RedirectAuth';
 import ProtectedRoute from '../auth/ProtectedRoute';
 
-import Checkout from '../pages/Checkout';
 import Payment from '../pages/Payment';
 import Completed from '../pages/Completed';
+import SellCheckout from '../pages/SellCheckout';
+import BuyCheckout from '../pages/BuyCheckout';
+import BuyPayment from '../pages/BuyPayment';
+import SellCompleted from '../pages/SellCompleted';
+import BidAskPage from '../pages/BidAskPage';
 import AdminProtectedRoute from '../auth/AdminProtectedRoute';
 
 const router = createBrowserRouter([
@@ -54,6 +58,7 @@ const router = createBrowserRouter([
           </ProtectedRoute>
         )
       },
+      { path: '/bidask', element: <BidAskPage /> },
       {
         path: '/history',
         element: (
@@ -79,17 +84,30 @@ const router = createBrowserRouter([
         element: <OrderStatusPage />
       },
       {
-        path: '/checkout',
-        element: <Checkout />
+        path: '/sell-checkout/:productId',
+        element: <SellCheckout />
+      },
+      {
+        path: '/buy-checkout/:productId',
+        element: <BuyCheckout />
       },
       {
         path: '/payment',
         element: <Payment />
       },
+      {
+        path: '/buy-payment/:productId',
+        element: <BuyPayment />
+      },
 
       {
         path: '/completed',
         element: <Completed />
+      },
+
+      {
+        path: '/sell-completed',
+        element: <SellCompleted />
       },
       {
         path: '/product/detail/:productId',

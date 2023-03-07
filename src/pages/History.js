@@ -1,4 +1,5 @@
 import useAuth from '../hooks/useAuth';
+import useProduct from '../hooks/useProduct';
 import profile from '../Images/profile.jpg';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -41,8 +42,8 @@ export default function History() {
               className="h-16 w-16 rounded-full border-2 text-gray-600"
             />
             <h2 className="text-m text-gray-600 font-bold ">
-              {authenticatedUser.firstName || 'firstName'}{' '}
-              {authenticatedUser.lastName || 'lastName'}
+              {authenticatedUser.firstName || authenticatedUser.email}{' '}
+              {authenticatedUser.lastName || ''}
             </h2>
           </div>
           <Link
@@ -51,6 +52,13 @@ export default function History() {
           >
             <i className="fa-solid fa-user text-m pr-2 text-gray-600" />
             <h2 className="text-m text-gray-600">Profile</h2>
+          </Link>
+          <Link
+            to="/bidask"
+            className="flex items-center justify-center py-5 shadow-sm hover:bg-gray-100"
+          >
+            <i className="fa-solid fa-tag text-m pr-2 text-gray-600" />
+            <h2 className="text-m text-gray-600">Bid/Ask status</h2>
           </Link>
           <Link
             to="/orderstatus"
@@ -96,16 +104,28 @@ export default function History() {
                         <p>Size :</p>
                         <p>Equipment :</p>
                         <p>Price :</p>
-                        <p>Status :</p>
+                        <p>Type :</p>
+                        <p>Order status :</p>
+                        <p>Date :</p>
                       </div>
-                      <div className="my-5 mx-5 space-y-2 text-sm w-3/5 text-gray-600 ">
+                      <div className="my-5 mx-5 space-y-2 w-4/5 text-sm text-gray-600">
                         <p>{order && order.Product.title}</p>
                         <p>{order && order.Size.size_product}</p>
-                        <p>{order && (order.Bid.equipment ? 'Yes' : 'No')}</p>
+                        <p>
+                          {order &&
+                            (order.Bid.equipment
+                              ? 'Packaging'
+                              : 'None packaging')}
+                        </p>
                         <p>{order && order.Bid.price} THB</p>
                         <p>
                           {order &&
                             (order.Bid.type === 'BUYER' ? 'Buyer' : 'Seller')}
+                        </p>
+                        <p>{order && order.OrderStatuses[0].status}</p>
+                        <p>
+                          {order &&
+                            order.OrderStatuses[0].createdAt.slice(0, 10)}
                         </p>
                       </div>
                     </div>
@@ -128,47 +148,4 @@ export default function History() {
       </div>
     </>
   );
-}
-
-{
-  /* {Object.values(content).map((el) => (
-        <div className="flex border-2 mt-5 justify-between">
-          <div className="flex justify-between w-2/3">
-            <div className="my-5 mx-5 space-y-2 text-sm font-bold w-1/5 text-gray-600 ">
-              <p>Product :</p>
-              <p>Size :</p>
-              <p>Equipment :</p>
-              <p>Price :</p>
-              <p>Status :</p>
-            </div>
-            <div className="my-5 mx-5 space-y-2 text-sm w-3/5 text-gray-600 ">
-              <p>{content && content?.Orders[0].Product.title}</p>
-              <p>{content && content?.Orders[0].Size.size_product}</p>
-              <p>
-                {content &&
-                  JSON.stringify(content?.Orders[0].Bid.equipment)}
-              </p>
-              <p>
-                {content && content?.Orders[0].Bid.price}
-                {' THB'}
-              </p>
-              <p>
-                {content && JSON.stringify(content?.Orders[0].Bid.type)}
-              </p>
-            </div>
-          </div>
-          <div className="flex items-center px-2">
-            <img
-              src={
-                file
-                  ? URL.createObjectURL(file)
-                  : (content &&
-                      content?.Orders[0].Product.product_image) ||
-                    profile
-              }
-              className="h-40 w-40 bg-gray-100"
-            />
-          </div>
-        </div>
-      ))} */
 }

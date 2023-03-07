@@ -1,9 +1,12 @@
 import useProduct from '../../hooks/useProduct';
 import ButtonProduct from '../product/ButtonProduct';
 
+import { useParams } from 'react-router-dom';
+
 import { Link } from 'react-router-dom';
 
 export default function ProductBox() {
+  const { productId } = useParams();
   const { minPriceBySize } = useProduct();
   return (
     <div>
@@ -15,7 +18,7 @@ export default function ProductBox() {
             <p className="text-red-700">No one sell for now.</p>
           )}
         </div>
-        <Link to={`/checkout`}>
+        <Link to={`/buy-checkout/${productId}`}>
           <ButtonProduct className={'bg-gray-900 w-[100px] hover:bg-gray-500'}>
             Buy
           </ButtonProduct>

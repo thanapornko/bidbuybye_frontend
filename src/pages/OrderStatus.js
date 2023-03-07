@@ -19,6 +19,7 @@ export default function OrderStatus() {
     logout();
     navigate('/');
   };
+
   return (
     <>
       {/* nav left */}
@@ -39,8 +40,8 @@ export default function OrderStatus() {
               className="h-16 w-16 rounded-full border-2 text-gray-600"
             />
             <h2 className="text-m text-gray-600 font-bold">
-              {authenticatedUser.firstName || 'firstName'}{' '}
-              {authenticatedUser.lastName || 'lastName'}
+              {authenticatedUser.firstName || authenticatedUser.email}{' '}
+              {authenticatedUser.lastName || ''}
             </h2>
           </div>
           <Link
@@ -49,6 +50,13 @@ export default function OrderStatus() {
           >
             <i className="fa-solid fa-user text-m pr-2 text-gray-600" />
             <h2 className="text-m text-gray-600">Profile</h2>
+          </Link>
+          <Link
+            to="/bidask"
+            className="flex items-center justify-center py-5 shadow-sm hover:bg-gray-100"
+          >
+            <i className="fa-solid fa-tag text-m pr-2 text-gray-600" />
+            <h2 className="text-m text-gray-600">Bid/Ask status</h2>
           </Link>
           <Link
             to="/orderstatus"

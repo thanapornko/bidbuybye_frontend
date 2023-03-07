@@ -62,18 +62,33 @@ export default function AuthContextProvider({ children }) {
     setAuthenticatedUser(jwtDecode(res.data.accessToken));
   };
 
+  // const updateProfile = async (data) => {
+  //   const res = await userApi.updateProfilePicture(data);
+  //   setAuthenticatedUser({
+  //     ...authenticatedUser,
+  //     ...res.data
+  //   });
+  // };
+
   const updateProfile = async (data) => {
-    const res = await userApi.updateProfilePicture(data);
-    setAuthenticatedUser({
-      ...authenticatedUser,
-      ...res.data
-    });
+    try {
+      const res = await userApi.updateProfilePicture(data);
+      const updatedUser = {
+        ...authenticatedUser,
+        profilePicture: res.data.profilePicture
+      };
+      setAuthenticatedUser(updatedUser);
+      return res.data.profilePicture;
+    } catch (err) {
+      console.log(err.response?.data.message);
+    }
   };
 
   return (
     <AuthContext.Provider
       value={{
         authenticatedUser,
+        setAuthenticatedUser,
         login,
         logout,
         googleLogin,
