@@ -39,8 +39,6 @@ export default function BidAskPage() {
     await fetchAllBids();
   };
 
-  // console.log(allBid?.getBids, 'allBid');
-  console.log(filterBid(), 'filter**************************');
   return (
     <>
       {/* nav left */}
