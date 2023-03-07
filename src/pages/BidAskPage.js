@@ -169,7 +169,22 @@ export default function BidAskPage() {
                         : e.Order?.OrderStatuses[0].createdAt.slice(0, 10)}
                     </div>
                   </div>
-                  <div className="flex justify-center">1</div>
+                  <div className="flex justify-center">
+                    {e.Order === null ? (
+                      ''
+                    ) : (
+                      <button
+                        onClick={() => {
+                          toggleDrawer(e.id);
+                        }}
+                        className="bg-green-500 hover:bg-green-600 p-2 rounded-lg"
+                      >
+                        <p className="text-zinc-100">
+                          Click to check your order status
+                        </p>
+                      </button>
+                    )}
+                  </div>
                 </div>
                 <div className="flex items-center px-2">
                   <img
