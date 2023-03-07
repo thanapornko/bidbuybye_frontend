@@ -39,6 +39,17 @@ export default function BidAskPage() {
     await fetchAllBids();
   };
 
+  const showButtonCancel = (id) => {
+    const findingBid = allBid.getBids.find((i) => i.id === id);
+    if (findingBid !== undefined) {
+      if (findingBid.Order === null) {
+        return true;
+      }
+      return findingBid.Order?.OrderStatuses.length === 0;
+    }
+    return true;
+  };
+
   return (
     <>
       {/* nav left */}
@@ -144,7 +155,20 @@ export default function BidAskPage() {
                   </div>
                   <div className="flex justify-between">
                     <div className="font-bold ">Status :</div>
-                    <div>{e.expiredDate}</div>
+                    {e.expiredDate === 'NONE' ? (
+                      'On Process'
+                    ) : (
+                      <div>{e.expiredDate}</div>
+                    )}
+                  </div>
+                  <div className="flex justify-between">
+                    <div>Order Status :</div>
+
+                    {e.Order !== null && e.Order.OrderStatuses.length > 0
+                      ? e.Order.OrderStatuses.map((el) => (
+                          <div>{el.status}</div>
+                        ))
+                      : '-'}
                   </div>
                   <div className="flex justify-center">
                     {/* <div className="font-bold ">Order Status :</div> */}
@@ -168,7 +192,9 @@ export default function BidAskPage() {
                 </div>
 
                 <div className="flex items-end ">
-                  {e.expiredDate !== 'CANCEL' && e.expiredDate !== 'EXPIRED' ? (
+                  {e.expiredDate !== 'CANCEL' &&
+                  e.expiredDate !== 'EXPIRED' &&
+                  showButtonCancel(e.id) ? (
                     <ModalBid
                       onClick={() => {
                         fetchBids(e.id);
