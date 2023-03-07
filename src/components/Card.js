@@ -5,7 +5,8 @@ export default function Card({
   price,
   brand,
   category,
-  onClick
+  onClick,
+  minPriceBid
 }) {
   return (
     <>
@@ -26,7 +27,7 @@ export default function Card({
               <p className="text-[12px] font-bold">{title}</p>
               <p className="text-[12px] font-bold">{brand}</p>
               <p className="text-[10px] ">STARTING FROM</p>
-              <p className="text-[16px]">2000</p>
+              <p className="text-[16px]">ราคา {minPriceBid} บาท</p>
             </div>
           </div>
         </div>

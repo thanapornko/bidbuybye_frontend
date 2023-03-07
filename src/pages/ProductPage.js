@@ -10,6 +10,7 @@ export default function ProductPage() {
   const [categoryAllBrand, setCategoryAllBrand] = useState();
   const [selectedCategory, setSelectedCategory] = useState(0);
   const [selectedBrand, setSelectedBrand] = useState(0);
+  const [products, setProducts] = useState([]);
 
   const navigete = useNavigate();
   const location = useLocation();
@@ -20,11 +21,11 @@ export default function ProductPage() {
     }
   }, [location.state]);
 
-  const [products, setProducts] = useState([]);
   useEffect(() => {
     const fetchProduct = async () => {
       const res = await productAPI.getProduct();
-      setProducts(res.data.products);
+      setProducts([res.data.output]);
+      console.log([res.data.output], 'aaaaaaaaaaaa');
     };
     fetchProduct();
   }, []);
@@ -32,7 +33,6 @@ export default function ProductPage() {
   // -------------------------------------------------
 
   let filter = [];
-
   if (selectedCategory === 0) {
     filter = products.filter(
       (el) => true
@@ -91,14 +91,14 @@ export default function ProductPage() {
               .map((item) => (
                 <Card
                   onClick={() => {
-                    navigete(`/product/detail/${item.id}`);
+                    navigete(`/product/detail/${item.product.id}`);
                   }}
-                  key={item.id}
-                  image={item.ProductImage}
-                  productname={item.title}
+                  key={item.product.id}
+                  image={item.product.ProductImage}
+                  productname={item.product.title}
                   // brand={item.Brand.title}
-                  title={item.Category?.typeProduct}
-                  // price={item.price}
+                  title={item.products.Category?.typeProduct}
+                  minPriceBid={item.minbid}
                 />
               ))}
           </div>

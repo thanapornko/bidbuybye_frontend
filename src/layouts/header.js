@@ -6,7 +6,6 @@ import Search from '../components/Search';
 import useAuth from '../hooks/useAuth';
 import logo from '../assets/logo.png';
 import { Dropdown } from 'flowbite-react';
-import { Navigate } from 'react-router-dom';
 
 export default function Header() {
   const { authenticatedUser, logout } = useAuth();

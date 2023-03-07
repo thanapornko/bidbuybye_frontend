@@ -26,6 +26,7 @@ export default function ProductContextProvider({ children }) {
   // state keep minPriceBySize
   const [minPriceBySize, setMinPriceBySize] = useState();
   const [maxPriceBySize, setMaxPriceBySize] = useState();
+  console.log(bidPrice, 'bidPrice');
 
   //click to sell page
   const onClickSeller = () => {

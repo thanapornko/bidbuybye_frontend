@@ -14,7 +14,7 @@ const Search = ({ openSearch, setOpenSearch }) => {
   useEffect(() => {
     const fetchProduct = async () => {
       const res = await productAPI.getProduct();
-      setProducts(res.data.products);
+      setProducts(res.data.output);
     };
     fetchProduct();
   }, []);
@@ -23,8 +23,8 @@ const Search = ({ openSearch, setOpenSearch }) => {
   const searchProduct = (products) => {
     return products.filter((el) => {
       return (
-        el.title.toLowerCase().includes(word.toLowerCase()) ||
-        el.title.brand?.toLowerCase().includes(word.toLowerCase())
+        el.product.title.toLowerCase().includes(word.toLowerCase()) ||
+        el.product.title.brand?.toLowerCase().includes(word.toLowerCase())
       );
     });
   };
@@ -37,7 +37,6 @@ const Search = ({ openSearch, setOpenSearch }) => {
     <>
       <Modal
         show={openSearch}
-        onScroll={false}
         size="100-vw"
         onClose={() => {
           setOpenSearch(false);
@@ -81,10 +80,10 @@ const Search = ({ openSearch, setOpenSearch }) => {
                           setOpenSearch(false);
                         }}
                         key={item.id}
-                        image={item.ProductImage}
-                        productname={item.title}
-                        brand={item.Brand.title}
-                        title={item.Category?.typeProduct}
+                        image={item.product.ProductImage}
+                        productname={item.product.title}
+                        brand={item.product.Brand.title}
+                        title={item.product.Category?.typeProduct}
                         // price={item.price}
                       />
                     ))
