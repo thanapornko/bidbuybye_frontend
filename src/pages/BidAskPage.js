@@ -169,7 +169,6 @@ export default function BidAskPage() {
                         : e.Order?.OrderStatuses[0].createdAt.slice(0, 10)}
                     </div>
                   </div>
-                  <div className="flex justify-center">1</div>
                 </div>
                 <div className="flex items-center px-2">
                   <img
