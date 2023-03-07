@@ -16,8 +16,8 @@ export default function BidAskPage() {
 
   const filterBid = () => {
     if (bid) {
-      const filtered = allBid.getBids.filter((i) => i.id === bid);
-      return filtered;
+      const filteredId = allBid?.getBids.filter((i) => i.id === bid);
+      return filteredId;
     }
   };
 
@@ -162,16 +162,12 @@ export default function BidAskPage() {
                     )}
                   </div>
                   <div className="flex justify-between">
-                    <div>Order Status :</div>
-
-                    {e.Order !== null && e.Order.OrderStatuses.length > 0
-                      ? e.Order.OrderStatuses.map((el) => (
-                          <div>{el.status}</div>
-                        ))
-                      : '-'}
+                    <div className="font-bold ">Date :</div>
+                    <div>
+                      {e.Order?.OrderStatuses[0].createdAt.slice(0, 10)}
+                    </div>
                   </div>
                   <div className="flex justify-center">
-                    {/* <div className="font-bold ">Order Status :</div> */}
                     <button
                       onClick={() => {
                         toggleDrawer(e.id);

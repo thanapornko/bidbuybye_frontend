@@ -4,11 +4,7 @@ import 'react-modern-drawer/dist/index.css';
 import useProduct from '../hooks/useProduct';
 
 export default function OrderStatusAsking({ open, toggleDrawer, data }) {
-  const { allBid } = useProduct();
-
-  // {
-  //   data?.map((e) => (e.type === 'SELLER' ? '' : ''));
-  // }
+  // console.log(data);
 
   return (
     <>
@@ -26,7 +22,11 @@ export default function OrderStatusAsking({ open, toggleDrawer, data }) {
             <div className="flex justify-between mx-10 mt-20">
               <div className="flex-col space-y-10 pr-4">
                 <div className="flex">
-                  <i className="fa-solid fa-circle text-green-500 text-xs mr-1"></i>
+                  {e.Order?.OrderStatuses[0].status === 'CONFIRMED' ? (
+                    <i className="fa-solid fa-circle text-green-500 text-xs mr-1"></i>
+                  ) : (
+                    <i className="fa-solid fa-circle text-gray-500 text-xs mr-1"></i>
+                  )}
                   <div className="flex-col">
                     <p className="text-sm text-gray-900">Order Confirmed</p>
                     <p className="text-sm text-gray-500">
@@ -36,7 +36,11 @@ export default function OrderStatusAsking({ open, toggleDrawer, data }) {
                   </div>
                 </div>
                 <div className="flex">
-                  <i className="fa-solid fa-circle text-green-500 text-xs mr-1"></i>
+                  {e.Order?.OrderStatuses[0].status === 'ARRIVED' ? (
+                    <i className="fa-solid fa-circle text-green-500 text-xs mr-1"></i>
+                  ) : (
+                    <i className="fa-solid fa-circle text-gray-500 text-xs mr-1"></i>
+                  )}
                   <div className="flex-col">
                     <p className="text-sm text-gray-900">
                       Item arrived at bidbuybye
@@ -47,7 +51,11 @@ export default function OrderStatusAsking({ open, toggleDrawer, data }) {
                   </div>
                 </div>
                 <div className="flex">
-                  <i className="fa-solid fa-circle text-green-500 text-xs mr-1"></i>
+                  {e.Order?.OrderStatuses[0].status === 'VERIFIED' ? (
+                    <i className="fa-solid fa-circle text-green-500 text-xs mr-1"></i>
+                  ) : (
+                    <i className="fa-solid fa-circle text-gray-500 text-xs mr-1"></i>
+                  )}
                   <div className="flex-col">
                     <p className="text-sm text-gray-900">Authentication</p>
                     <p className="text-sm text-gray-500">
@@ -56,7 +64,11 @@ export default function OrderStatusAsking({ open, toggleDrawer, data }) {
                   </div>
                 </div>
                 <div className="flex">
-                  <i className="fa-solid fa-circle text-green-500 text-xs mr-1"></i>
+                  {e.Order?.OrderStatuses[0].status === 'SHIPPED' ? (
+                    <i className="fa-solid fa-circle text-green-500 text-xs mr-1"></i>
+                  ) : (
+                    <i className="fa-solid fa-circle text-gray-500 text-xs mr-1"></i>
+                  )}
                   <div className="flex-col">
                     <p className="text-sm text-gray-900">
                       Item shipped from bidbuybye
@@ -65,19 +77,16 @@ export default function OrderStatusAsking({ open, toggleDrawer, data }) {
                   </div>
                 </div>
                 <div className="flex">
-                  <i className="fa-solid fa-circle text-green-500 text-xs mr-1"></i>
+                  {e.Order?.OrderStatuses[0].status === 'COMPLETED' ? (
+                    <i className="fa-solid fa-circle text-green-500 text-xs mr-1"></i>
+                  ) : (
+                    <i className="fa-solid fa-circle text-gray-500 text-xs mr-1"></i>
+                  )}
                   <div className="flex-col">
                     <p className="text-sm text-gray-900">Order completed</p>
                     <p className="text-sm text-gray-500">Item delivered</p>
                   </div>
                 </div>
-              </div>
-              <div className="flex-col space-y-10">
-                <p className="text-sm text-gray-900 mb-24">date 11/11/1111</p>
-                <p className="text-sm text-gray-900">date 11/11/1111</p>
-                <p className="text-sm text-gray-900">date 11/11/1111</p>
-                <p className="text-sm text-gray-900">date 11/11/1111</p>
-                <p className="text-sm text-gray-900">date 11/11/1111</p>
               </div>
             </div>
           ) : (
@@ -85,7 +94,11 @@ export default function OrderStatusAsking({ open, toggleDrawer, data }) {
             <div className="flex justify-between mx-10 mt-20">
               <div className="flex-col space-y-10">
                 <div className="flex">
-                  <i className="fa-solid fa-circle text-green-500 text-xs mr-1"></i>
+                  {e.Order?.OrderStatuses[0].status === 'CONFIRMED' ? (
+                    <i className="fa-solid fa-circle text-green-500 text-xs mr-1"></i>
+                  ) : (
+                    <i className="fa-solid fa-circle text-gray-500 text-xs mr-1"></i>
+                  )}
                   <div className="flex-col">
                     <p className="text-sm text-gray-900">
                       Seller sold to your bid
@@ -96,7 +109,11 @@ export default function OrderStatusAsking({ open, toggleDrawer, data }) {
                   </div>
                 </div>
                 <div className="flex">
-                  <i className="fa-solid fa-circle text-green-500 text-xs mr-1"></i>
+                  {e.Order?.OrderStatuses[0].status === 'ARRIVED' ? (
+                    <i className="fa-solid fa-circle text-green-500 text-xs mr-1"></i>
+                  ) : (
+                    <i className="fa-solid fa-circle text-gray-500 text-xs mr-1"></i>
+                  )}
                   <div className="flex-col">
                     <p className="text-sm text-gray-900">
                       Item arrived at bidbuybye
@@ -107,7 +124,11 @@ export default function OrderStatusAsking({ open, toggleDrawer, data }) {
                   </div>
                 </div>
                 <div className="flex">
-                  <i className="fa-solid fa-circle text-green-500 text-xs mr-1"></i>
+                  {e.Order?.OrderStatuses[0].status === 'VERIFIED' ? (
+                    <i className="fa-solid fa-circle text-green-500 text-xs mr-1"></i>
+                  ) : (
+                    <i className="fa-solid fa-circle text-gray-500 text-xs mr-1"></i>
+                  )}
                   <div className="flex-col">
                     <p className="text-sm text-gray-900">Authentication</p>
                     <p className="text-sm text-gray-500">
@@ -116,7 +137,11 @@ export default function OrderStatusAsking({ open, toggleDrawer, data }) {
                   </div>
                 </div>
                 <div className="flex">
-                  <i className="fa-solid fa-circle text-green-500 text-xs mr-1"></i>
+                  {e.Order?.OrderStatuses[0].status === 'SHIPPED' ? (
+                    <i className="fa-solid fa-circle text-green-500 text-xs mr-1"></i>
+                  ) : (
+                    <i className="fa-solid fa-circle text-gray-500 text-xs mr-1"></i>
+                  )}
                   <div className="flex-col">
                     <p className="text-sm text-gray-900">
                       Item shipped from bidbuybye
@@ -125,19 +150,16 @@ export default function OrderStatusAsking({ open, toggleDrawer, data }) {
                   </div>
                 </div>
                 <div className="flex">
-                  <i className="fa-solid fa-circle text-green-500 text-xs mr-1"></i>
+                  {e.Order?.OrderStatuses[0].status === 'COMPLETED' ? (
+                    <i className="fa-solid fa-circle text-green-500 text-xs mr-1"></i>
+                  ) : (
+                    <i className="fa-solid fa-circle text-gray-500 text-xs mr-1"></i>
+                  )}
                   <div className="flex-col">
                     <p className="text-sm text-gray-900">Order completed</p>
                     <p className="text-sm text-gray-500">Item delivered</p>
                   </div>
                 </div>
-              </div>
-              <div className="flex-col space-y-16">
-                <p className="text-sm text-gray-900">date 11/11/1111</p>
-                <p className="text-sm text-gray-900">date 11/11/1111</p>
-                <p className="text-sm text-gray-900">date 11/11/1111</p>
-                <p className="text-sm text-gray-900">date 11/11/1111</p>
-                <p className="text-sm text-gray-900">date 11/11/1111</p>
               </div>
             </div>
           )

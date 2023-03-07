@@ -104,16 +104,28 @@ export default function History() {
                         <p>Size :</p>
                         <p>Equipment :</p>
                         <p>Price :</p>
-                        <p>Status :</p>
+                        <p>Type :</p>
+                        <p>Order status :</p>
+                        <p>Date :</p>
                       </div>
                       <div className="my-5 mx-5 space-y-2 w-4/5 text-sm text-gray-600">
                         <p>{order && order.Product.title}</p>
                         <p>{order && order.Size.size_product}</p>
-                        <p>{order && (order.Bid.equipment ? 'Yes' : 'No')}</p>
+                        <p>
+                          {order &&
+                            (order.Bid.equipment
+                              ? 'Packaging'
+                              : 'None packaging')}
+                        </p>
                         <p>{order && order.Bid.price} THB</p>
                         <p>
                           {order &&
                             (order.Bid.type === 'BUYER' ? 'Buyer' : 'Seller')}
+                        </p>
+                        <p>{order && order.OrderStatuses[0].status}</p>
+                        <p>
+                          {order &&
+                            order.OrderStatuses[0].createdAt.slice(0, 10)}
                         </p>
                       </div>
                     </div>
