@@ -164,21 +164,12 @@ export default function BidAskPage() {
                   <div className="flex justify-between">
                     <div className="font-bold ">Date :</div>
                     <div>
-                      {e.Order?.OrderStatuses[0].createdAt.slice(0, 10)}
+                      {e.Order === null || e.Order?.OrderStatusese === undefined
+                        ? e.createdAt.slice(0, 10)
+                        : e.Order?.OrderStatuses[0].createdAt.slice(0, 10)}
                     </div>
                   </div>
-                  <div className="flex justify-center">
-                    <button
-                      onClick={() => {
-                        toggleDrawer(e.id);
-                      }}
-                      className="bg-green-500 hover:bg-green-600 p-2 rounded-lg"
-                    >
-                      <p className="text-zinc-100">
-                        Click to check your order status
-                      </p>
-                    </button>
-                  </div>
+                  <div className="flex justify-center">1</div>
                 </div>
                 <div className="flex items-center px-2">
                   <img
