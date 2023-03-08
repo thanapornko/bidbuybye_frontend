@@ -2,6 +2,7 @@ import { Modal } from 'flowbite-react';
 import { BiSearch } from 'react-icons/bi';
 import Card from './Card';
 import * as productAPI from '../apis/product-api';
+import * as getProductMinbit from '../apis/product-api';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Notfound from './Notfound';
@@ -9,12 +10,15 @@ import Notfound from './Notfound';
 const Search = ({ openSearch, setOpenSearch }) => {
   const [products, setProducts] = useState([]);
   const [word, setWord] = useState('');
+  const [minBid, setMidBid] = useState([]);
 
   const navigate = useNavigate();
   useEffect(() => {
     const fetchProduct = async () => {
       const res = await productAPI.getProduct();
-      setProducts(res.data.output);
+      const minbid = await getProductMinbit.getProductMinbit();
+      setProducts(res.data.products);
+      setMidBid(minbid.data.output);
     };
     fetchProduct();
   }, []);
@@ -23,8 +27,8 @@ const Search = ({ openSearch, setOpenSearch }) => {
   const searchProduct = (products) => {
     return products.filter((el) => {
       return (
-        el.product.title.toLowerCase().includes(word.toLowerCase()) ||
-        el.product.title.brand?.toLowerCase().includes(word.toLowerCase())
+        el.title.toLowerCase().includes(word.toLowerCase()) ||
+        el.title.brand?.toLowerCase().includes(word.toLowerCase())
       );
     });
   };
@@ -73,20 +77,29 @@ const Search = ({ openSearch, setOpenSearch }) => {
                   {show.length === 0 ? (
                     <Notfound />
                   ) : (
-                    show.map((item) => (
-                      <Card
-                        onClick={() => {
-                          navigate(`/product/detail/${item.id}`);
-                          setOpenSearch(false);
-                        }}
-                        key={item.id}
-                        image={item.product.ProductImage}
-                        productname={item.product.title}
-                        brand={item.product.Brand.title}
-                        title={item.product.Category?.typeProduct}
-                        // price={item.price}
-                      />
-                    ))
+                    show.map((item) => {
+                      let minBidIndex = minBid.findIndex(
+                        (el) => el.productId === item.id
+                      );
+                      return (
+                        <Card
+                          onClick={() => {
+                            navigate(`/product/detail/${item.id}`);
+                            setOpenSearch(false);
+                          }}
+                          key={item.id}
+                          image={item.ProductImage}
+                          productname={item.title}
+                          brand={item.Brand.title}
+                          title={item.Category?.typeProduct}
+                          minPriceBid={
+                            minBidIndex !== -1
+                              ? minBid[minBidIndex].minbid
+                              : null
+                          }
+                        />
+                      );
+                    })
                   )}
                 </div>
               </div>

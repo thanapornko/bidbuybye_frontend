@@ -7,6 +7,7 @@ import './ProductClote.css';
 import Card from '../../../components/Card';
 import { Link, useNavigate } from 'react-router-dom';
 import * as brandAPI from '../../../apis/brand-api';
+import * as getProductMinbit from '../../../apis/product-api';
 
 export default function ProductCloteNike() {
   const settings = {
@@ -45,13 +46,15 @@ export default function ProductCloteNike() {
   };
 
   const navigete = useNavigate();
+  const [minBid, setMidBid] = useState([]);
 
   const [brands, setBrands] = useState([]);
   useEffect(() => {
     const fetchBrand = async () => {
       const res = await brandAPI.getBrand();
+      const minbid = await getProductMinbit.getProductMinbit();
       setBrands(res.data.brand);
-      console.log(res.data.brand, 'res.data.brand');
+      setMidBid(minbid.data.output);
     };
     fetchBrand();
   }, []);
@@ -73,18 +76,25 @@ export default function ProductCloteNike() {
             </div>
             <div className="grid grid-cols-1">
               <Slider {...settings}>
-                {el.Products.map((item) => (
-                  <Card
-                    onClick={() => {
-                      navigete(`/product/detail/${item.id}`);
-                    }}
-                    key={item.id}
-                    image={item.ProductImage}
-                    productname={item.title}
-                    // brand={el.title}
-                    price={item.price}
-                  />
-                ))}
+                {el.Products.map((item) => {
+                  let minBidIndex = minBid.findIndex(
+                    (el) => el.productId === item.id
+                  );
+
+                  return (
+                    <Card
+                      onClick={() => {
+                        navigete(`/product/detail/${item.id}`);
+                      }}
+                      key={item.id}
+                      image={item.ProductImage}
+                      productname={item.title}
+                      minPriceBid={
+                        minBidIndex !== -1 ? minBid[minBidIndex].minbid : null
+                      }
+                    />
+                  );
+                })}
               </Slider>
             </div>
           </div>

@@ -7,7 +7,8 @@ export default function Dropdown({
   setSelectedCategory,
   setSelectedBrand,
   selectedCategory,
-  selectedBrand
+  selectedBrand,
+  setSelectedBid
 }) {
   const [categoryDropdown, setCategoryDropdown] = useState(false);
   const [brandDropdown, setBrandDropdown] = useState(false);
@@ -128,21 +129,21 @@ export default function Dropdown({
       {listingType && (
         <div className=" flex flex-col items-start  gap-2  mb-3 mt-3">
           <div className="w-full hover:bg-gray-100 cursor-pointer p-2">
-            <button>
+            <button onClick={() => setSelectedBid('SELLER')}>
               <p className="text-[16px] text-[#1B1B1B]">Ask</p>
+              <p className="text-[12px] text-[#969696]">
+                View all ask placed by sellers
+              </p>
             </button>
-            <p className="text-[12px] text-[#969696]">
-              View all ask placed by sellers
-            </p>
           </div>
 
           <div className="w-full hover:bg-gray-100 cursor-pointer p-2">
-            <button>
+            <button onClick={() => setSelectedBid('BUYER')}>
               <p className="text-[16px] text-[#1B1B1B]">Bid</p>
+              <p className="text-[12px] text-[#969696]">
+                View all ask placed by buyers
+              </p>
             </button>
-            <p className="text-[12px] text-[#969696]">
-              View all ask placed by buyers
-            </p>
           </div>
         </div>
       )}

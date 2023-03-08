@@ -3,6 +3,8 @@ import Card from '../components/Card';
 import NavbarShop from '../components/NanbarShop';
 import { useEffect, useState } from 'react';
 import * as productAPI from '../apis/product-api';
+import * as getProductMinbit from '../apis/product-api';
+import * as getAllBidAPI from '../apis/product-api';
 import { useLocation, Navigate, useNavigate } from 'react-router-dom';
 
 export default function ProductPage() {
@@ -11,6 +13,9 @@ export default function ProductPage() {
   const [selectedCategory, setSelectedCategory] = useState(0);
   const [selectedBrand, setSelectedBrand] = useState(0);
   const [products, setProducts] = useState([]);
+  const [minBid, setMidBid] = useState([]);
+  const [allBid, setAllBid] = useState([]);
+  const [selectedBid, setSelectedBid] = useState(0);
 
   const navigete = useNavigate();
   const location = useLocation();
@@ -24,8 +29,13 @@ export default function ProductPage() {
   useEffect(() => {
     const fetchProduct = async () => {
       const res = await productAPI.getProduct();
-      setProducts([res.data.output]);
-      console.log([res.data.output], 'aaaaaaaaaaaa');
+      const minbid = await getProductMinbit.getProductMinbit();
+      const bidsellerbuyer = await getAllBidAPI.getAllBid();
+      // console.log(bidsellerbuyer, 'ssssssssssssssss');
+      setProducts(res.data.products);
+      setMidBid(minbid.data.output);
+      setAllBid(bidsellerbuyer.data);
+      // console.log(bidsellerbuyer.data, 'bidsellerbuyer.data');
     };
     fetchProduct();
   }, []);
@@ -34,11 +44,7 @@ export default function ProductPage() {
 
   let filter = [];
   if (selectedCategory === 0) {
-    filter = products.filter(
-      (el) => true
-      // el.Category.typeProduct === 'Shoes' ||
-      // el.Category.typeProduct === 'Apperal'
-    );
+    filter = products.filter((el) => true);
     filter = filter.filter((el) =>
       selectedBrand ? el.brandId === selectedBrand : true
     );
@@ -53,9 +59,17 @@ export default function ProductPage() {
       selectedBrand ? el.brandId === selectedBrand : true
     );
   }
+  if (selectedBid === 'SELLER') {
+    filter = allBid.filter((el) => {
+      return el.ProductSizes[0]?.Bids[0]?.type === 'SELLER';
+    });
+  }
+  if (selectedBid === 'BUYER') {
+    filter = allBid.filter((el) => {
+      return el.ProductSizes[0]?.Bids[0]?.type === 'BUYER';
+    });
+  }
   // -------------------------------------------------
-
-  // console.log(products);
 
   return (
     <div className="flex w-[100%] ">
@@ -66,6 +80,7 @@ export default function ProductPage() {
           setSelectedBrand={setSelectedBrand}
           selectedCategory={selectedCategory}
           selectedBrand={selectedBrand}
+          setSelectedBid={setSelectedBid}
         />
       </div>
       {/* ----------------------------------------- */}
@@ -75,6 +90,7 @@ export default function ProductPage() {
         <NavbarShop
           setSelectedCategory={setSelectedCategory}
           setSelectedBrand={setSelectedBrand}
+          setSelectedBid={setSelectedBid}
         />
 
         {/* ----------------------------------------- */}
@@ -88,19 +104,25 @@ export default function ProductPage() {
                   item.brand === searchBrand ||
                   item.category === categoryAllBrand
               )
-              .map((item) => (
-                <Card
-                  onClick={() => {
-                    navigete(`/product/detail/${item.product.id}`);
-                  }}
-                  key={item.product.id}
-                  image={item.product.ProductImage}
-                  productname={item.product.title}
-                  // brand={item.Brand.title}
-                  title={item.products.Category?.typeProduct}
-                  minPriceBid={item.minbid}
-                />
-              ))}
+              .map((item) => {
+                let minBidIndex = minBid.findIndex(
+                  (el) => el.productId === item.id
+                );
+                return (
+                  <Card
+                    onClick={() => {
+                      navigete(`/product/detail/${item.id}`);
+                    }}
+                    key={item.id}
+                    image={item.ProductImage}
+                    productname={item.title}
+                    title={item.Category?.typeProduct}
+                    minPriceBid={
+                      minBidIndex !== -1 ? minBid[minBidIndex].minbid : null
+                    }
+                  />
+                );
+              })}
           </div>
         </div>
       </div>

@@ -26,7 +26,7 @@ export default function HomePage() {
               <div className="flex flex-col justify-center items-center cursor-pointer gap-2">
                 <img
                   alt="img"
-                  src={'https://img.icons8.com/ios-filled/256/nike.png'}
+                  src={el.brandPicture}
                   className="w-[56px] bg-gray-200 p-2 rounded-full  text-black"
                 ></img>
                 <p className="text-xs">{el.title}</p>
