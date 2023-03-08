@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import * as adminApi from '../apis/admin-api';
 import useAuth from '../hooks/useAuth';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function Admin() {
   const [order, setOrder] = useState([]);
@@ -12,7 +12,8 @@ export default function Admin() {
     try {
       const res = await adminApi.getOrder();
       setOrder(res.data);
-      console.log(res.data);
+      console.log('mark', res.data);
+      console.log('mark2', res);
     } catch (err) {
       console.log(err);
     }
@@ -23,10 +24,10 @@ export default function Admin() {
     navigate('/');
   };
 
-  const handleConfirm = async (orderId) => {
+  const handleShipped = async (orderId) => {
     try {
       console.log('orderiddd', orderId);
-      await adminApi.updateConfirm({ orderId, action: 'confirmed' });
+      await adminApi.updateShipped({ orderId, action: 'shipped' });
     } catch (err) {
       console.log(err);
     }
@@ -45,9 +46,9 @@ export default function Admin() {
       console.log(err);
     }
   };
-  const handleCompleted = async (orderId) => {
+  const handleCancel = async (orderId) => {
     try {
-      await adminApi.updateCompleted({ orderId, action: 'completed' });
+      await adminApi.updateCancel({ orderId, action: 'cancel' });
     } catch (err) {
       console.log(err);
     }
@@ -123,7 +124,7 @@ export default function Admin() {
                     <p className="text-[13px]">Item arrived at bidbuybye</p>
                     <button
                       className="bg-green-500 rounded-xl px-3 py-1"
-                      onClick={() => handleConfirm(el.id)}
+                      onClick={() => handleArrived(el.id)}
                     >
                       approve
                     </button>
@@ -133,13 +134,13 @@ export default function Admin() {
                     <div className="flex">
                       <button
                         className="bg-green-500 rounded-xl px-3 py-1 mr-1"
-                        onClick={() => handleArrived(el.id)}
+                        onClick={() => handleVerified(el.id)}
                       >
                         approve
                       </button>
                       <button
                         className="bg-red-500 rounded-xl px-3 py-1"
-                        onClick={() => handleVerified(el.id)}
+                        onClick={() => handleCancel(el.id)}
                       >
                         decline
                       </button>
@@ -149,7 +150,7 @@ export default function Admin() {
                     <p className="text-[13px]">Item shipped from bidbuybye</p>
                     <button
                       className="bg-green-500 rounded-xl px-3 py-1"
-                      onClick={() => handleCompleted(el.id)}
+                      onClick={() => handleShipped(el.id)}
                     >
                       approve
                     </button>

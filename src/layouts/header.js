@@ -6,7 +6,6 @@ import Search from '../components/Search';
 import useAuth from '../hooks/useAuth';
 import logo from '../assets/logo.png';
 import { Dropdown } from 'flowbite-react';
-import { Navigate } from 'react-router-dom';
 
 export default function Header() {
   const { authenticatedUser, logout } = useAuth();
@@ -27,7 +26,7 @@ export default function Header() {
   };
 
   return (
-    <div className="flex flex-col border-b-2">
+    <div className="flex flex-col border-b-2 ">
       <div className="flex justify-end bg-black">
         <h1 className="flex justify-center items-center text-white text-xs h-[32px] p-3 cursor-pointer">
           HELP
