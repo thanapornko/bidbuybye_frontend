@@ -2,10 +2,9 @@ export default function Card({
   image,
   productname,
   title,
-  price,
   brand,
-  category,
-  onClick
+  onClick,
+  minPriceBid
 }) {
   return (
     <>
@@ -26,7 +25,11 @@ export default function Card({
               <p className="text-[12px] font-bold">{title}</p>
               <p className="text-[12px] font-bold">{brand}</p>
               <p className="text-[10px] ">STARTING FROM</p>
-              <p className="text-[16px]">2000</p>
+              {minPriceBid === null ? (
+                <p className="text-[12px]">product has no minimum price.</p>
+              ) : (
+                <p className="text-[16px]">{`price ${minPriceBid} ฿`}</p>
+              )}
             </div>
           </div>
         </div>
