@@ -13,7 +13,7 @@ function Approved(props) {
     <div>
       <div className="flex flex-col justify-start ml-5 ">
         <nav>
-          <Link to="/checkout">
+          <Link to="/product">
             <motion.div whileTap={{ scale: 0.75 }}>
               <MdOutlineKeyboardBackspace className="text-textColor text-3xl " />
             </motion.div>
@@ -46,21 +46,21 @@ function Approved(props) {
         )}
       </div>
       <div className="pt-[80px] flex flex-row justify-center ">
-        <div className="flex flex-col justify-center ">
-          <div className="text-7xl text-green-500 mb-10 ml-7">
+        <div className="flex flex-col justify-center items-center">
+          <div className="text-7xl text-green-500 mb-10 ">
             <AiOutlineCheckCircle />
           </div>
           <div className="text-3xl font-bold mb-4 ">Approved</div>
-          <div className="flex flex-row justify-between relative">
+          <div className="flex flex-row justify-between relative pb-[25vh]">
             <div>
-              <BsFillCircleFill className="font-normal text-2xl text-red-600 my-2" />
+              <BsFillCircleFill className="font-normal text-2xl text-red-600 my-2 mr-[20px]" />
             </div>
             <div>
               <BsFillCircleFill className="absolute font-normal left-4 text-2xl text-orange-600 my-2" />
             </div>
             <div className="mt-2">4242</div>
 
-            <div className="mt-2">09/25</div>
+            <div className="mt-2 ml-[10px]">09/25</div>
           </div>
         </div>
       </div>

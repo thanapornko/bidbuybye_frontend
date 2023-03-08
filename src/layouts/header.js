@@ -21,6 +21,10 @@ export default function Header() {
     navigate('/profile');
   };
 
+  const handleAdmin = () => {
+    navigate('/admin');
+  };
+
   return (
     <div className="flex flex-col border-b-2 ">
       <div className="flex justify-end bg-black">
@@ -56,9 +60,16 @@ export default function Header() {
               dismissOnClick={false}
               inline={true}
             >
-              <Dropdown.Item>
-                <button onClick={handleProfile}>Profile</button>
-              </Dropdown.Item>
+              {console.log('kuyyy', authenticatedUser)}
+              {authenticatedUser.isAdmin ? (
+                <Dropdown.Item>
+                  <button onClick={handleAdmin}>Admin</button>
+                </Dropdown.Item>
+              ) : (
+                <Dropdown.Item>
+                  <button onClick={handleProfile}>Profile</button>
+                </Dropdown.Item>
+              )}
               <Dropdown.Item>
                 <button onClick={handleLogout}>Logout</button>
               </Dropdown.Item>
