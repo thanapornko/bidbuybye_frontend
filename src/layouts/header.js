@@ -61,7 +61,6 @@ export default function Header() {
               dismissOnClick={false}
               inline={true}
             >
-              {console.log('kuyyy', authenticatedUser)}
               {authenticatedUser.isAdmin ? (
                 <Dropdown.Item>
                   <button onClick={handleAdmin}>Admin</button>
