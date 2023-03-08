@@ -36,8 +36,10 @@ export default function OrderStatusAsking({ open, toggleDrawer, data }) {
     return (
       <div className="flex">
         <i className="fa-solid fa-circle text-gray-500 text-xs mr-1" />
-        <p className="text-sm text-gray-900">Authentication</p>
-        <p className="text-sm text-gray-500">Preparing to ship item to you</p>
+        <div className="flex flex-col">
+          <p className="text-sm text-gray-900">Authentication</p>
+          <p className="text-sm text-gray-500">Preparing to ship item to you</p>
+        </div>
       </div>
     );
   };
@@ -71,7 +73,7 @@ export default function OrderStatusAsking({ open, toggleDrawer, data }) {
                   </div>
                 </div>
                 <div className="flex">
-                  {e.renderAuthStatus ? (
+                  {e.Order?.OrderStatuses[0].status === 'ARRIVED' ? (
                     <i className="fa-solid fa-circle text-green-500 text-xs mr-1"></i>
                   ) : (
                     <i className="fa-solid fa-circle text-gray-500 text-xs mr-1"></i>

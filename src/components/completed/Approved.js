@@ -5,6 +5,7 @@ import { BsFillCircleFill } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { MdOutlineKeyboardBackspace } from 'react-icons/md';
+import mastercardImage from '../../assets/masterCard.png';
 
 function Approved(props) {
   console.log(props);
@@ -53,12 +54,14 @@ function Approved(props) {
           <div className="text-3xl font-bold mb-4 ">Approved</div>
           <div className="flex flex-row justify-between relative pb-[25vh]">
             <div>
-              <BsFillCircleFill className="font-normal text-2xl text-red-600 my-2 mr-[20px]" />
+              <img
+                src={mastercardImage || null}
+                alt="mastercard"
+                className="w-10 h-15 mt-[5px]"
+              />
             </div>
-            <div>
-              <BsFillCircleFill className="absolute font-normal left-4 text-2xl text-orange-600 my-2" />
-            </div>
-            <div className="mt-2">4242</div>
+
+            <div className="mt-2 ml-[10px]">4242</div>
 
             <div className="mt-2 ml-[10px]">09/25</div>
           </div>
