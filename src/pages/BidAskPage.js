@@ -5,11 +5,26 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import formattedValued from '../utils/currency';
 import ModalBid from '../components/ModalBid';
+import OrderStatusModal from '../components/OrderStatusModal';
 
 export default function BidAskPage() {
   const { authenticatedUser } = useAuth();
   const { allBid, fetchAllBids, cancelBid } = useProduct();
   const [file, setFile] = useState(null);
+  const [open, setOpen] = useState(false);
+  const [bid, setBid] = useState();
+
+  const filterBid = () => {
+    if (bid) {
+      const filteredId = allBid?.getBids.filter((i) => i.id === bid);
+      return filteredId;
+    }
+  };
+
+  const toggleDrawer = (id) => {
+    setOpen(!open);
+    setBid(id);
+  };
 
   useEffect(() => {
     (async () => {
@@ -24,10 +39,27 @@ export default function BidAskPage() {
     await fetchAllBids();
   };
 
+  const showButtonCancel = (id) => {
+    const findingBid = allBid.getBids.find((i) => i.id === id);
+    if (findingBid !== undefined) {
+      if (findingBid.Order === null) {
+        return true;
+      }
+      return findingBid.Order?.OrderStatuses.length === 0;
+    }
+    return true;
+  };
+
   return (
     <>
       {/* nav left */}
       <div className="flex">
+        <OrderStatusModal
+          open={open}
+          setOpen={setOpen}
+          toggleDrawer={toggleDrawer}
+          data={filterBid()}
+        />
         <div className="flex-col bg-white h-screen w-1/5 ">
           <div className="flex items-center justify-around pt-3 pb-2 px-5 shadow">
             <img
@@ -92,17 +124,17 @@ export default function BidAskPage() {
                 className="flex justify-between border-2 mt-5 w-auto"
                 key={e.id}
               >
-                <div className="flex flex-col justify-center my-5 mx-5 space-y-2 text-sm font-bold w-2/5 text-gray-600 ">
+                <div className="flex flex-col justify-center my-5 mx-5 space-y-2 text-sm w-3/5 text-gray-600 ">
                   <div className="flex justify-between">
-                    <div>Product :</div>
+                    <div className="font-bold ">Product :</div>
                     <div>{e.ProductSize.Product.title}</div>
                   </div>
                   <div className="flex justify-between">
-                    <div>Size :</div>
+                    <div className="font-bold ">Size :</div>
                     <div>{e.ProductSize.Size.sizeProduct}</div>
                   </div>
                   <div className="flex justify-between">
-                    <div>Equipment :</div>
+                    <div className="font-bold ">Equipment :</div>
                     {e.equipment === true ? (
                       <div>packaging</div>
                     ) : (
@@ -110,11 +142,11 @@ export default function BidAskPage() {
                     )}
                   </div>
                   <div className="flex justify-between">
-                    <div>Price :</div>
+                    <div className="font-bold ">Price :</div>
                     <div>฿ {formattedValued(e.price)}</div>
                   </div>
                   <div className="flex justify-between">
-                    <div>Type :</div>
+                    <div className="font-bold ">Type :</div>
                     {e.type === 'SELLER' ? (
                       <div>Asking</div>
                     ) : (
@@ -122,8 +154,36 @@ export default function BidAskPage() {
                     )}
                   </div>
                   <div className="flex justify-between">
-                    <div>Status :</div>
-                    <div>{e.expiredDate}</div>
+                    <div className="font-bold ">Status :</div>
+                    {e.expiredDate === 'NONE' ? (
+                      'On Process'
+                    ) : (
+                      <div>{e.expiredDate}</div>
+                    )}
+                  </div>
+                  <div className="flex justify-between">
+                    <div className="font-bold ">Date :</div>
+                    <div>
+                      {e.Order === null || e.Order?.OrderStatusese === undefined
+                        ? e.createdAt.slice(0, 10)
+                        : e.Order?.OrderStatuses[0].createdAt.slice(0, 10)}
+                    </div>
+                  </div>
+                  <div className="flex justify-center">
+                    {e.Order === null ? (
+                      ''
+                    ) : (
+                      <button
+                        onClick={() => {
+                          toggleDrawer(e.id);
+                        }}
+                        className="bg-green-500 hover:bg-green-600 p-2 rounded-lg"
+                      >
+                        <p className="text-zinc-100">
+                          Click to check your order status
+                        </p>
+                      </button>
+                    )}
                   </div>
                 </div>
                 <div className="flex items-center px-2">
@@ -132,8 +192,11 @@ export default function BidAskPage() {
                     className="h-40 w-40 bg-gray-100"
                   />
                 </div>
+
                 <div className="flex items-end ">
-                  {e.expiredDate !== 'CANCEL' && e.expiredDate !== 'EXPIRED' ? (
+                  {e.expiredDate !== 'CANCEL' &&
+                  e.expiredDate !== 'EXPIRED' &&
+                  showButtonCancel(e.id) ? (
                     <ModalBid
                       onClick={() => {
                         fetchBids(e.id);
