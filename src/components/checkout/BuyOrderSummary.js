@@ -10,33 +10,20 @@ import useProduct from '../../hooks/useProduct';
 import useAuth from '../../hooks/useAuth';
 import { useParams } from 'react-router-dom';
 import EditProfile from '../EditProfile';
-import styled from 'styled-components';
-
-const MirrorImage10 = styled.img`
-  width: 48px;
-  height: 48px;
-  transform: scaleX(1) rotate(5deg);
-`;
-
-const MirrorImage = styled.img`
-  width: 48px;
-  height: 48px;
-  transform: scaleX(-1) rotate(0deg);
-`;
-
-const MirrorImage30 = styled.img`
-  width: 48px;
-  height: 48px;
-  transform: scalex(1) rotate(-5deg);
-`;
+import useOrder from '../../hooks/useOrder';
+import TermConditions from './TermConditons';
 
 function BuyOrderSummary(props) {
   const [isChecked, setIsChecked] = useState(false);
   const [open, setOpen] = useState(false);
+  const [conditionOpen, setConditionOpen] = useState(false);
   const toggleDrawer = () => {
     setOpen(!open);
   };
   const { authenticatedUser } = useAuth();
+  const oldToggleDrawer = () => {
+    setConditionOpen(!conditionOpen);
+  };
 
   const {
     fetchProductDetail,
@@ -45,7 +32,7 @@ function BuyOrderSummary(props) {
     NewMinPriceBySize
   } = useProduct();
   const { productId } = useParams();
-
+  const { bid } = useOrder();
   useEffect(() => {
     (async () => {
       try {
@@ -78,7 +65,11 @@ function BuyOrderSummary(props) {
     // container all
     <div className="flex gap-4">
       <EditProfile open={open} setOpen={setOpen} toggleDrawer={toggleDrawer} />
-
+      <TermConditions
+        open={conditionOpen}
+        setOpen={setConditionOpen}
+        toggleDrawer={oldToggleDrawer}
+      />
       {/* box-left */}
       <div className="w-[533px] h-[562px] border-2">
         {/* top */}
@@ -122,35 +113,24 @@ function BuyOrderSummary(props) {
               <p>Brand new</p>
             </div>
 
-            <div className="flex justify-between my-6">
-              <p className="text-sm">Equipment</p>
-              <p>Original box (no defect)</p>
-            </div>
+            {bid.map((el) => {
+              const isMinPrice = +el.price === +NewMinPriceBySize?.minPrice;
+              console.log(isMinPrice);
 
-            <div className="flex justify-between my-6 py-2 items-center">
-              <p className="text-sm">Product Images</p>
-              <p>
-                <div className="flex">
-                  <MirrorImage10
-                    src={NewMinPriceBySize?.product}
-                    alt="nikeDunkLow"
-                    className="w-[48px] h-[48px]"
-                  />
+              const packageText = el.equipment ? 'none packing' : 'packing';
 
-                  <MirrorImage
-                    src={NewMinPriceBySize?.product}
-                    alt="nikeDunkLow"
-                    className="w-[48px] h-[48px]"
-                  />
-
-                  <MirrorImage30
-                    src={NewMinPriceBySize?.product}
-                    alt="nikeDunkLow"
-                    className="w-[48px] h-[48px] ml-[3px]"
-                  />
-                </div>
-              </p>
-            </div>
+              if (isMinPrice) {
+                return (
+                  <div className="flex justify-between my-6">
+                    <p className="text-sm">Equipment</p>
+                    <div>{packageText}</div>
+                  </div>
+                );
+              }
+              return null;
+            })}
+            {/* 
+            <div className="flex justify-between my-6 py-2 items-center"></div> */}
           </div>
           {/* right */}
           <div></div>
@@ -252,7 +232,9 @@ function BuyOrderSummary(props) {
                 <div>
                   <p className="text-[14px] font-bold">
                     I've read and agree to{' '}
-                    <span className="underline">terms & conditions</span>
+                    <button className="underline" onClick={oldToggleDrawer}>
+                      terms &amp; conditions
+                    </button>
                   </p>
                   <p className="text-[12px]">
                     {' '}
