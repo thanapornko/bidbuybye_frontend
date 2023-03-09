@@ -101,6 +101,7 @@ export default function Admin() {
                       <p className="">Equipment :</p>
                       <p className="">Price :</p>
                       <p className="">Status :</p>
+                      <p className="">Order Status :</p>
                     </div>
                     <div className="my-5  space-y-2 text-sm w-11/12 text-gray-600  ">
                       <p className="">{`${el.User.firstName} ${el.User.lastName}`}</p>
@@ -110,6 +111,7 @@ export default function Admin() {
                       <p className="">{el.Bid.equipment ? 'Yes' : 'No'}</p>
                       <p className="">{el.Bid.price}</p>
                       <p className="">{el.Bid.type}</p>
+                      <p className="">{el.OrderStatuses[0].status}</p>
                     </div>
                   </div>
                   <div className="flex items-center">
@@ -123,7 +125,7 @@ export default function Admin() {
                   <div className="grid content-between justify-items-center w-1/3 h-16 p-1 bg-gray-100">
                     <p className="text-[13px]">Item arrived at bidbuybye</p>
                     <button
-                      className="bg-green-500 rounded-xl px-3 py-1"
+                      className="bg-green-500 hover:bg-green-600 rounded-xl px-3 py-1 text-white"
                       onClick={() => handleArrived(el.id)}
                     >
                       approve
@@ -133,13 +135,13 @@ export default function Admin() {
                     <p className="text-[13px]">Verification</p>
                     <div className="flex">
                       <button
-                        className="bg-green-500 rounded-xl px-3 py-1 mr-1"
+                        className="bg-green-500 hover:bg-green-600 rounded-xl px-3 py-1 mr-1 text-white"
                         onClick={() => handleVerified(el.id)}
                       >
                         approve
                       </button>
                       <button
-                        className="bg-red-500 rounded-xl px-3 py-1"
+                        className="bg-red-500 hover:bg-red-600 rounded-xl px-3 py-1 text-white"
                         onClick={() => handleCancel(el.id)}
                       >
                         decline
@@ -149,7 +151,7 @@ export default function Admin() {
                   <div className="grid content-between justify-items-center w-1/3 h-16 p-1 bg-gray-100 ]">
                     <p className="text-[13px]">Item shipped from bidbuybye</p>
                     <button
-                      className="bg-green-500 rounded-xl px-3 py-1"
+                      className="bg-green-500 hover:bg-green-600 rounded-xl px-3 py-1 text-white"
                       onClick={() => handleShipped(el.id)}
                     >
                       approve
@@ -158,63 +160,6 @@ export default function Admin() {
                 </div>
               </div>
             ))}
-            {/* end box */}
-            {/* box */}
-            <div className="flex-col border-b">
-              <div className="flex border-2 mt-5 justify-between">
-                <div className="flex justify-between w-1/2">
-                  <div className="my-5 mx-5 space-y-2 text-sm font-bold w-2/5 text-gray-600 ">
-                    <p className="">Customer :</p>
-                    <p className="">Order id :</p>
-                    <p className="">Product :</p>
-                    <p className="">Size :</p>
-                    <p className="">Equipment :</p>
-                    <p className="">Price :</p>
-                    <p className="">Status :</p>
-                  </div>
-                  <div className="my-5 mx-5 space-y-2 text-sm w-2/5 text-gray-600 ">
-                    <p className="">BigPom NaKrub</p>
-                    <p className="">11111</p>
-                    <p className="">Nike M777</p>
-                    <p className="">38</p>
-                    <p className="">Yes</p>
-                    <p className="">9,600 THB</p>
-                    <p className="">Buyer</p>
-                  </div>
-                </div>
-                <div className="flex items-center">
-                  <img
-                    src={'https://picsum.photos/id/1/200/300'}
-                    className="h-48 w-48 mx-4 bg-gray-100"
-                  />
-                </div>
-              </div>
-              <div className="flex my-5 mx-5 space-x-2 text-sm text-gray-600">
-                <div className="grid content-between justify-items-center w-1/3 h-16 p-1 bg-gray-100">
-                  <p className="">Item arrived at bidbuybye</p>
-                  <button className="bg-green-500 rounded-xl px-3 py-1">
-                    approve
-                  </button>
-                </div>
-                <div className="grid content-between justify-items-center w-1/3 h-16 p-1 bg-gray-100">
-                  <p>Verification</p>
-                  <div className="flex">
-                    <button className="bg-green-500 rounded-xl px-3 py-1 mr-1">
-                      approve
-                    </button>
-                    <button className="bg-red-500 rounded-xl px-3 py-1">
-                      decline
-                    </button>
-                  </div>
-                </div>
-                <div className="grid content-between justify-items-center w-1/3 h-16 p-1 bg-gray-100">
-                  <p className="">Item shipped from bidbuybye</p>
-                  <button className="bg-green-500 rounded-xl px-3 py-1">
-                    approve
-                  </button>
-                </div>
-              </div>
-            </div>
             {/* end box */}
           </div>
         </div>
