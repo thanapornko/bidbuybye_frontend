@@ -5,7 +5,44 @@ import useProduct from '../hooks/useProduct';
 
 export default function OrderStatusAsking({ open, toggleDrawer, data }) {
   // console.log(data);
+  const renderAuthStatus = (e) => {
+    if (e.Order?.OrderStatuses[0].status === 'VERIFIED') {
+      return (
+        <div className="flex">
+          <i className="fa-solid fa-circle text-green-500 text-xs mr-1" />
+          <div className="flex flex-col">
+            <p className="text-sm text-gray-900">Authentication</p>
+            <p className="text-sm text-gray-500">
+              Preparing to ship item to you
+            </p>
+          </div>
+        </div>
+      );
+    }
 
+    if (e.Order?.OrderStatuses[0].status === 'CANCEL') {
+      return (
+        <div className="flex">
+          <i className="fa-solid fa-circle text-red-500 text-xs mr-1" />
+          <div className="flex flex-col">
+            <p className="text-sm text-gray-900">Unauthenticated</p>
+            <p className="text-sm text-gray-500">
+              Your product canceled because unauthenicated.
+            </p>
+          </div>
+        </div>
+      );
+    }
+    return (
+      <div className="flex">
+        <i className="fa-solid fa-circle text-gray-500 text-xs mr-1" />
+        <div className="flex flex-col">
+          <p className="text-sm text-gray-900">Authentication</p>
+          <p className="text-sm text-gray-500">Preparing to ship item to you</p>
+        </div>
+      </div>
+    );
+  };
   return (
     <>
       <Drawer open={open} onClose={toggleDrawer} direction="right" size="30vw">
@@ -50,19 +87,7 @@ export default function OrderStatusAsking({ open, toggleDrawer, data }) {
                     </p>
                   </div>
                 </div>
-                <div className="flex">
-                  {e.Order?.OrderStatuses[0].status === 'VERIFIED' ? (
-                    <i className="fa-solid fa-circle text-green-500 text-xs mr-1"></i>
-                  ) : (
-                    <i className="fa-solid fa-circle text-gray-500 text-xs mr-1"></i>
-                  )}
-                  <div className="flex-col">
-                    <p className="text-sm text-gray-900">Authentication</p>
-                    <p className="text-sm text-gray-500">
-                      Preparing to ship item to you
-                    </p>
-                  </div>
-                </div>
+                <div className="flex">{renderAuthStatus(e)}</div>
                 <div className="flex">
                   {e.Order?.OrderStatuses[0].status === 'SHIPPED' ? (
                     <i className="fa-solid fa-circle text-green-500 text-xs mr-1"></i>

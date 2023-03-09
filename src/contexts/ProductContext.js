@@ -26,7 +26,7 @@ export default function ProductContextProvider({ children }) {
   // state keep minPriceBySize
   const [minPriceBySize, setMinPriceBySize] = useState();
   const [maxPriceBySize, setMaxPriceBySize] = useState();
-  console.log(bidPrice, 'bidPrice');
+  // console.log(bidPrice, 'bidPrice');
   //get bids by user
   const [allBid, setAllbid] = useState();
 
@@ -88,6 +88,7 @@ export default function ProductContextProvider({ children }) {
     try {
       const res = await productApi.getPriceBid(id);
       setBidPrice(res.data);
+      console.log(res.data);
     } catch (err) {}
   };
 
@@ -158,6 +159,7 @@ export default function ProductContextProvider({ children }) {
       productDetail.products.id,
       selectSize.id
     );
+    console.log(showPrice, 'showPrice.data');
     setMaxPriceBySize(showPrice.data);
     setNewMaxPriceBySize(showPrice.data);
   };

@@ -10,5 +10,9 @@ export default function RedirectAuth({ children }) {
   //   return <Navigate to={'/'} />;
   // }
 
+  if (authenticatedUser.isAdmin === true) {
+    return <Navigate to={'/admin'} />;
+  }
+
   return children;
 }
