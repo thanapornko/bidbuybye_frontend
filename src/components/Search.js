@@ -33,8 +33,6 @@ const Search = ({ openSearch, setOpenSearch }) => {
     });
   };
 
-  console.log(products);
-
   const show = searchProduct(products);
 
   return (
