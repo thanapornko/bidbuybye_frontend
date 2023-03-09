@@ -21,8 +21,8 @@ export default function HomePage() {
       <div className="flex flex-col m-auto  w-[80%]">
         {/* Container icon */}
         <div className="flex justify-center items-center gap-20">
-          {brands.map((el) => (
-            <Link to="/product" state={{ id: el.id }}>
+          {brands.map((el, idx) => (
+            <Link to="/product" state={{ id: el.id }} key={idx}>
               <div className="flex flex-col justify-center items-center cursor-pointer gap-2">
                 <img
                   alt="img"
