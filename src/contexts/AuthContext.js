@@ -19,7 +19,6 @@ export default function AuthContextProvider({ children }) {
     const fetchAuthUser = async () => {
       try {
         const res = await authApi.getMe();
-        // console.log('#1', res.data.user);
         setAuthenticatedUser(res.data.user);
       } catch (err) {
         if (err.response && err.response.status === 401) {
@@ -42,12 +41,10 @@ export default function AuthContextProvider({ children }) {
       email,
       password
     });
-    console.log('reslogin', res);
     setAccessToken(res.data.accessToken);
 
     setAuthenticatedUser(jwtDecode(res.data.accessToken));
   };
-  // console.log('#2', jwtDecode(getAccessToken()));
 
   const logout = () => {
     removeAccessToken();
@@ -55,20 +52,10 @@ export default function AuthContextProvider({ children }) {
   };
 
   const googleLogin = async (credential) => {
-    console.log('------------------cre', credential);
     const res = await authApi.googleLogin(credential);
-    console.log(res.data.accessToken);
     setAccessToken(res.data.accessToken);
     setAuthenticatedUser(jwtDecode(res.data.accessToken));
   };
-
-  // const updateProfile = async (data) => {
-  //   const res = await userApi.updateProfilePicture(data);
-  //   setAuthenticatedUser({
-  //     ...authenticatedUser,
-  //     ...res.data
-  //   });
-  // };
 
   const updateProfile = async (data) => {
     try {

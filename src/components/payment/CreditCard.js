@@ -5,6 +5,7 @@ import { AiFillCheckCircle } from 'react-icons/ai';
 import Script from 'react-load-script';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import masterCard from '../../Images/masterCard.png';
 import useProduct from '../../hooks/useProduct';
 import useAuth from '../../hooks/useAuth';
 import styled from 'styled-components';
@@ -222,7 +223,7 @@ function CreditCard(props) {
         <div className="border-2 rounded">
           <div className="p-1  flex flex-row  bg-gray-300 items-center justify-between">
             <div className="p-1 text-[12px] flex flex-row gap-1 h-[50px] items-center justify-between">
-              <SiMastercard />
+              <img src={masterCard} className="w-[30px]" />
               <p>MasterCard</p>
               <p className="text-gray-300">(default)</p>
             </div>

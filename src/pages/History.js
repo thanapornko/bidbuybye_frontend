@@ -25,8 +25,6 @@ export default function History() {
     navigate('/');
   };
 
-  console.log('===========content', content);
-
   return (
     <>
       {/* nav left */}

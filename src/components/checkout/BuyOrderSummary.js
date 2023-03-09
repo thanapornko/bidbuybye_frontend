@@ -148,7 +148,9 @@ function BuyOrderSummary(props) {
 
             {authenticatedUser.address?.length > 0 &&
             authenticatedUser?.address ? (
-              <div className="w-1/2">{authenticatedUser.address}</div>
+              <div className="w-1/2 flex justify-end">
+                {authenticatedUser.address}
+              </div>
             ) : (
               <motion.div whileTap={{ scale: 0.75 }}>
                 <nav>

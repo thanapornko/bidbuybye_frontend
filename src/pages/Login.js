@@ -23,8 +23,6 @@ export default function Login() {
       e.preventDefault();
       await login(email, password);
 
-      // console.log('-------------email-----', email);
-      // console.log('-------------password-----', password);
       toast.success('Welcome');
 
       email === 'admin01@gmail.com' ? navigate('/admin') : navigate('/');
@@ -64,10 +62,6 @@ export default function Login() {
       }
     );
   }, []);
-
-  // useEffect(() => {
-  //   login();
-  // }, [authenticatedUser]);
 
   return (
     <div className="flex justify-center my-16">

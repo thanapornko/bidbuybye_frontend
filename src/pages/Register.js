@@ -41,18 +41,18 @@ export default function Register() {
   const handleSubmitForm = async (e) => {
     try {
       e.preventDefault();
-      console.log('-------------input-----------', input);
+      // console.log('-------------input-----------', input);
       const result = validateRegister(input);
-      console.log('----------result', result);
-      console.dir('-------------error----------', error);
+      // console.log('----------result', result);
+      // console.dir('-------------error----------', error);
       if (result) {
         setError(result);
       } else {
-        console.log('no error');
+        // console.log('no error');
         setError({});
         await authApi.register(input);
         setInput(initialInput);
-        console.log('innit', initialInput);
+        // console.log('innit', initialInput);
         toast.success('register successfully');
         navigate('/login');
       }
