@@ -19,7 +19,7 @@ export default function AuthContextProvider({ children }) {
     const fetchAuthUser = async () => {
       try {
         const res = await authApi.getMe();
-        console.log('#1', res.data.user);
+        // console.log('#1', res.data.user);
         setAuthenticatedUser(res.data.user);
       } catch (err) {
         if (err.response && err.response.status === 401) {

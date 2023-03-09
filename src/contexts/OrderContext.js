@@ -32,7 +32,7 @@ function OrderContextProvider({ children }) {
     fetchPost();
   }, []);
 
-  console.log(bid, 'bid888888888888888888888888');
+  // console.log(bid, 'bid888888888888888888888888');
   return (
     <OrderContext.Provider value={{ order, charge, setCharge, bid }}>
       {children}
