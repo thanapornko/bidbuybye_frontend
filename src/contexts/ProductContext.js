@@ -88,6 +88,7 @@ export default function ProductContextProvider({ children }) {
     try {
       const res = await productApi.getPriceBid(id);
       setBidPrice(res.data);
+      console.log(res.data);
     } catch (err) {}
   };
 
@@ -158,6 +159,7 @@ export default function ProductContextProvider({ children }) {
       productDetail.products.id,
       selectSize.id
     );
+    console.log(showPrice, 'showPrice.data');
     setMaxPriceBySize(showPrice.data);
     setNewMaxPriceBySize(showPrice.data);
   };
