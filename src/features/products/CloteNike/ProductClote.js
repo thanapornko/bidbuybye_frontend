@@ -64,8 +64,8 @@ export default function ProductCloteNike() {
     <div className="mt-10">
       {/* Content Link Clotes */}
       <div className="flex flex-col justify-center items-center gap-20 cursor-pointer">
-        {brands.map((el) => (
-          <div>
+        {brands.map((el, idx) => (
+          <div key={idx}>
             <div className="flex gap-[10px] items-center justify-center">
               <Link to="/product" state={{ id: el.id }}>
                 <p className="text-[20px] font-semibold">{el.title}</p>

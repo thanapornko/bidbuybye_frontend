@@ -12,8 +12,6 @@ export default function Admin() {
     try {
       const res = await adminApi.getOrder();
       setOrder(res.data);
-      console.log('mark', res.data);
-      console.log('mark2', res);
     } catch (err) {
       console.log(err);
     }

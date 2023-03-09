@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
-  const { login, googleLogin } = useAuth();
+  const { login, googleLogin, authenticatedUser } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -22,10 +22,14 @@ export default function Login() {
     try {
       e.preventDefault();
       await login(email, password);
-      console.log('-------------email-----', email);
-      console.log('-------------password-----', password);
+
+      // console.log('-------------email-----', email);
+      // console.log('-------------password-----', password);
       toast.success('Welcome');
-      navigate('/');
+
+      email === 'admin01@gmail.com' ? navigate('/admin') : navigate('/');
+
+      // navigate('/');
     } catch (err) {
       console.log('errrrr----------', err);
       toast.error(err.response?.data.message);
@@ -60,6 +64,10 @@ export default function Login() {
       }
     );
   }, []);
+
+  // useEffect(() => {
+  //   login();
+  // }, [authenticatedUser]);
 
   return (
     <div className="flex justify-center my-16">
