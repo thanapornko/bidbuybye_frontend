@@ -18,7 +18,7 @@ export default function HomePage() {
       <ImageSlide />
 
       {/* Container All  */}
-      <div className="flex flex-col m-auto  w-[80%]">
+      <div className="flex flex-col m-auto mb-16 w-[80%]">
         {/* Container icon */}
         <div className="flex justify-center items-center gap-20">
           {brands.map((el, idx) => (

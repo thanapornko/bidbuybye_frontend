@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import { useEffect, useState } from 'react';
 import * as adminApi from '../apis/admin-api';
 import useAuth from '../hooks/useAuth';
@@ -26,6 +27,7 @@ export default function Admin() {
     try {
       console.log('orderiddd', orderId);
       await adminApi.updateShipped({ orderId, action: 'shipped' });
+      toast.success('Status updated : Shipped');
     } catch (err) {
       console.log(err);
     }
@@ -33,6 +35,7 @@ export default function Admin() {
   const handleArrived = async (orderId) => {
     try {
       await adminApi.updateArrived({ orderId, action: 'arrived' });
+      toast.success('Status updated : Arrived');
     } catch (err) {
       console.log(err);
     }
@@ -40,6 +43,7 @@ export default function Admin() {
   const handleVerified = async (orderId) => {
     try {
       await adminApi.updateVerified({ orderId, action: 'verified' });
+      toast.success('Status updated : Verified');
     } catch (err) {
       console.log(err);
     }
@@ -47,6 +51,7 @@ export default function Admin() {
   const handleCancel = async (orderId) => {
     try {
       await adminApi.updateCancel({ orderId, action: 'cancel' });
+      toast.success('Status updated : Cancel');
     } catch (err) {
       console.log(err);
     }
